@@ -1,0 +1,49 @@
+{
+  "name": "mc-bird",
+  "version": "1.0.0",
+  "description": "MessageBird Assignment",
+  "main": "index.js",
+  "scripts": {
+    "start:server": "nodemon --watch ./src/server ./src/server/index.babel.js --mcBird:Environment development",
+    "start:client": "webpack-dev-server --config ./webpack/webpack.development.config --mode development --hot --inline --color",
+    "build:server": "rimraf dist && babel ./src/server -d dist/server --copy-files",
+    "build:client": "webpack --config ./webpack/webpack.production.config --mode production --progress --color",
+    "dev:storybook": "start-storybook -p 9001 -c .storybook -s .storybook/static"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SchmerZ/mc-bird.git"
+  },
+  "author": "Vadim Sheydakov",
+  "homepage": "https://github.com/SchmerZ/mc-bird#readme",
+  "dependencies": {
+    "body-parser": "1.18.3",
+    "express": "4.16.3",
+    "nconf": "0.10.0",
+    "npm": "^6.3.0",
+    "omni-fetch": "0.2.3",
+    "prop-types": "15.6.2",
+    "react": "16.4.2",
+    "react-dom": "16.4.2",
+    "websocket": "1.0.26"
+  },
+  "devDependencies": {
+    "@storybook/addon-actions": "4.0.0-alpha.14",
+    "@storybook/addon-info": "4.0.0-alpha.14",
+    "@storybook/react": "4.0.0-alpha.14",
+    "babel-cli": "6.26.0",
+    "babel-core": "6.26.3",
+    "babel-loader": "7.1.5",
+    "babel-preset-env": "1.7.0",
+    "babel-preset-react": "6.24.1",
+    "babel-register": "6.26.0",
+    "babel-polyfill": "6.26.0",
+    "babel-plugin-transform-class-properties": "6.24.1",
+    "babel-plugin-transform-object-rest-spread": "6.26.0",
+    "nodemon": "1.18.3",
+    "webpack": "4.16.3",
+    "webpack-cli": "3.1.0",
+    "webpack-dev-server": "3.1.5",
+    "styled-components": "3.4.0"
+  }
+}
