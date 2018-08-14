@@ -1,4 +1,4 @@
 .idea
 node_modules
 dist
-development.configuration.json
+src/server/configuration/development.configuration.json
