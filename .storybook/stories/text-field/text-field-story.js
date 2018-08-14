@@ -20,6 +20,16 @@ storiesOf('TextField', module)
         error="Email address cannot be blank"
       />
     </Container>))
+  .add('with debounce', () => (
+    <Container>
+      <TextField
+        debounceTimeout={300}
+        label="With debounce = 300"
+        placeholder="Email address"
+        onChange={action('change')}
+      />
+    </Container>
+  ))
   .add('disabled', () => (
     <Container>
       <TextField

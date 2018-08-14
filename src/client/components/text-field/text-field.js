@@ -1,6 +1,7 @@
-import React, {Component} from 'react'
+import React, {Component, PureComponent} from 'react'
 import PropTypes from 'prop-types'
 
+import uncontrollable from 'uncontrollable'
 import styled from 'styled-components'
 import {textFieldColor, errorColor} from '../../styles/variables'
 
@@ -53,26 +54,48 @@ const ErrorMessage = styled.span`
     line-height: 1.2em;
 `;
 
-class TextField extends Component {
+export class TextField extends PureComponent {
+  debouncer = null;
+
+  state = {
+    inputText: this.props.value,
+  };
 
   handleInputChange = (e) => {
     e.stopPropagation();
 
-    const {disabled, onChange} = this.props;
-    if (disabled) return;
+    const {disabled, onChange, debounceTimeout} = this.props;
+    if (disabled || !onChange) return;
 
     const nextValue = e.target.value;
-    onChange && onChange(nextValue);
+
+    this.setState({
+      inputText: nextValue,
+    }, () => {
+      if (this.debouncer) {
+        clearTimeout(this.debouncer);
+      }
+
+      if (debounceTimeout) {
+        this.debouncer = setTimeout(onChange, debounceTimeout, this.state.inputText);
+      }
+      else {
+        onChange(nextValue);
+      }
+    });
   };
 
   render() {
-    const {disabled, value, label, placeholder, error, ...rest} = this.props;
+    const {disabled, label, placeholder, error, ...rest} = this.props;
+    const {inputText} = this.state;
+
+    delete rest.debounceTimeout;
 
     const inputProps = {
       disabled,
       placeholder,
       onChange: this.handleInputChange,
-      value,
+      value: inputText,
     };
 
     return (
@@ -91,6 +114,18 @@ TextField.propTypes = {
   label: PropTypes.string,
   placeholder: PropTypes.string,
   error: PropTypes.string,
+  debounceTimeout: PropTypes.number,
+  onChange: PropTypes.func,
 };
 
-export default TextField;
+TextField.defaultProps = {
+  debounceTimeout: null,
+  value: '',
+  placeholder: '',
+};
+
+const UncontrollableTextField = uncontrollable(TextField, {
+  value: 'onChange'
+});
+
+export default UncontrollableTextField;

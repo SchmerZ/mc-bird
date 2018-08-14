@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import WaitButton from './wait-button'
-import SendIcon from '../icons/send-icon'
+import WaitButton from '../../components/buttons/wait-button'
+import SendIcon from '../../components/icons/send-icon'
 
 const StyledWaitButton = styled(WaitButton)`
   height: 40px;
@@ -16,7 +16,7 @@ const StyledChatIcon = styled(SendIcon)`
   padding-right: 5px;
 `;
 
-const SendSmsButton = (props) => {
+const SendMessageButton = (props) => {
   return (
     <StyledWaitButton {...props} busyChildren="Processing...">
       <StyledChatIcon/>Send SMS
@@ -24,4 +24,4 @@ const SendSmsButton = (props) => {
   )
 };
 
-export default SendSmsButton;
+export default SendMessageButton;

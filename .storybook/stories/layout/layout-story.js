@@ -3,11 +3,13 @@ import {storiesOf} from '@storybook/react';
 import styled from 'styled-components'
 
 import SkewedContainer from '../../../src/client/components/layout/skewed-container';
-import Root from '../../../src/client/Root';
+
+import Layout from '../../../src/client/components/layout/Layout';
+import LayouMockup from './layout-mockup'
+
 import PageNotFound from '../../../src/client/components/pages/page-not-found';
 import PageLoading from '../../../src/client/components/pages/page-loading';
 
-import {body} from '../../../src/client/styles/layout';
 import {Container, Row, Column} from '../../../src/client/components/layout/responsive';
 
 const SkewedContainer320 = styled(SkewedContainer)`
@@ -22,7 +24,7 @@ const SkewedContainer600 = styled(SkewedContainer)`
   left: 0;
 `;
 
-const StyledRoot = styled(Root)`
+const LayoutContainer = styled(Layout)`
   height: 500px;
 `;
 
@@ -85,7 +87,9 @@ storiesOf('Layout', module)
   ))
   .add('Mockup', () => (
     <Body>
-    <StyledRoot/>
+    <LayoutContainer>
+      <LayouMockup/>
+    </LayoutContainer>
     </Body>
   ))
   .add('404 Page', () => (

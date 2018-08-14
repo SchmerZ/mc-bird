@@ -1,6 +1,7 @@
 import config from '../config';
 
+import quickMessageRouter from './quick-message/quick-message-router'
+
 export default apiRouter => {
-    // todo
-    //apiRouter.use();
+  apiRouter.use(quickMessageRouter(config));
 };

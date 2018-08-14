@@ -13,6 +13,15 @@ export const fadeInUp = keyframes`
         transform: none
   }`;
 
+export const fadeIn = keyframes`
+  0% {
+        opacity: 0;
+      }
+  
+  to {
+        opacity: 1;
+  }`;
+
 export const rotate360 = keyframes`
   0% {
     stroke-dashoffset: 187;

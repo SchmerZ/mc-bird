@@ -20,12 +20,19 @@
     "body-parser": "1.18.3",
     "express": "4.16.3",
     "nconf": "0.10.0",
-    "npm": "^6.3.0",
-    "omni-fetch": "0.2.3",
     "prop-types": "15.6.2",
     "react": "16.4.2",
     "react-dom": "16.4.2",
-    "websocket": "1.0.26"
+    "react-redux": "5.0.7",
+    "redux": "4.0.0",
+    "redux-actions": "2.6.1",
+    "redux-saga": "0.16.0",
+    "redux-saga-routines": "2.2.5",
+    "redux-devtools-extension": "2.13.5",
+    "websocket": "1.0.26",
+    "history": "4.7.2",
+    "uncontrollable": "6.0.0",
+    "messagebird": "2.1.4"
   },
   "devDependencies": {
     "@storybook/addon-actions": "4.0.0-alpha.14",
@@ -44,6 +51,6 @@
     "webpack": "4.16.3",
     "webpack-cli": "3.1.0",
     "webpack-dev-server": "3.1.5",
-    "styled-components": "3.4.0"
+    "styled-components": "3.4.2"
   }
 }

@@ -1,25 +1,34 @@
 import React, {Component} from 'react'
-import styled from 'styled-components'
+import styled, {injectGlobal} from 'styled-components'
 
-import {bodyBackground, bodyContent} from '../../styles/layout'
+import {global, bodyBackground, bodyContent} from '../../styles/layout'
 
 import Container from '../layout/container'
 import Header from '../layout/header'
 import Footer from '../layout/footer'
 import {SpinnerIcon} from '../icons'
 
-const BodyBackground = styled.div`
+injectGlobal`${global}`;
+
+const BodyBackground = styled.div.attrs({
+  id: 'app',
+})`
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  
   ${bodyBackground}
 `;
 
 const BodyContent = styled.div`
+  flex-grow: 1;
   ${bodyContent}
 `;
 
 const LoadingSection = styled.section`
-  min-height: 500px;
   position: relative;
   
+  padding-top: 120px;
   display: flex;
   align-items: center;
   text-align: center;

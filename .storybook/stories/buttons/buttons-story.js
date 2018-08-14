@@ -4,7 +4,7 @@ import {storiesOf} from '@storybook/react';
 
 import styled from 'styled-components'
 import Button from '../../../src/client/components/buttons/button';
-import SendSmsButton from '../../../src/client/components/buttons/send-sms-button';
+import SendMessageButton from '../../../src/client/quick-message/components/send-message-button';
 
 const Container = styled.div`
   margin: 30px 10px 10px 10px;
@@ -18,9 +18,9 @@ storiesOf('Buttons', module)
   .add('Disabled button', () => (
     <Button disabled>Disabled Button</Button>
   ))
-  .add('Send SMS button', () => (
+  .add('Send message button', () => (
     <Container>
-      <SendSmsButton/>
-      <SendSmsButton busy/>
+      <SendMessageButton/>
+      <SendMessageButton busy/>
     </Container>
   ));

@@ -9,7 +9,7 @@ import errorHandler from '../lib/error-handler'
 const appRouter = express.Router();
 
 export default () => {
-  appRouter.use(express.static(path.join(__dirname, '../public')));
+  appRouter.use(express.static(path.join(__dirname, '../../client/static')));
   appRouter.use('/api', apiRouter());
   appRouter.get('/', ssrRouter());
 

@@ -1,17 +1,15 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import {color} from '../../styles/variables'
-import {Anchor} from './primitive'
+import {logoColor} from '../../styles/variables'
 import {MessageBirdHeaderLogoIcon} from '../icons'
 
-const Container = styled(Anchor)`
-  color: ${color.logo};
-  transition: 0s;
+const Container = styled.a`
+  color: ${logoColor};
   
   :hover {
     opacity: .5;
-    color: ${color.logo};
+    color: ${logoColor};
   }
 `;
 

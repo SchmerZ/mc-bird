@@ -1,8 +1,10 @@
-import React, {Component} from 'react'
+import React, {PureComponent} from 'react'
 import PropTypes from 'prop-types'
 
 import styled from 'styled-components'
 import {textFieldColor, errorColor} from '../../styles/variables'
+
+const smsTextMaxLength = 160;
 
 const Container = styled.div`
   display: flex;
@@ -10,7 +12,8 @@ const Container = styled.div`
   
   border: 2px solid ${textFieldColor.border};
   border-radius: 4px;
-  border-color: ${props => props.active ? textFieldColor.borderActive : ''};
+  
+  ${({active}) => active ? `border-color: ${textFieldColor.borderActive};` : ''};
   
   padding: 10px 10px 0 10px;
   min-height: 150px;
@@ -45,11 +48,18 @@ const Error = styled.div`
 const CharCounter = styled.div`
 `;
 
-const smsTextMaxLength = 160;
-
-class SendMessageText extends Component {
+class SendMessageText extends PureComponent {
   state = {
     active: false
+  };
+
+  handleInputChange = (e) => {
+    e.stopPropagation();
+
+    const nextValue = e.target.value;
+    const {onChange} = this.props;
+
+    onChange && onChange(nextValue);
   };
 
   handleTextAreaFocus = () => {
@@ -68,7 +78,6 @@ class SendMessageText extends Component {
     return `${charsCount}/${maxLength}, ${smsCount} SMS`;
   };
 
-
   render() {
     const {active} = this.state;
     const {value, error, ...rest} = this.props;
@@ -77,7 +86,9 @@ class SendMessageText extends Component {
 
     return (
       <Container active={active} {...rest}>
-        <TextArea value={value} placeholder="Message"
+        <TextArea value={value}
+                  placeholder="Message"
+                  onChange={this.handleInputChange}
                   onFocus={this.handleTextAreaFocus}
                   onBlur={this.handleTextAreaBlur}/>
         <Footer>
@@ -89,9 +100,15 @@ class SendMessageText extends Component {
   }
 }
 
-SendMessageText.propTypes = {};
+SendMessageText.propTypes = {
+  value: PropTypes.string,
+  maxLength: PropTypes.number,
+
+  onChange: PropTypes.func,
+};
 
 SendMessageText.defaultProps = {
+  value: '',
   maxLength: 1377
 };
 

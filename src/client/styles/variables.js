@@ -1,7 +1,6 @@
 export const color = {
   primary: '#2d9bf3',
   secondary: '',
-  logo: '#2481D7',
 };
 
 export const textFieldColor = {
@@ -15,3 +14,5 @@ export const textFieldColor = {
 export const errorColor = '#ef1a55';
 
 export const backgroundColor = '#24374e';
+
+export const logoColor = '#2481D7';

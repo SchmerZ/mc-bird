@@ -1,5 +1,6 @@
 import React, {Fragment} from 'react';
 import {storiesOf} from '@storybook/react';
+import {action} from '@storybook/addon-actions';
 import styled from 'styled-components'
 
 import Message from '../../../src/client/components/message/message';
@@ -40,7 +41,7 @@ storiesOf('Message', module)
     <SendMessageContainer>
       <Title>Message</Title>
       <SendMessageTextContainer>
-        <SendMessageText/>
+        <SendMessageText onChange={action('text-changed')}/>
       </SendMessageTextContainer>
 
       <Title>Message with error</Title>

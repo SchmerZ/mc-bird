@@ -1,30 +1,15 @@
 import React, {Component} from 'react'
-import styled, {injectGlobal} from 'styled-components'
+import styled from 'styled-components'
 
-import {global, bodyBackground, bodyContent} from './styles/layout'
 import {PageTitle} from './components/layout/primitive'
-
 import Container from './components/layout/container'
 import SkewedContainer from './components/layout/skewed-container'
 import Menu from './components/menu/menu'
 
-import Header from './components/layout/header'
-import Footer from './components/layout/footer'
+import Layout from './components/layout/Layout'
 import {Row} from './components/layout/responsive'
 
-import QuicklySendSmsForm from './components/send-sms/quickly-send-sms-form'
-
-injectGlobal`${global}`;
-
-const BodyBackground = styled.div.attrs({
-  id: 'app'
-})`
-  ${bodyBackground}
-`;
-
-const BodyContent = styled.div`
-  ${bodyContent}
-`;
+import QuicklySendMessageForm from './quick-message/components/quickly-send-message-form'
 
 const TitleSection = styled.section`
   padding: 30px 0;
@@ -60,31 +45,26 @@ const MenuContainer = styled(Container)`
 class Root extends Component {
   render() {
     return (
-      <BodyBackground>
-        <Header/>
-
-        <BodyContent>
-          <TitleSection>
-            {/*<StyledSkewedContainer/>*/}
-            <Container>
-              <Row>
-                <PageTitle>Communication, solved.</PageTitle>
-              </Row>
-            </Container>
-          </TitleSection>
-          <MenuSection>
-            <MenuContainer>
-              <Menu/>
-            </MenuContainer>
-          </MenuSection>
-          <ContentSection>
-            <Card>
-              <QuicklySendSmsForm/>
-            </Card>
-          </ContentSection>
-        </BodyContent>
-        <Footer/>
-      </BodyBackground>
+      <Layout>
+        <TitleSection>
+          {/*<StyledSkewedContainer/>*/}
+          <Container>
+            <Row>
+              <PageTitle>Communication, solved.</PageTitle>
+            </Row>
+          </Container>
+        </TitleSection>
+        <MenuSection>
+          <MenuContainer>
+            <Menu/>
+          </MenuContainer>
+        </MenuSection>
+        <ContentSection>
+          <Card>
+            <QuicklySendMessageForm/>
+          </Card>
+        </ContentSection>
+      </Layout>
     )
   }
 }
