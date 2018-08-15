@@ -1,6 +1,8 @@
 import {injectGlobal} from 'styled-components'
 import {backgroundColor} from './variables'
 
+// https://github.com/styled-components/styled-components/issues/1593
+
 export const globalStyles = () => injectGlobal`
 	@font-face {
     font-family: 'Lota';

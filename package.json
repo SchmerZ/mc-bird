@@ -48,7 +48,7 @@
     "babel-plugin-transform-class-properties": "6.24.1",
     "babel-plugin-transform-object-rest-spread": "6.26.0",
     "nodemon": "1.18.3",
-    "webpack": "4.16.3",
+    "webpack": "4.16.5",
     "webpack-cli": "3.1.0",
     "webpack-dev-server": "3.1.5",
     "styled-components": "3.4.2"
