@@ -1,13 +1,14 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
-import styled, {injectGlobal} from 'styled-components'
+import styled from 'styled-components'
 
-import {global, bodyBackground, bodyContent} from '../../styles/layout'
+import {bodyBackground, bodyContent} from '../../styles/layout'
+import {globalStyles} from '../../styles/globals'
 
 import Header from './header'
 import Footer from './footer'
 
-injectGlobal`${global}`;
+globalStyles();
 
 const BodyBackground = styled.div.attrs({
   id: 'app'
