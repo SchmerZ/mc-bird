@@ -18,6 +18,8 @@ const template = ({config, html, styleTags}) => {
             <link rel="icon" href="${assetsRootUrl}/favicon.ico" type="image/x-icon">
 
             <title>${WindowTitle}</title>
+            <link href="./fonts.css" rel="stylesheet" />
+            
             ${styleTags}
         </head>
         <body>

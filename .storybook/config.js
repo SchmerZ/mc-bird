@@ -1,6 +1,7 @@
 import {configure} from '@storybook/react'
 import {injectGlobal} from 'styled-components'
 
+import '../src/client/static/fonts.css'
 
 injectGlobal`
   body {

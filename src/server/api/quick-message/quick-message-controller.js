@@ -31,9 +31,10 @@ export default class QuickMessageController {
 
     return await wrap(this.service.create)(params)
       .then(response => {
-        debugger
+        this.response.send(200);
       })
       .catch(error => {
+        debugger
         console.log(error);
       });
   }

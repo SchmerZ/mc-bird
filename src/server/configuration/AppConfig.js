@@ -7,7 +7,12 @@ class AppConfig {
     nconf
       .env()
       .argv()
-      .defaults({'mcBird:Environment': 'production', 'PORT': 8090});
+      .defaults({
+        'mcBird:Environment': 'production',
+        'mcBird:siteRoot': '/',
+        'mcBird:Originator': 'Inbox',
+        'PORT': 8090
+      });
 
     const configurationFilePath = `${path.join(configFolder, nconf.get().mcBird.Environment)}.configuration.json`;
     if (!fs.existsSync(configurationFilePath)) {
@@ -18,7 +23,7 @@ class AppConfig {
       .file(`${nconf.get().mcBird.Environment}-config-file`, {
         file: configurationFilePath,
       })
-      .required(['siteRoot']);
+      .required(['mcBird:siteRoot', 'mcBird:AccessKey', 'mcBird:Originator']);
   }
 
   get(key) {

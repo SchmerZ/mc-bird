@@ -1,16 +1,7 @@
 import {injectGlobal} from 'styled-components'
 import {backgroundColor} from './variables'
 
-// https://github.com/styled-components/styled-components/issues/1593
-
 export const globalStyles = () => injectGlobal`
-	@font-face {
-    font-family: 'Lota';
-    src: url('./fonts/LotaGrotesque-Regular.woff2') format('woff2');
-    font-weight: normal;
-    font-style: normal;
-  }
-
   * {
     font-family: 'Lota', sans-serif;
     box-sizing: border-box;
@@ -33,5 +24,3 @@ export const globalStyles = () => injectGlobal`
     -webkit-font-smoothing: antialiased;
    }
 `;
-
-export default globalStyles;

@@ -1,14 +1,15 @@
 import React, {Component} from 'react'
-import styled, {injectGlobal} from 'styled-components'
+import styled from 'styled-components'
 
-import {global, bodyBackground, bodyContent} from '../../styles/layout'
+import {bodyBackground, bodyContent} from '../../styles/layout'
+import {globalStyles} from '../../styles/globals'
 
 import Container from '../layout/container'
 import Header from '../layout/header'
 import Footer from '../layout/footer'
 import {SpinnerIcon} from '../icons'
 
-injectGlobal`${global}`;
+globalStyles();
 
 const BodyBackground = styled.div.attrs({
   id: 'app',

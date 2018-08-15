@@ -5,3 +5,4 @@ require('./buttons/wait-button-story');
 require('./text-field/text-field-story');
 require('./message/messages-story');
 require('./menu/menu-story');
+require('./snackbars/snackbars-story');

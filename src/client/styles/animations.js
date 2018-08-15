@@ -14,13 +14,9 @@ export const fadeInUp = keyframes`
   }`;
 
 export const fadeIn = keyframes`
-  0% {
-        opacity: 0;
-      }
-  
-  to {
-        opacity: 1;
-  }`;
+  from {opacity: 0;}
+  to {opacity: 1;}
+`;
 
 export const rotate360 = keyframes`
   0% {
@@ -35,17 +31,3 @@ export const rotate360 = keyframes`
     transform: rotate(360deg);
   }
 `;
-
-// @keyframes fadeInUp {
-//   0% {
-//     opacity: 0;
-//   -webkit-transform: translateY(10%);
-//   transform: translateY(10%)
-// }
-//
-//   to {
-//     opacity: 1;
-//     -webkit-transform: translateY(0%);
-//     transform: translateY(0%)
-//   }
-// }
