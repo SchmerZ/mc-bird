@@ -29,13 +29,25 @@ export default class QuickMessageController {
       body: messageText,
     };
 
-    return await wrap(this.service.create)(params)
-      .then(response => {
-        this.response.send(200);
-      })
-      .catch(error => {
-        debugger
-        console.log(error);
-      });
+    try {
+      const createdMessage = await wrap(this.service.create)(params);
+      this.response.sendStatus(200);
+    }
+    catch (error) {
+      const {errors} = error;
+      const errorsHash = errors.reduce((memo, cur) => ({
+        ...memo,
+        [cur.parameter]: cur.description
+      }), {});
+
+      this.response.status(400).json(errorsHash);
+    }
+    // .then(response => {
+    //     this.response.send(200);
+    //   })
+    //   .catch(error => {
+    //     console.log(error);
+    //     debugger
+    //   });
   }
 }

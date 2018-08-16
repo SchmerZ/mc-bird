@@ -5,6 +5,7 @@ const initialState = {
   recipient: '',
   messageText: '',
   sending: false,
+  errors: {},
 };
 
 const handlers = {
@@ -15,6 +16,14 @@ const handlers = {
   [A.changeMessageText]: (state, {payload: value}) => ({
     ...state,
     messageText: value,
+  }),
+
+  [A.inputError]: (state, {payload}) => ({
+    ...state,
+    errors: {
+      ...state.errors,
+      ...payload
+    }
   }),
 
   [A.send.request]: (state) => ({

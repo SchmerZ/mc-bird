@@ -6,6 +6,7 @@ import SendIcon from '../../components/icons/send-icon'
 
 const StyledWaitButton = styled(WaitButton)`
   height: 40px;
+  width: 150px;
   font-weight: 600;
   font-size: 16px;
   display: inline-flex;

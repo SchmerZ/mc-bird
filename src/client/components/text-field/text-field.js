@@ -50,7 +50,7 @@ const ErrorMessage = styled.span`
     margin: auto;
     display: block;
     padding: 5px 0 0 0;
-    font-size: 12px;
+    font-size: 16px;
     line-height: 1.2em;
 `;
 
@@ -60,6 +60,11 @@ export class TextField extends PureComponent {
   state = {
     inputText: this.props.value,
   };
+
+  componentWillUnmount() {
+    if (this.debouncer)
+      clearTimeout(this.debouncer);
+  }
 
   handleInputChange = (e) => {
     e.stopPropagation();

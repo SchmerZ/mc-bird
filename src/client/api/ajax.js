@@ -27,15 +27,14 @@ export default {
       body: data,
     };
 
-    return fetch(url, fetchOptions)
-      .then(handleStatus);
+    return fetch(url, fetchOptions).then(handleStatus);
   },
 
   json(url, method, data) {
     return this.request(url, method, {
       'Accept': 'application/json',
       'Content-Type': 'application/json'
-    }, JSON.stringify(data)).then(parseJSON)
+    }, JSON.stringify(data)).then(parseJSON);
   },
 
   patch(url, data) {

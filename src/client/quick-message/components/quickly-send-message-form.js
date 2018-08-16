@@ -37,7 +37,15 @@ export class QuicklySendMessageForm extends Component {
   };
 
   render() {
-    const {recipient, messageText, sending} = this.props;
+    const {
+      recipient,
+      messageText,
+      sending,
+      errors: {
+        recipientError,
+        messageTextError,
+      }
+    } = this.props;
 
     return (
       <Fragment>
@@ -48,6 +56,7 @@ export class QuicklySendMessageForm extends Component {
               placeholder="Recipient"
               defaultValue={recipient}
               onChange={this.handleRecipientChange}
+              error={recipientError}
             />
           </Column>
         </Row>
@@ -55,6 +64,7 @@ export class QuicklySendMessageForm extends Component {
           <SendMessageTextColumn md={12}>
             <SendMessageText
               value={messageText}
+              error={messageTextError}
               onChange={this.handleMessageTextChange}
             />
           </SendMessageTextColumn>
@@ -73,6 +83,7 @@ QuicklySendMessageForm.propTypes = {
   recipient: PropTypes.string,
   messageText: PropTypes.string,
   sending: PropTypes.bool,
+  errors: PropTypes.object,
 
   send: PropTypes.func,
   changeRecipient: PropTypes.func,
@@ -84,7 +95,8 @@ const mapStateToProps = (state) => {
     quickMessage: {
       recipient,
       messageText,
-      sending
+      sending,
+      errors,
     }
   } = state;
 
@@ -92,6 +104,7 @@ const mapStateToProps = (state) => {
     sending,
     recipient,
     messageText,
+    errors,
   }
 };
 
