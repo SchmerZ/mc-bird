@@ -258,15 +258,6 @@ Snackbar.propTypes = {
    */
   children: PropTypes.element,
   /**
-   * Override or extend the styles applied to the component.
-   * See [CSS API](#css-api) below for more details.
-   */
-  classes: PropTypes.object.isRequired,
-  /**
-   * @ignore
-   */
-  className: PropTypes.string,
-  /**
    * Properties applied to the [`SnackbarContent`](/api/snackbar-content) element.
    */
   ContentProps: PropTypes.object,

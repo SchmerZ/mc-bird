@@ -4,6 +4,7 @@ import {action} from '@storybook/addon-actions';
 
 import styled from 'styled-components'
 import SnackbarContent from '../../../src/client/components/snackbars/snackbar-content';
+import SnackbarTrigger from './snackbar-trigger'
 
 const Container = styled.div`
   margin: 30px 10px 10px 10px;
@@ -16,4 +17,9 @@ storiesOf('Snackbars', module)
         content="Message has been sent"
         active
         onClick={action('snackbar-content-action-click')}/>
-    </Container>));
+    </Container>))
+  .add('Trigger to show', () => (
+    <Container>
+      <SnackbarTrigger/>
+    </Container>
+  ));

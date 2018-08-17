@@ -18,11 +18,11 @@ const handlers = {
     messageText: value,
   }),
 
-  [A.inputError]: (state, {payload}) => ({
+  [A.inputErrors]: (state, {payload}) => ({
     ...state,
     errors: {
       ...state.errors,
-      ...payload
+      ...payload.errors,
     }
   }),
 

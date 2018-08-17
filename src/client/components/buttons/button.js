@@ -40,10 +40,6 @@ const PrimaryButton = styled(StyledButton)`
   }
 `;
 
-const DisabledButton = styled(PrimaryButton)`
-  background: tomato;
-`;
-
 const Button = (props) => {
   const {size, disabled, children, ...rest} = props;
 
