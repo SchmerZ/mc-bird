@@ -1,5 +1,6 @@
 import {select, call, put, takeLatest} from 'redux-saga/effects'
 
+import * as notificationActions from '../notification/actions'
 import * as A from './actions'
 
 import phoneValidator from '../utils/msisdn-validator'
@@ -38,10 +39,15 @@ const sagaCreator = ({services: {messagesService}}) => {
           recipient,
           messageText
         });
+
+        yield put(A.send.success());
+        yield put(notificationActions.notify({message: 'Message has been sent.'}));
       }
       catch (error) {
-        console.log(error)
-        yield put(A.send.failure(error));
+        const {message} = error;
+
+        yield put(A.send.failure({message}));
+        yield put(notificationActions.notify({message}));
       }
       finally {
         yield put(A.send.fulfill());

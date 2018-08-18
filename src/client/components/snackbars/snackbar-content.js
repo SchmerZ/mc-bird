@@ -3,9 +3,6 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 const TextContainer = styled.div`
-  opacity: 0;  
-  transition: opacity .3s cubic-bezier(.4,0,1,1) 0ms;
-  
   padding: 8px 0 8px 0;
   font-size: 1rem;
   line-height: 20px;
@@ -26,28 +23,21 @@ const ActionContainer = styled.div`
   margin-left: auto;
 `;
 
-const Container = styled.div.attrs({
-  'aria-hidden': props => !props.active,
-})`
+const Container = styled.div`
   min-width: 288px;
   max-width: 568px;
   border-radius: 2px;
   
   color: #fff;
-  display: flex;
+  display: inline-flex;
   padding: 6px 24px;
   flex-wrap: wrap;
   align-items: center;
   background-color: rgb(49, 49, 49);
     
   background-color: #2481d7;
-  position: fixed;
   align-items: center;
   justify-content: flex-start;
-  
-  &[aria-hidden="false"] > ${TextContainer} {
-    opacity: 1;
-  }
 `;
 
 const SnackbarContent = (props) => {

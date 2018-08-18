@@ -9,6 +9,7 @@ import Menu from './components/menu/menu'
 import Layout from './components/layout/Layout'
 import {Row} from './components/layout/responsive'
 
+import AppNotification from './notification/components/app-notification'
 import QuicklySendMessageForm from './quick-message/components/quickly-send-message-form'
 
 const TitleSection = styled.section`
@@ -46,6 +47,8 @@ class Root extends Component {
   render() {
     return (
       <Layout>
+        <AppNotification/>
+
         <TitleSection>
           {/*<StyledSkewedContainer/>*/}
           <Container>

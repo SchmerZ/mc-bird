@@ -5,6 +5,7 @@ import {action} from '@storybook/addon-actions';
 import styled from 'styled-components'
 import SnackbarContent from '../../../src/client/components/snackbars/snackbar-content';
 import SnackbarTrigger from './snackbar-trigger'
+import ConsecutiveSnackbars from './consecutive-snackbars'
 
 const Container = styled.div`
   margin: 30px 10px 10px 10px;
@@ -21,5 +22,10 @@ storiesOf('Snackbars', module)
   .add('Trigger to show', () => (
     <Container>
       <SnackbarTrigger/>
+    </Container>
+  ))
+  .add('Consecutive', () => (
+    <Container>
+      <ConsecutiveSnackbars/>
     </Container>
   ));

@@ -12,13 +12,13 @@ class SnackbarTrigger extends Component {
     this.setState({
       open: true,
     })
-  }
+  };
 
   handleClose = () => {
     this.setState({
       open: false,
     })
-  }
+  };
 
   render() {
     const {open} = this.state;
@@ -30,7 +30,7 @@ class SnackbarTrigger extends Component {
           open={open}
           autoHideDuration={2000}
           onClose={this.handleClose}
-          message={<span>Message sent</span>}
+          message={<span>Message has been sent}</span>}
         />
       </Fragment>
     )

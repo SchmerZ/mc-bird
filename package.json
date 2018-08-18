@@ -4,9 +4,10 @@
   "description": "MessageBird Assignment",
   "main": "index.js",
   "scripts": {
+    "clean": "rimraf dist",
     "start:server": "nodemon --watch ./src/server ./src/server/index.babel.js --mcBird:Environment development",
     "start:client": "webpack-dev-server --config ./webpack/webpack.development.config --mode development --hot --inline --color",
-    "build:server": "rimraf dist && babel ./src/server -d dist/server --copy-files",
+    "build:server": "npm run clean && babel ./src/server -d dist/server --copy-files",
     "build:client": "webpack --config ./webpack/webpack.production.config --mode production --progress --color",
     "dev:storybook": "start-storybook -p 9001 -c .storybook -s .storybook/static"
   },
@@ -24,6 +25,7 @@
     "react": "16.4.2",
     "react-dom": "16.4.2",
     "react-redux": "5.0.7",
+    "react-transition-group": "2.4.0",
     "redux": "4.0.0",
     "redux-actions": "2.6.1",
     "redux-saga": "0.16.0",

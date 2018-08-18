@@ -30,11 +30,18 @@ export default {
     return fetch(url, fetchOptions).then(handleStatus);
   },
 
-  json(url, method, data) {
-    return this.request(url, method, {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
-    }, JSON.stringify(data)).then(parseJSON);
+  async json(url, method, data) {
+    try {
+      const response = await this.request(url, method, {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      }, JSON.stringify(data));
+
+      return await parseJSON(response);
+    }
+    catch (error) {
+      throw await parseJSON(error.response);
+    }
   },
 
   patch(url, data) {

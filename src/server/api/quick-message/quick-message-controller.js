@@ -1,21 +1,23 @@
 import messageBird from 'messagebird'
+import BaseController from '../../lib/base-controller'
 
 const wrap = (fn) => (params) => {
   return new Promise((resolve, reject) => {
     fn(params, (err, response) => {
-      if (err)
-        reject(err);
-      else
+      if (err) {
+        const {errors, statusCode, message} = err;
+        reject({errors, statusCode, message});
+      }
+      else {
         resolve(response);
+      }
     })
   });
 };
 
-export default class QuickMessageController {
-  constructor(request, response, config) {
-    this.request = request;
-    this.response = response;
-    this.config = config;
+export default class QuickMessageController extends BaseController {
+  constructor(request, response, next, config) {
+    super(request, response, next, config);
 
     this.service = messageBird(config.AccessKey).messages;
   }
@@ -29,25 +31,6 @@ export default class QuickMessageController {
       body: messageText,
     };
 
-    try {
-      const createdMessage = await wrap(this.service.create)(params);
-      this.response.sendStatus(200);
-    }
-    catch (error) {
-      const {errors} = error;
-      const errorsHash = errors.reduce((memo, cur) => ({
-        ...memo,
-        [cur.parameter]: cur.description
-      }), {});
-
-      this.response.status(400).json(errorsHash);
-    }
-    // .then(response => {
-    //     this.response.send(200);
-    //   })
-    //   .catch(error => {
-    //     console.log(error);
-    //     debugger
-    //   });
+    return await wrap(this.service.create)(params);
   }
 }
