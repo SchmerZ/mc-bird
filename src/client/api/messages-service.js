@@ -7,4 +7,10 @@ export default {
 
     return ajax.post(url, {recipient, messageText});
   },
+
+  fetchMessages() {
+    const url = `/api${routes.messages}`;
+
+    return ajax.get(url);
+  }
 }

@@ -1,5 +1,8 @@
 import React, {Component} from 'react'
+import PropTypes from 'prop-types'
 import styled from 'styled-components'
+
+import {Router, Switch, Route} from 'react-router'
 
 import {PageTitle} from './components/layout/primitive'
 import Container from './components/layout/container'
@@ -11,6 +14,8 @@ import {Row} from './components/layout/responsive'
 
 import AppNotification from './notification/components/app-notification'
 import QuicklySendMessageForm from './quick-message/components/quickly-send-message-form'
+
+import PageNotFound from './components/pages/page-not-found'
 
 const TitleSection = styled.section`
   padding: 30px 0;
@@ -43,8 +48,10 @@ const MenuContainer = styled(Container)`
   border-top: 0;
 `;
 
-class Root extends Component {
+class App extends Component {
   render() {
+    console.log('r');
+
     return (
       <Layout>
         <AppNotification/>
@@ -64,12 +71,37 @@ class Root extends Component {
         </MenuSection>
         <ContentSection>
           <Card>
-            <QuicklySendMessageForm/>
+            {this.props.children}
           </Card>
         </ContentSection>
       </Layout>
     )
   }
 }
+
+App.propTypes = {
+  children: PropTypes.node,
+};
+
+class Root extends Component {
+  render() {
+    const {history} = this.props;
+
+    return (
+      <Router history={history}>
+        <Switch>
+          <Route path="/" exact render={() => <App><QuicklySendMessageForm/></App>}/>
+          <Route path="/messages" exact render={() => <App>m!</App>}/>
+          <Route path="/about" exact render={() => <App>a!</App>}/>
+          <Route component={PageNotFound}/>
+        </Switch>
+      </Router>
+    )
+  }
+}
+
+Root.propTypes = {
+  history: PropTypes.object,
+};
 
 export default Root;

@@ -1,7 +1,7 @@
 let js = ['assets/main.js', 'assets/vendors.js'];
 let css = [];//['css/loading.css'];
 
-const template = ({config, html, styleTags}) => {
+const template = ({config, html, styleTags, ignoreAssets = false}) => {
   const {WindowTitle, assetsRootUrl} = config;
 
   return `
@@ -25,7 +25,7 @@ const template = ({config, html, styleTags}) => {
         <body>
             ${html}
             ${css.map(cssFile => `<link href="${assetsRootUrl}/${cssFile}" rel="stylesheet">`).join('')}
-            ${js.map(jsFile => `<script async type="text/javascript" src="${assetsRootUrl}/${jsFile}"></script>`).join('')}
+            ${!ignoreAssets && js.map(jsFile => `<script async type="text/javascript" src="${assetsRootUrl}/${jsFile}"></script>`).join('')}
         </body>
     </html>`
 };

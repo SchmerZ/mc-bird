@@ -10,6 +10,7 @@ import {Row, Column} from '../../components/layout/responsive'
 import TextField from '../../components/text-field/text-field'
 import SendMessageText from '../../components/message/send-message-text'
 import SendMessageButton from './send-message-button'
+import Button from "../../components/buttons/button";
 
 const SendMessageTextColumn = styled(Column)`
   margin-bottom: 15px;

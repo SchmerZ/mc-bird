@@ -34,7 +34,7 @@ const renderApp = (App) => {
   ReactDOM.render(
     <Provider store={store}>
       <AnimatedContainer>
-        <App/>
+        <App history={history}/>
       </AnimatedContainer>
     </Provider>,
     document.getElementById('app')

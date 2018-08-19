@@ -8,26 +8,34 @@ import * as A from '../actions'
 import ConsecutiveSnackbars from '../../components/snackbars/consecutive-snackbars'
 
 export class AppNotification extends Component {
-  render() {
-    const {message} = this.props;
+  handleMessageExited = () => {
+    this.props.messageClose();
+  };
 
-    return <ConsecutiveSnackbars message={message}/>
+  render() {
+    const {messages} = this.props;
+
+    return (
+      <ConsecutiveSnackbars
+        messages={messages}
+        onExited={this.handleMessageExited}
+      />
+    )
   }
 }
 
 AppNotification.propTypes = {
-  message: PropTypes.string,
+  messages: PropTypes.array,
+  messageClose: PropTypes.func,
 };
 
 const mapStateToProps = (state) => {
   const {
-    appNotification: {
-      message,
-    }
+    appNotification: {messages}
   } = state;
 
   return {
-    message,
+    messages,
   }
 };
 

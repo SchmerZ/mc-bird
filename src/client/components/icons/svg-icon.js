@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 const Svg = styled.svg`
+  flex-shrink: 0;
   height: ${({height}) => height ? `${height}px` : '24px'};
 `;
 

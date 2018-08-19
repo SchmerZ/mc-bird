@@ -4,6 +4,8 @@ import {action} from '@storybook/addon-actions';
 
 import styled from 'styled-components'
 import SnackbarContent from '../../../src/client/components/snackbars/snackbar-content';
+import VariantSnackbarContent from '../../../src/client/components/snackbars/variant-snackbar-content';
+
 import SnackbarTrigger from './snackbar-trigger'
 import ConsecutiveSnackbars from './consecutive-snackbars'
 
@@ -13,12 +15,31 @@ const Container = styled.div`
 
 storiesOf('Snackbars', module)
   .add('content', () => (
-    <Container>
-      <SnackbarContent
-        content="Message has been sent"
-        active
-        onClick={action('snackbar-content-action-click')}/>
-    </Container>))
+    <Fragment>
+      <Container>
+        <SnackbarContent
+          content="Basic snackbar content template"
+          onClick={action('snackbar-basic-content-action-click')}/>
+      </Container>
+      <Container>
+        <VariantSnackbarContent
+          variant="error"
+          content="Error snackbar content template"
+          onClick={action('snackbar-error-content-action-click')}/>
+      </Container>
+      <Container>
+        <VariantSnackbarContent
+          variant="success"
+          content="Success snackbar content template"
+          onClick={action('snackbar-success-content-action-click')}/>
+      </Container>
+      <Container>
+        <VariantSnackbarContent
+          variant="info"
+          content="Info snackbar content template"
+          onClick={action('snackbar-info-content-action-click')}/>
+      </Container>
+    </Fragment>))
   .add('Trigger to show', () => (
     <Container>
       <SnackbarTrigger/>

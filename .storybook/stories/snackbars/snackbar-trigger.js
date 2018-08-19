@@ -30,7 +30,7 @@ class SnackbarTrigger extends Component {
           open={open}
           autoHideDuration={2000}
           onClose={this.handleClose}
-          message={<span>Message has been sent}</span>}
+          message={<span>Message has been sent</span>}
         />
       </Fragment>
     )

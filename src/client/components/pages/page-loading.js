@@ -43,7 +43,7 @@ const H3 = styled.h3`
   font-size: 34px;
 `;
 
-class PageNotFound extends Component {
+class PageLoading extends Component {
   render() {
     return (
       <BodyBackground>
@@ -64,4 +64,4 @@ class PageNotFound extends Component {
   }
 }
 
-export default PageNotFound;
+export default PageLoading;

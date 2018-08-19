@@ -8,22 +8,20 @@ import {ServerStyleSheet} from 'styled-components'
 import config from '../config';
 import htmlTemplate from '../lib/html-template'
 
-import PageLoading from '../../client/components/pages/page-loading'
-
-const viewRouter = express.Router();
-
-const getHtml = () => {
+const getHtml = (PageClass) => {
   const sheet = new ServerStyleSheet();
-  const html = renderToString(sheet.collectStyles(<PageLoading/>));
+  const html = renderToString(sheet.collectStyles(<PageClass/>));
   const styleTags = sheet.getStyleTags();
 
   return {html, styleTags};
 };
 
-export default () => {
+export default (PageClass, ignoreAssets = false) => {
+  const viewRouter = express.Router();
+
   viewRouter.use((req, res) => {
-    const {html, styleTags} = getHtml();
-    const processedTemplate = htmlTemplate({config, html, styleTags});
+    const {html, styleTags} = getHtml(PageClass);
+    const processedTemplate = htmlTemplate({config, html, styleTags, ignoreAssets});
 
     res.send(processedTemplate);
   });

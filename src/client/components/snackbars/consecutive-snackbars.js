@@ -1,50 +1,39 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types'
 
 import Snackbar from './snackbar'
+import VariantSnackbarContent from './variant-snackbar-content'
 
 class ConsecutiveSnackbars extends Component {
-  queue = [];
-
   state = {
+    closing: false,
     open: false,
-    messageInfo: {},
   };
 
-  componentDidUpdate(prevProps) {
-    if (!this.props.message || prevProps.message === this.props.message)
-      return;
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (prevState.closing)
+      return {closing: false};
 
-    this.queue.push({
-      message: this.props.message,
-      key: new Date().getTime(),
-    });
+    const {messages} = nextProps;
+    if (!messages || !messages.length)
+      return {open: false};
 
-    if (this.state.open) {
-      this.setState({open: false});
-    } else {
-      this.processQueue();
-    }
+    return {open: !prevState.open};
   }
 
-  processQueue = () => {
-    if (this.queue.length > 0) {
-      this.setState({
-        messageInfo: this.queue.shift(),
-        open: true,
-      });
-    }
-  };
-
   handleClose = () => {
-    this.setState({open: false});
+    this.setState({open: false, closing: true});
   };
 
   handleExited = () => {
-    this.processQueue();
+    const {onExited} = this.props;
+    onExited && onExited();
   };
 
   render() {
-    const {messageInfo: {message, key}} = this.state;
+    const {messages} = this.props;
+    const [first = {}] = messages;
+    const {message, type = VariantSnackbarContent.variant.info} = first;
 
     return (
       <Snackbar
@@ -52,12 +41,21 @@ class ConsecutiveSnackbars extends Component {
         autoHideDuration={3000}
         onClose={this.handleClose}
         onExited={this.handleExited}
-        message={<span>{message}</span>}
-      />
+      >
+        <VariantSnackbarContent
+          variant={type}
+          content={message}
+          onClick={this.handleClose}/>
+      </Snackbar>
     );
   }
 }
 
-ConsecutiveSnackbars.propTypes = {};
+ConsecutiveSnackbars.propTypes = {
+  messages: PropTypes.arrayOf(PropTypes.oneOfType([
+    PropTypes.object,
+    PropTypes.string,
+  ])),
+};
 
 export default ConsecutiveSnackbars

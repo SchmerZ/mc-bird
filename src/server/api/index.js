@@ -1,7 +1,7 @@
 import config from '../config';
 
-import quickMessageRouter from './quick-message/quick-message-router'
+import messagesRouter from './messages/messages-router'
 
 export default apiRouter => {
-  apiRouter.use(quickMessageRouter(config));
+  apiRouter.use('/messages', messagesRouter(config));
 };

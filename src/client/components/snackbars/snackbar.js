@@ -108,7 +108,7 @@ class Snackbar extends Component {
       open,
       ...rest
     } = this.props;
-    console.log(this.props)
+
     const transitionProps = {
       onEnter,
       onEntered,

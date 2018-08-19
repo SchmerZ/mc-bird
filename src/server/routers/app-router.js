@@ -6,12 +6,17 @@ import apiRouter from './api-router'
 
 import errorHandler from '../lib/error-handler'
 
-const appRouter = express.Router();
+import PageLoading from '../../client/components/pages/page-loading'
+import PageNotFound from '../../client/components/pages/page-not-found'
 
 export default () => {
+  const appRouter = express.Router();
+
   appRouter.use(express.static(path.join(__dirname, '../../client/static')));
   appRouter.use('/api', apiRouter());
-  appRouter.get('/', ssrRouter());
+
+  appRouter.get('/page-not-found', ssrRouter(PageNotFound, true));
+  appRouter.get('*', ssrRouter(PageLoading));
 
   appRouter.use(errorHandler());
 

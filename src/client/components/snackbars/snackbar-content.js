@@ -2,6 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
+import {CloseIcon} from '../icons'
+
 const TextContainer = styled.div`
   padding: 8px 0 8px 0;
   font-size: 1rem;
@@ -17,6 +19,9 @@ const TextContainer = styled.div`
 `;
 
 const ActionContainer = styled.div`
+  display: flex;
+  align-items: center;
+  
   padding-left: 24px;
   padding-right: 0;
   cursor: pointer;
@@ -49,7 +54,7 @@ const SnackbarContent = (props) => {
         {content}
       </TextContainer>
       <ActionContainer onClick={onClick}>
-        Action
+        <CloseIcon/>
       </ActionContainer>
     </Container>
   )

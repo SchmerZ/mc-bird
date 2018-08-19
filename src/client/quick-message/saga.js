@@ -3,6 +3,7 @@ import {select, call, put, takeLatest} from 'redux-saga/effects'
 import * as notificationActions from '../notification/actions'
 import * as A from './actions'
 
+import variant from '../constants/snackbar-variant'
 import phoneValidator from '../utils/msisdn-validator'
 
 const sagaCreator = ({services: {messagesService}}) => {
@@ -41,13 +42,13 @@ const sagaCreator = ({services: {messagesService}}) => {
         });
 
         yield put(A.send.success());
-        yield put(notificationActions.notify({message: 'Message has been sent.'}));
+        yield put(notificationActions.notify({message: 'Message has been sent.', type: variant.success}));
       }
       catch (error) {
         const {message} = error;
 
         yield put(A.send.failure({message}));
-        yield put(notificationActions.notify({message}));
+        yield put(notificationActions.notify({message, type: variant.error}));
       }
       finally {
         yield put(A.send.fulfill());

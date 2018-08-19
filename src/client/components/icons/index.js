@@ -7,6 +7,10 @@ import MessageBirdLogoIcon from './mb-logo-icon'
 import MessageBirdHeaderLogoIcon from './mb-header-logo-icon'
 import ProfileIcon from './profile-icon'
 import Icon404 from './404'
+import InfoIcon from './info-icon'
+import ErrorIcon from './error-icon'
+import CheckCircleIcon from './check-circle-icon'
+import CloseIcon from './close-icon'
 
 export {
   SendIcon,
@@ -18,4 +22,8 @@ export {
   MessageBirdHeaderLogoIcon,
   ProfileIcon,
   Icon404,
+  InfoIcon,
+  ErrorIcon,
+  CheckCircleIcon,
+  CloseIcon,
 }

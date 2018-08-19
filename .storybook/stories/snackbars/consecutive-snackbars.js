@@ -10,15 +10,21 @@ const ButtonWrapper = styled.span`
 
 class ConsecutiveSnackbars extends Component {
   state = {
-    message: null
+    messages: []
   };
 
   handleClick = message => () => {
-    this.setState({message});
+    const messages = [...this.state.messages, message];
+    this.setState({messages});
+  };
+
+  handleClose = () => {
+    const [, ...messages] = this.state.messages;
+    this.setState({messages});
   };
 
   render() {
-    const {message} = this.state;
+    const {messages} = this.state;
 
     return (
       <Fragment>
@@ -28,7 +34,7 @@ class ConsecutiveSnackbars extends Component {
         <ButtonWrapper>
           <Button onClick={this.handleClick('message b')}>Show message B</Button>
         </ButtonWrapper>
-        <Snackbars message={message}/>
+        <Snackbars messages={messages} onExited={this.handleClose}/>
       </Fragment>
     );
   }
