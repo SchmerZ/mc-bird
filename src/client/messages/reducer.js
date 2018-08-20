@@ -2,9 +2,12 @@ import {handleActions} from 'redux-actions'
 import * as A from './actions'
 
 const initialState = {
-  fetching: false,
+  fetching: true,
   fetchingFailed: false,
+
   items: [],
+  totalCount: 0,
+  offset: 0,
 };
 
 const handlers = {
@@ -15,13 +18,19 @@ const handlers = {
   [A.fetch.request]: (state) => ({
     ...state,
     fetching: true,
-    fetchingFailed: false,
   }),
-  [A.fetch.success]: (state) => ({
-    ...state,
-    fetching: false,
-    fetchingFailed: false,
-  }),
+  [A.fetch.success]: (state, {payload}) => {
+    const {items, totalCount, offset} = payload;
+
+    return {
+      ...state,
+      items,
+      totalCount,
+      offset,
+      fetching: false,
+      fetchingFailed: false,
+    }
+  },
   [A.fetch.failure]: (state, {payload}) => ({
     ...state,
     fetching: false,

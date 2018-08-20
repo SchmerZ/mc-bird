@@ -12,6 +12,8 @@ import InfoIcon from './info-icon'
 import ErrorIcon from './error-icon'
 import CheckCircleIcon from './check-circle-icon'
 import CloseIcon from './close-icon'
+import ArrowRight from './arrow-right'
+import ArrowLeft from './arrow-left'
 
 export {
   SendIcon,
@@ -28,4 +30,6 @@ export {
   ErrorIcon,
   CheckCircleIcon,
   CloseIcon,
+  ArrowRight,
+  ArrowLeft,
 }

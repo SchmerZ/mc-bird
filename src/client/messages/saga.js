@@ -21,9 +21,9 @@ const sagaCreator = ({services: {messagesService}}) => {
       yield put(A.fetch.request());
 
       try {
-        const messages = yield call(fetchMessages);
+        const {items, totalCount, offset} = yield call(fetchMessages);
 
-        yield put(A.fetch.success());
+        yield put(A.fetch.success({items, totalCount, offset}));
       }
       catch (error) {
         const {message} = error;

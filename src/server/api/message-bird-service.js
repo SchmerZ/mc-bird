@@ -1,3 +1,8 @@
+/**
+ * Have tried 'messagebird' npm pkg before (https://www.npmjs.com/package/messagebird).
+ * Due to limited functionality (i.e. no GET /api/messages, etc) implemented my own.
+ */
+
 import BaseService from '../lib/base-service'
 
 class MessageBirdService extends BaseService {
@@ -37,7 +42,7 @@ class MessageBirdService extends BaseService {
   }
 
   async getMessages() {
-    const url = this.getUrl('/messages');
+    const url = this.getUrl('/messages?limit=10');
 
     return this.get(url).catch(this.handleError);
   }

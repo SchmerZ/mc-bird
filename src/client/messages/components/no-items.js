@@ -1,8 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-
-import {Anchor} from '../../components/layout/primitive'
+import {Anchor} from "../../components/layout/primitive";
 
 const TR = styled.tr`
 `;
@@ -12,20 +11,20 @@ const TD = styled.td`
   text-align: center;
 `;
 
-const FetchingFailed = (props) => {
+const NoItems = (props) => {
   const {onTryAgainClick} = props;
 
   return (
     <TR>
       <TD colSpan={5}>
-        Unable to load messages from server. Please <Anchor onClick={onTryAgainClick}>try again</Anchor>.
+        Unfortunately, no messages were found. You can <Anchor onClick={onTryAgainClick}>try again</Anchor>.
       </TD>
     </TR>
   )
 };
 
-FetchingFailed.propTypes = {
+NoItems.propTypes = {
   onTryAgainClick: PropTypes.func,
 };
 
-export default FetchingFailed;
+export default NoItems;
