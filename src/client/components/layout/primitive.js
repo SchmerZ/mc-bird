@@ -15,7 +15,13 @@ export const Anchor = styled.a`
   color: ${color.primary};
   text-decoration: none;
   transition: .5s;
+  cursor: pointer;
   
+  border-bottom: 1px solid ${color.primary};
+  display: inline;
+  line-height: 16px;
+  white-space: nowrap;
+    
   :hover {
     color: #24374e;
     border-color: #24374e;

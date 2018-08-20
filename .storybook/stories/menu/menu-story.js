@@ -4,8 +4,8 @@ import {action} from '@storybook/addon-actions';
 
 import styled from 'styled-components'
 
-import Menu from '../../../src/client/components/menu/menu';
-import MenuItemId from '../../../src/client/constants/menu-item-id';
+import {Menu} from '../../../src/client/components/menu/menu';
+import routesIds from '../../../src/client/constants/navigation-routes';
 
 const Container = styled.div`
   margin: 30px 10px 10px 10px;
@@ -15,5 +15,5 @@ const Container = styled.div`
 storiesOf('Menu', module)
   .add('basic', () => (
     <Container>
-      <Menu active={MenuItemId.conversations} onClick={action('menu-item-click')}/>
+      <Menu active={routesIds.conversations} navigateTo={action('menu-item-click')}/>
     </Container>));

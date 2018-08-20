@@ -16,6 +16,15 @@ const parseJSON = (response) => {
   return response.json()
 };
 
+const handleError = async (error) => {
+  // if 500 no need to show a full error message to user
+  if (error.status === 500) {
+    throw new Error('Oh snap! An unknown error occurred on the server.');
+  }
+
+  throw await parseJSON(error.response);
+}
+
 export default {
   request(url, method, headers, data) {
     const fetchOptions = {
@@ -40,7 +49,7 @@ export default {
       return await parseJSON(response);
     }
     catch (error) {
-      throw await parseJSON(error.response);
+      await handleError(error);
     }
   },
 

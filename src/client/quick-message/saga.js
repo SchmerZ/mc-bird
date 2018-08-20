@@ -1,6 +1,6 @@
 import {select, call, put, takeLatest} from 'redux-saga/effects'
 
-import * as notificationActions from '../notification/actions'
+import * as applicationActions from '../application/actions'
 import * as A from './actions'
 
 import variant from '../constants/snackbar-variant'
@@ -42,13 +42,13 @@ const sagaCreator = ({services: {messagesService}}) => {
         });
 
         yield put(A.send.success());
-        yield put(notificationActions.notify({message: 'Message has been sent.', type: variant.success}));
+        yield put(applicationActions.notify({message: 'Message has been sent.', type: variant.success}));
       }
       catch (error) {
         const {message} = error;
 
         yield put(A.send.failure({message}));
-        yield put(notificationActions.notify({message, type: variant.error}));
+        yield put(applicationActions.notify({message, type: variant.error}));
       }
       finally {
         yield put(A.send.fulfill());

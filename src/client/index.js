@@ -9,11 +9,10 @@ import rootReducer from './rootReducer'
 import sagaCreator from './rootSaga'
 
 import services from './api'
-
 import {fadeIn} from './styles/animations';
 
 const history = createBrowserHistory();
-const {store, sagaMiddleware} = createStore(rootReducer);
+const {store, sagaMiddleware} = createStore(rootReducer, history);
 
 import Root from './Root'
 

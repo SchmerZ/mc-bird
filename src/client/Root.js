@@ -2,7 +2,8 @@ import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
-import {Router, Switch, Route} from 'react-router'
+import {Switch, Route} from 'react-router'
+import {ConnectedRouter} from 'connected-react-router'
 
 import {PageTitle} from './components/layout/primitive'
 import Container from './components/layout/container'
@@ -12,10 +13,12 @@ import Menu from './components/menu/menu'
 import Layout from './components/layout/Layout'
 import {Row} from './components/layout/responsive'
 
-import AppNotification from './notification/components/app-notification'
+import AppNotification from './application/components/app-notification'
 import QuicklySendMessageForm from './quick-message/components/quickly-send-message-form'
+import MessagesList from './messages/components/messages-list'
 
 import PageNotFound from './components/pages/page-not-found'
+import routesIds from './constants/navigation-routes'
 
 const TitleSection = styled.section`
   padding: 30px 0;
@@ -50,8 +53,6 @@ const MenuContainer = styled(Container)`
 
 class App extends Component {
   render() {
-    console.log('r');
-
     return (
       <Layout>
         <AppNotification/>
@@ -88,14 +89,16 @@ class Root extends Component {
     const {history} = this.props;
 
     return (
-      <Router history={history}>
+      <ConnectedRouter history={history}>
         <Switch>
-          <Route path="/" exact render={() => <App><QuicklySendMessageForm/></App>}/>
-          <Route path="/messages" exact render={() => <App>m!</App>}/>
-          <Route path="/about" exact render={() => <App>a!</App>}/>
+          <Route path={routesIds.quicklySendMessage} exact
+                 render={(props) => <App {...props}><QuicklySendMessageForm/></App>}/>
+          <Route path={routesIds.messages} exact render={(props) => <App {...props}><MessagesList/></App>}/>
+          <Route path={routesIds.conversations} exact render={(props) => <App {...props}>c!</App>}/>
+          <Route path={routesIds.about} exact render={(props) => <App {...props}>a!</App>}/>
           <Route component={PageNotFound}/>
         </Switch>
-      </Router>
+      </ConnectedRouter>
     )
   }
 }

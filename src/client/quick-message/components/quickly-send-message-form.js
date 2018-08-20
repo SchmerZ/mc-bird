@@ -10,7 +10,6 @@ import {Row, Column} from '../../components/layout/responsive'
 import TextField from '../../components/text-field/text-field'
 import SendMessageText from '../../components/message/send-message-text'
 import SendMessageButton from './send-message-button'
-import Button from "../../components/buttons/button";
 
 const SendMessageTextColumn = styled(Column)`
   margin-bottom: 15px;
@@ -42,11 +41,10 @@ export class QuicklySendMessageForm extends Component {
       recipient,
       messageText,
       sending,
-      errors: {
-        recipientError,
-        messageTextError,
-      }
+      errors = {}
     } = this.props;
+
+    const {recipientError, messageTextError} = errors;
 
     return (
       <Fragment>

@@ -1,13 +1,20 @@
 import {select, call, put, takeLatest} from 'redux-saga/effects'
 
-import * as notificationActions from '../notification/actions'
+import * as applicationActions from '../application/actions'
 import * as A from './actions'
+
+import variant from '../constants/snackbar-variant'
 
 const sagaCreator = ({services: {messagesService}}) => {
     const {fetchMessages} = messagesService;
 
     function* saga() {
+      yield takeLatest(A.init, onInitSaga);
       yield takeLatest(A.fetch, onFetchMessagesSaga);
+    }
+
+    function* onInitSaga() {
+      yield put(A.fetch());
     }
 
     function* onFetchMessagesSaga() {
@@ -22,7 +29,7 @@ const sagaCreator = ({services: {messagesService}}) => {
         const {message} = error;
 
         yield put(A.fetch.failure({message}));
-        //yield put(notificationActions.notify({message, type: variant.error}));
+        yield put(applicationActions.notify({message, type: variant.error}));
       }
       finally {
         yield put(A.fetch.fulfill());

@@ -1,12 +1,15 @@
 import React from 'react'
+import {connect} from 'react-redux'
+import {bindActionCreators} from 'redux';
 import PropTypes from 'prop-types'
 
 import styled from 'styled-components'
 
 import Item from './menu-item'
-import {SmsIcon, ConversationIcon, ProfileIcon} from '../icons'
+import {SmsIcon, ConversationIcon, MessageIcon, ProfileIcon} from '../icons'
 
-import MenuItemId from '../../constants/menu-item-id'
+import navigationRoutes from '../../constants/navigation-routes'
+import * as A from "../../application/actions";
 
 const ListItems = styled.ul`
   margin: 0;
@@ -22,6 +25,10 @@ const StyledSmsIcon = styled(SmsIcon)`
   vertical-align: sub;
 `;
 
+const StyledMessageIcon = styled(MessageIcon)`
+  vertical-align: sub;
+`;
+
 const StyledConversationIcon = styled(ConversationIcon)`
   vertical-align: sub;
 `;
@@ -30,20 +37,40 @@ const StyledProfileIcon = styled(ProfileIcon)`
   vertical-align: sub;
 `;
 
-const Menu = (props) => {
-  const {active, onClick} = props;
+export const Menu = (props) => {
+  const {active, navigateTo} = props;
+
+  const handleMenuItemClick = (pathname) => {
+    navigateTo && navigateTo({pathname});
+  }
 
   return (
     <ListItems>
-      <Item id={MenuItemId.quicklySendSms} active={active === MenuItemId.quicklySendSms} onClick={onClick}>
+      <Item id={navigationRoutes.quicklySendMessage}
+            active={active === navigationRoutes.quicklySendMessage}
+            onClick={handleMenuItemClick}
+      >
         <StyledSmsIcon/>
         <Title>Quickly send SMS</Title>
       </Item>
-      <Item id={MenuItemId.conversations} active={active === MenuItemId.conversations} onClick={onClick}>
+      <Item id={navigationRoutes.messages}
+            active={active === navigationRoutes.messages}
+            onClick={handleMenuItemClick}
+      >
+        <StyledMessageIcon/>
+        <Title>Messages</Title>
+      </Item>
+      <Item id={navigationRoutes.conversations}
+            active={active === navigationRoutes.conversations}
+            onClick={handleMenuItemClick}
+      >
         <StyledConversationIcon/>
         <Title>Conversations</Title>
       </Item>
-      <Item id={MenuItemId.about} active={active === MenuItemId.about} onClick={onClick}>
+      <Item id={navigationRoutes.about}
+            active={active === navigationRoutes.about}
+            onClick={handleMenuItemClick}
+      >
         <StyledProfileIcon/>
         <Title>About</Title>
       </Item>
@@ -52,8 +79,21 @@ const Menu = (props) => {
 };
 
 Menu.propTypes = {
-  active: PropTypes.oneOf(Object.values(MenuItemId)),
-  onClick: PropTypes.func,
+  active: PropTypes.string,
+  navigateTo: PropTypes.func,
 };
 
-export default Menu;
+const mapStateToProps = (state) => {
+  const {router: {location: {pathname}}} = state;
+
+  return {
+    active: pathname,
+  }
+};
+
+const mapDispatchToProps = (dispatch) => bindActionCreators(A, dispatch);
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Menu)

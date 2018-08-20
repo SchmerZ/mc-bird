@@ -35,7 +35,7 @@ const Footer = () => {
             ©2018 MessageBird. All rights reserved.
           </CopyrightContainer>
           <LogoContainer>
-            <MessageBirdLogoIcon height={32}/>
+            <MessageBirdLogoIcon size={32}/>
           </LogoContainer>
         </Row>
       </Container>

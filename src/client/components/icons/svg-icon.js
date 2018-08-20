@@ -5,14 +5,14 @@ import styled from 'styled-components'
 
 const Svg = styled.svg`
   flex-shrink: 0;
-  height: ${({height}) => height ? `${height}px` : '24px'};
+  height: ${({size}) => `${size}px`};
 `;
 
 const Icon = (props) => {
-  const {viewBox, children, height, ...rest} = props;
+  const {viewBox, children, size, ...rest} = props;
 
   return (
-    <Svg height={height} {...rest} viewBox={viewBox} xmlns="http://www.w3.org/2000/svg">
+    <Svg size={size} {...rest} viewBox={viewBox} xmlns="http://www.w3.org/2000/svg">
       {children}
     </Svg>
   )
@@ -23,5 +23,9 @@ Icon.propTypes = {
   height: PropTypes.number,
   children: PropTypes.node,
 };
+
+Icon.defaultProps = {
+  size: 24,
+}
 
 export default Icon;

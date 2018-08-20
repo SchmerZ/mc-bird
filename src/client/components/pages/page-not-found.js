@@ -41,10 +41,10 @@ class PageNotFound extends Component {
       <BodyBackground>
         <Header/>
 
-        <BodyContent>
+        <BodyContent {...rest}>
           <ErrorSection>
             <Container>
-              <Icon height={150}/>
+              <Icon size={150}/>
               <H3>Page not found...</H3>
             </Container>
           </ErrorSection>

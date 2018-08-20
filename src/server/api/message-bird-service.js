@@ -2,6 +2,9 @@ import BaseService from '../lib/base-service'
 
 class MessageBirdService extends BaseService {
   constructor(accessKey) {
+    if (!accessKey)
+      throw new Error('AccessKey has no value. Incorrect parameter value.');
+
     const headers = {
       'Authorization': 'AccessKey ' + accessKey,
       'User-Agent': 'MessageBird/CustomApiClient/v0.0.1 Node.js/' + process.versions.node,

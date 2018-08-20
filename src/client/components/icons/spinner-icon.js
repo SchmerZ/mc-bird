@@ -6,7 +6,7 @@ import Icon from './svg-icon'
 import {rotate360} from '../../styles/animations'
 
 const StyledIcon = styled(Icon)`
-  height: ${({height}) => `${height || 24}px`};
+  height: ${({size}) => `${size}px`};
   overflow: visible;
 `;
 
@@ -40,7 +40,7 @@ SpinnerIcon.propTypes = {
 
 SpinnerIcon.defaultProps = {
   thick: 6,
-  height: 24,
+  size: 24,
 };
 
 export default SpinnerIcon;

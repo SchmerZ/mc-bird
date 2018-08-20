@@ -52,7 +52,7 @@ class PageLoading extends Component {
         <BodyContent>
           <LoadingSection>
             <Container>
-              <Icon height={60}/>
+              <Icon size={60}/>
               <H3>MessageBird is loading...</H3>
             </Container>
           </LoadingSection>

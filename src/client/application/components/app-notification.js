@@ -30,9 +30,7 @@ AppNotification.propTypes = {
 };
 
 const mapStateToProps = (state) => {
-  const {
-    appNotification: {messages}
-  } = state;
+  const {application: {messages}} = state;
 
   return {
     messages,
