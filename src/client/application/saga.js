@@ -8,10 +8,8 @@ const sagaCreator = () => {
     yield takeLatest(A.navigateTo, onNavigateToSaga);
   }
 
-  function* onNavigateToSaga({payload}) {
-    const {pathname} = payload;
-
-    yield put(push(pathname));
+  function* onNavigateToSaga({payload: routeId}) {
+    yield put(push(routeId));
   }
 
   return saga;

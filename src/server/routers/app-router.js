@@ -5,6 +5,7 @@ import ssrRouter from './ssr-view-router'
 import apiRouter from './api-router'
 
 import errorHandler from '../lib/error-handler'
+import requestLogger from '../lib/request-logger'
 
 import PageLoading from '../../client/components/pages/page-loading'
 import PageNotFound from '../../client/components/pages/page-not-found'
@@ -13,6 +14,8 @@ export default () => {
   const appRouter = express.Router();
 
   appRouter.use(express.static(path.join(__dirname, '../../client/static')));
+
+  appRouter.use(requestLogger());
   appRouter.use('/api', apiRouter());
 
   appRouter.get('/page-not-found', ssrRouter(PageNotFound, true));

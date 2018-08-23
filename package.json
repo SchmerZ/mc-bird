@@ -37,7 +37,9 @@
     "history": "4.7.2",
     "uncontrollable": "6.0.0",
     "isomorphic-fetch": "2.2.1",
-    "reselect": "3.0.1"
+    "reselect": "3.0.1",
+    "chalk": "2.4.1",
+    "on-finished": "2.3.0"
   },
   "devDependencies": {
     "@storybook/addon-actions": "4.0.0-alpha.14",

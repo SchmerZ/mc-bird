@@ -16,8 +16,8 @@ const sagaCreator = ({services: {messagesService}}) => {
     yield takeLatest([A.prevPage, A.nextPage], onFetchMessagesSaga);
   }
 
-  function* onInitSaga({payload}) {
-    const {search} = payload;
+  function* onInitSaga() {
+    const {location: {search}} = yield select(state => state.router);
     const searchParams = new URLSearchParams(search);
     const offset = searchParams.get('offset');
 

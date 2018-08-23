@@ -34,6 +34,8 @@ const MenuItem = (props) => {
   const {id, children, onClick, ...rest} = props;
 
   const handleClick = () => {
+    if (props.active) return;
+
     onClick && onClick(id);
   };
 

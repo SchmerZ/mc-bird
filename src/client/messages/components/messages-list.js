@@ -57,9 +57,9 @@ const Table = styled.table`
 
 export class MessagesList extends Component {
   componentDidMount() {
-    const {init, search} = this.props;
+    const {init} = this.props;
 
-    init && init({search});
+    init && init();
   }
 
   handleTryAgainClick = () => {
@@ -118,7 +118,6 @@ export class MessagesList extends Component {
 }
 
 MessagesList.propTypes = {
-  search: PropTypes.string,
   items: PropTypes.arrayOf(PropTypes.object),
   totalCount: PropTypes.number,
   offset: PropTypes.number,
@@ -140,9 +139,6 @@ const mapStateToProps = (state) => {
       totalCount,
       offset,
     },
-    router: {
-      location: {search},
-    }
   } = state;
 
   return {
@@ -151,7 +147,6 @@ const mapStateToProps = (state) => {
     items,
     totalCount,
     offset,
-    search,
   }
 };
 

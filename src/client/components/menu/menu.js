@@ -38,10 +38,10 @@ const StyledProfileIcon = styled(ProfileIcon)`
 `;
 
 export const Menu = (props) => {
-  const {active, navigateTo} = props;
+  const {active, onChange} = props;
 
-  const handleMenuItemClick = (pathname) => {
-    navigateTo && navigateTo({pathname});
+  const handleMenuItemClick = (routeId) => {
+    onChange && onChange(routeId);
   }
 
   return (
@@ -80,7 +80,7 @@ export const Menu = (props) => {
 
 Menu.propTypes = {
   active: PropTypes.string,
-  navigateTo: PropTypes.func,
+  onChange: PropTypes.func,
 };
 
 const mapStateToProps = (state) => {
@@ -91,7 +91,11 @@ const mapStateToProps = (state) => {
   }
 };
 
-const mapDispatchToProps = (dispatch) => bindActionCreators(A, dispatch);
+const mapDispatchToProps = (dispatch) => {
+  const {navigateTo} = bindActionCreators(A, dispatch);
+
+  return {onChange: navigateTo};
+}
 
 export default connect(
   mapStateToProps,
