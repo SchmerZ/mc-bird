@@ -9,7 +9,9 @@ export default class MessagesController extends BaseController {
   }
 
   async getMessages() {
-    return await this.service.getMessages();
+    const {limit, offset} = this.request.query;
+
+    return await this.service.getMessages({limit, offset});
   }
 
   async sendMessage() {

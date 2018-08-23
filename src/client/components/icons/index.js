@@ -14,6 +14,8 @@ import CheckCircleIcon from './check-circle-icon'
 import CloseIcon from './close-icon'
 import ArrowRight from './arrow-right'
 import ArrowLeft from './arrow-left'
+import ChevronLeftIcon from './chevron-left-icon'
+import ChevronRightIcon from './chevron-right-icon'
 
 export {
   SendIcon,
@@ -32,4 +34,6 @@ export {
   CloseIcon,
   ArrowRight,
   ArrowLeft,
+  ChevronLeftIcon,
+  ChevronRightIcon,
 }

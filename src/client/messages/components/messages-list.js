@@ -10,6 +10,7 @@ import {SpinnerIcon} from '../../components/icons'
 import FetchingFailed from './fetching-failed'
 import NoItems from './no-items'
 import ListItem from './messages-list-item'
+import Foot from './messages-list-foot'
 
 const Container = styled.div`
   position: relative;
@@ -22,21 +23,11 @@ const FetchingSpinnerIcon = styled(SpinnerIcon)`
   top: 50px;
 `;
 
-const Table = styled.table`
-  min-height: 100px;
-  table-layout: fixed;
-  width: 100%;
-  border-collapse: collapse;
-  border-spacing: 0;
-  font-size: 14px;
-`;
-
 const Head = styled.thead`
   border-bottom: 1px dashed #d6e0f1;
 `;
 
 const Body = styled.tbody`
-  opacity: ${({fetching}) => fetching ? '.5' : '1'};
 `;
 
 const TH = styled.th`
@@ -51,10 +42,24 @@ const TypeCol = styled.col`
   width: 60px;
 `;
 
+const Table = styled.table`
+  min-height: 100px;
+  table-layout: fixed;
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  font-size: 14px;
+  
+  ${Body} {
+    opacity: ${props => props.fetching ? '.6' : '1'};
+  }
+`;
+
 export class MessagesList extends Component {
   componentDidMount() {
-    const {init} = this.props;
-    init && init();
+    const {init, search} = this.props;
+
+    init && init({search});
   }
 
   handleTryAgainClick = () => {
@@ -63,15 +68,21 @@ export class MessagesList extends Component {
   };
 
   render() {
-    const {fetching, fetchingFailed, items, totalCount, offset} = this.props;
-    const hasItems = items && items.length;
+    const {
+      fetching, fetchingFailed,
+      items,
+      totalCount, offset,
+      prevPage, nextPage,
+    } = this.props;
+
+    const hasItems = items && !!items.length;
     const displayNoItems = !fetchingFailed && !hasItems;
-    const displayItems = !displayNoItems && hasItems;
+    const displayItems = !fetchingFailed && hasItems;
 
     return (
       <Container>
         {fetching && <FetchingSpinnerIcon size={40}/>}
-        <Table>
+        <Table fetching={fetching}>
           <colgroup>
             <TypeCol/>
             <col/>
@@ -88,11 +99,18 @@ export class MessagesList extends Component {
               <TH>Date</TH>
             </tr>
           </Head>
-          <Body fetching={fetching}>
+          <Body>
           {fetchingFailed && <FetchingFailed onTryAgainClick={this.handleTryAgainClick}/>}
           {displayNoItems && <NoItems onTryAgainClick={this.handleTryAgainClick}/>}
           {displayItems && items.map(x => <ListItem key={x.id} item={x}/>)}
           </Body>
+          {displayItems &&
+          (
+            <Foot offset={offset} itemsPerPage={10} totalCount={totalCount}
+                  onLeftArrowClick={prevPage}
+                  onRightArrowClick={nextPage}
+            />
+          )}
         </Table>
       </Container>
     )
@@ -100,6 +118,7 @@ export class MessagesList extends Component {
 }
 
 MessagesList.propTypes = {
+  search: PropTypes.string,
   items: PropTypes.arrayOf(PropTypes.object),
   totalCount: PropTypes.number,
   offset: PropTypes.number,
@@ -108,6 +127,8 @@ MessagesList.propTypes = {
 
   init: PropTypes.func,
   fetch: PropTypes.func,
+  prevPage: PropTypes.func,
+  nextPage: PropTypes.func,
 };
 
 const mapStateToProps = (state) => {
@@ -118,6 +139,9 @@ const mapStateToProps = (state) => {
       items,
       totalCount,
       offset,
+    },
+    router: {
+      location: {search},
     }
   } = state;
 
@@ -127,6 +151,7 @@ const mapStateToProps = (state) => {
     items,
     totalCount,
     offset,
+    search,
   }
 };
 

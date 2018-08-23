@@ -3,17 +3,19 @@ import * as A from './actions'
 
 const initialState = {
   fetching: true,
+  fetchingOffset: 0,
   fetchingFailed: false,
 
   items: [],
   totalCount: 0,
   offset: 0,
+  limit: 10,
 };
 
 const handlers = {
   [A.init]: (state) => ({
     ...state,
-    messages: [],
+    items: [],
   }),
   [A.fetch.request]: (state) => ({
     ...state,
@@ -35,6 +37,15 @@ const handlers = {
     ...state,
     fetching: false,
     fetchingFailed: true,
+  }),
+
+  [A.nextPage]: (state) => ({
+    ...state,
+    fetchingOffset: state.offset + state.limit,
+  }),
+  [A.prevPage]: (state) => ({
+    ...state,
+    fetchingOffset: state.offset - state.limit,
   }),
 };
 

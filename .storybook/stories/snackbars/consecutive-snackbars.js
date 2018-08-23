@@ -14,7 +14,7 @@ class ConsecutiveSnackbars extends Component {
   };
 
   handleClick = message => () => {
-    const messages = [...this.state.messages, message];
+    const messages = [...this.state.messages, {message}];
     this.setState({messages});
   };
 

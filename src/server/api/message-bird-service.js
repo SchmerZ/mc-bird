@@ -41,8 +41,8 @@ class MessageBirdService extends BaseService {
     return `https://rest.messagebird.com${path}`
   }
 
-  async getMessages() {
-    const url = this.getUrl('/messages?limit=10');
+  async getMessages({offset, limit}) {
+    const url = this.getUrl(`/messages?offset=${offset}&limit=${limit}`);
 
     return this.get(url).catch(this.handleError);
   }
