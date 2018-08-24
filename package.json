@@ -9,7 +9,8 @@
     "start:client": "webpack-dev-server --config ./webpack/webpack.development.config --mode development --hot --inline --color",
     "build:server": "npm run clean && babel ./src/server -d dist/server --copy-files",
     "build:client": "webpack --config ./webpack/webpack.production.config --mode production --progress --color",
-    "dev:storybook": "start-storybook -p 9001 -c .storybook -s .storybook/static"
+    "dev:storybook": "start-storybook -p 9001 -c .storybook -s .storybook/static",
+    "start:tunnel": "lt --port 8090"
   },
   "repository": {
     "type": "git",
@@ -19,27 +20,29 @@
   "homepage": "https://github.com/SchmerZ/mc-bird#readme",
   "dependencies": {
     "body-parser": "1.18.3",
+    "chalk": "2.4.1",
+    "connected-react-router": "4.4.1",
     "express": "4.16.3",
+    "history": "4.7.2",
+    "isomorphic-fetch": "2.2.1",
     "nconf": "0.10.0",
+    "npm": "^6.4.0",
+    "on-finished": "2.3.0",
     "prop-types": "15.6.2",
     "react": "16.4.2",
     "react-dom": "16.4.2",
     "react-redux": "5.0.7",
     "react-router": "4.3.1",
-    "connected-react-router": "4.4.1",
     "react-transition-group": "2.4.0",
     "redux": "4.0.0",
     "redux-actions": "2.6.1",
+    "redux-devtools-extension": "2.13.5",
     "redux-saga": "0.16.0",
     "redux-saga-routines": "2.2.5",
-    "redux-devtools-extension": "2.13.5",
-    "websocket": "1.0.26",
-    "history": "4.7.2",
-    "uncontrollable": "6.0.0",
-    "isomorphic-fetch": "2.2.1",
     "reselect": "3.0.1",
-    "chalk": "2.4.1",
-    "on-finished": "2.3.0"
+    "uncontrollable": "6.0.0",
+    "websocket": "1.0.26",
+    "moment": "2.22.2"
   },
   "devDependencies": {
     "@storybook/addon-actions": "4.0.0-alpha.14",
@@ -58,6 +61,7 @@
     "webpack": "4.16.5",
     "webpack-cli": "3.1.0",
     "webpack-dev-server": "3.1.5",
-    "styled-components": "3.4.2"
+    "styled-components": "3.4.2",
+    "localtunnel": "1.9.0"
   }
 }

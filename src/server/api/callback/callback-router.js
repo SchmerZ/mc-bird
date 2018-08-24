@@ -12,6 +12,8 @@ export default (wsServer) => {
     }
     catch (error) {
       response.status(400).send();
+
+      throw error;
     }
   });
 

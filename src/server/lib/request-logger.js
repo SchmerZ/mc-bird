@@ -8,8 +8,8 @@ export default () => (req, res, next) => {
     const endTime = Date.now();
     const timMs = (endTime - startTime) / 1000;
 
-    console.log(chalk.green(`${req.method} ${res.statusCode} ${chalk.blue(req.originalUrl)} has taken ${timMs}ms.`));
-  })
+    console.log(chalk.green(`${req.method} ${res.statusCode} ${chalk.blue(req.originalUrl)} has taken ${timMs} ms.`));
+  });
 
   next();
 }

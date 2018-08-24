@@ -1,6 +1,8 @@
 import {handleActions} from 'redux-actions'
 import * as A from './actions'
 
+import messageType from '../constants/message-type'
+
 const initialState = {
   fetching: true,
   fetchingOffset: 0,
@@ -16,6 +18,11 @@ const handlers = {
   [A.init]: (state) => ({
     ...state,
     items: [],
+  }),
+
+  [A.fetch]: (state, {payload}) => ({
+    ...state,
+    fetchingOffset: payload.offset,
   }),
   [A.fetch.request]: (state) => ({
     ...state,
@@ -41,12 +48,33 @@ const handlers = {
 
   [A.nextPage]: (state) => ({
     ...state,
-    fetchingOffset: state.offset + state.limit,
+    fetchingOffset: Math.min(state.offset + state.limit, state.totalCount),
   }),
   [A.prevPage]: (state) => ({
     ...state,
-    fetchingOffset: state.offset - state.limit,
+    fetchingOffset: Math.max(state.offset - state.limit, 0),
   }),
+
+  [A.messageAdd]: (state, {payload}) => {
+    const {message} = payload;
+    const newMessage = {
+      ...message,
+      direction: messageType.received,
+      recipients: {
+        items: [{
+          originator: null,
+          recipient: message.recipient,
+          status: "income"
+        }]
+      }
+    };
+
+    return {
+      ...state,
+      items: [newMessage, ...state.items.slice(0, state.items.length - 1)],
+      totalCount: state.totalCount + 1,
+    }
+  }
 };
 
 export default handleActions(handlers, initialState);

@@ -1,11 +1,11 @@
 import {server as WebSocketServer} from 'websocket'
 import chalk from 'chalk'
 
-const log = (message) => console.log(chalk.greenBright(message));
+const log = (message) => console.log(chalk.yellowBright(message));
 
 class WsServer {
-  constructor(app) {
-    this.app = app;
+  constructor(server) {
+    this.server = server;
     this.connections = [];
 
     return this;
@@ -13,10 +13,10 @@ class WsServer {
 
   start() {
     this.wsServer = new WebSocketServer({
-      httpServer: this.app,
+      httpServer: this.server,
     });
 
-    this.wsServer.on("request", this.handleRegistrationRequest);
+    this.wsServer.on("request", (request) => this.handleRegistrationRequest(request));
 
     log('WebSocket has been started.');
 
@@ -24,25 +24,25 @@ class WsServer {
   }
 
   push(data) {
-    log('WebSocket rebroadcast data.');
-
-    // rebroadcast command to all clients
     this.connections.forEach(destination => {
-      destination.sendUTF(message.utf8Data);
+      const json = JSON.stringify(data);
+
+      log(`${destination.remoteAddress} WebSocket rebroadcast data.`);
+      destination.send(json);
     });
 
     return this;
   }
 
   handleRegistrationRequest(request) {
-    const connection = request.accept('whiteboard-example', request.origin);
+    const connection = request.accept(null, request.origin);
     this.connections.push(connection);
 
-    console.log(connection.remoteAddress + " connected - Protocol Version " + connection.webSocketVersion);
+    log(connection.remoteAddress + " connected - Protocol Version " + connection.webSocketVersion);
 
     // Handle closed connections
     connection.on('close', () => {
-      console.log(connection.remoteAddress + " disconnected");
+      log(connection.remoteAddress + " disconnected");
 
       const index = this.connections.indexOf(connection);
       if (index !== -1) {

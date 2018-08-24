@@ -6,11 +6,11 @@ import routers from '../api';
 const apiRouter = express.Router();
 
 export default (wsServer) => {
-    // Body Parser
-    apiRouter.use(bodyParser.json());
+  // Body Parser
+  apiRouter.use(bodyParser.json());
 
-    // Bind all Controllers
-    routers(apiRouter, wsServer);
+  // Bind all Controllers
+  routers(apiRouter, wsServer);
 
-    return apiRouter;
+  return apiRouter;
 }

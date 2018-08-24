@@ -2,6 +2,9 @@ import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
+import moment from 'moment'
+
+import messageType from '../../constants/message-type'
 import {ArrowRight, ArrowLeft} from '../../components/icons'
 
 const TD = styled.td`
@@ -37,24 +40,27 @@ const TR = styled.tr`
 `;
 
 const directionMap = {
-  /**
-   *  mt: mobile terminated (sent to mobile)
-   */
-  "mt": ArrowRight,
-
-  /**
-   * mo: mobile originated (received from mobile)
-   */
-  "mo": ArrowLeft,
+  [messageType.sent]: ArrowRight,
+  [messageType.received]: ArrowLeft,
 };
 
 class MessagesListItem extends Component {
+  getCreatedDateLabel() {
+    const {item: {createdDatetime}} = this.props;
+
+    const createdDate = moment(createdDatetime);
+    const createdDateIsToday = moment().diff(createdDate, 'days') === 0;
+
+    return createdDateIsToday ? createdDate.format('hh:mm') : createdDate.format('DD-MM-YYYY');
+  }
+
   render() {
-    const {item: {body, createdDatetime, direction, recipients: {items}}} = this.props;
+    const {item: {body, direction, recipients: {items}}} = this.props;
     const [firstRecipient] = items;
     const {recipient, status} = firstRecipient;
 
     const DirectionIcon = directionMap[direction];
+    const createdDateLabel = this.getCreatedDateLabel();
 
     return (
       <TR>
@@ -62,7 +68,7 @@ class MessagesListItem extends Component {
         <TD>{recipient}</TD>
         <TD>{body}</TD>
         <TD>{status}</TD>
-        <DateTD>{createdDatetime}</DateTD>
+        <DateTD>{createdDateLabel}</DateTD>
       </TR>
     )
   }
