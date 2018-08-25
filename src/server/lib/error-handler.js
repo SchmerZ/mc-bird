@@ -10,7 +10,7 @@ const errorHandler = (err, req, res, next) => {
 
       console.log(`${chalk.black.bgRed.bold(statusCode)} ${chalk.blue.underline(req.url)} ${body} ${chalk.red('Server error: ' + errorMessage)} Stack: ${err.stack}`);
 
-      return res.status(statusCode).send({message: errorMessage, body: {message: errorMessage}});
+      return res.status(statusCode).send(JSON.stringify({message: errorMessage}));
     }
   }
 };

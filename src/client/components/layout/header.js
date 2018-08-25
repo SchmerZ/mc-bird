@@ -1,6 +1,6 @@
 import React from "react";
 
-import Container from "./container";
+import Container from "../styled/content-container";
 import {Row} from './responsive'
 import HeaderLogo from "./header-logo";
 import styled from "styled-components";

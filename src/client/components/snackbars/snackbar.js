@@ -45,22 +45,6 @@ class Snackbar extends Component {
     clearTimeout(this.timerAutoHide);
   }
 
-  // static getDerivedStateFromProps(nextProps, prevState) {
-  //   if (typeof prevState.exited === 'undefined') {
-  //     return {
-  //       exited: !nextProps.open,
-  //     };
-  //   }
-  //
-  //   if (nextProps.open) {
-  //     return {
-  //       exited: false,
-  //     };
-  //   }
-  //
-  //   return null;
-  // }
-
   setAutoHideTimer(autoHideDuration) {
     const autoHideDurationBefore = autoHideDuration != null
       ? autoHideDuration
@@ -93,18 +77,14 @@ class Snackbar extends Component {
 
   render() {
     const {
-      autoHideDuration,
       children,
       message,
-      onClose,
       onEnter,
       onEntered,
       onEntering,
       onExit,
       onExited,
       onExiting,
-      onMouseEnter,
-      onMouseLeave,
       open,
       ...rest
     } = this.props;

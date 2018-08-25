@@ -1,9 +1,10 @@
 import React, {Component} from 'react'
 import styled from 'styled-components'
 
+import {color} from '../../styles/variables'
 import {bodyBackground, bodyContent} from '../../styles/layout'
 
-import Container from '../layout/container'
+import Container from '../styled/content-container'
 import Header from '../layout/header'
 import Footer from '../layout/footer'
 import {Icon404} from '../icons'
@@ -26,7 +27,7 @@ const ErrorSection = styled.section`
 `;
 
 const Icon = styled(Icon404)`
-  color: #9bb0bf
+  color: ${color.lightGray};
 `;
 
 const H3 = styled.h3`

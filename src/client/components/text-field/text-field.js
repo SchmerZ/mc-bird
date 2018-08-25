@@ -1,4 +1,4 @@
-import React, {Component, PureComponent} from 'react'
+import React, {PureComponent} from 'react'
 import PropTypes from 'prop-types'
 
 import uncontrollable from 'uncontrollable'
@@ -6,52 +6,52 @@ import styled from 'styled-components'
 import {textFieldColor, errorColor} from '../../styles/variables'
 
 const Label = styled.label`
-    font-size: 12px;
-    color: ${textFieldColor.label};
-    padding: 0 0 2px 0;
-    margin: auto;
-    display: block;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 1px;
+  font-size: 12px;
+  color: ${textFieldColor.label};
+  padding: 0 0 2px 0;
+  margin: auto;
+  display: block;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 `;
 
 const Input = styled.input`
-    width: 100%;
-    height: 40px;
-    font-size: 14px;
-    font-weight: 400;
-    border: 1px solid #d6e0f1;
-    /*border: 1px solid #eaf0fa;*/
-    border-radius: 2px;
+  width: 100%;
+  height: 40px;
+  font-size: 14px;
+  font-weight: 400;
+  border: 1px solid #d6e0f1;
+  /*border: 1px solid #eaf0fa;*/
+  border-radius: 2px;
 
-    outline: 0;
-    background-image: none;
-    padding: 0 2px 0 10px;
-    color: ${textFieldColor.text};
-    
-    transition: border-color .15s ease-in-out 0s, box-shadow .15s ease-in-out 0s;
-    
-    &:focus {
-      box-shadow: 0 4px 8px #eff6fd;
-      border-color: ${textFieldColor.borderActive};
-    }
-    
-    ::placeholder {
-      color: ${textFieldColor.placeholder};
-      font-weight: 400
-    }
+  outline: 0;
+  background-image: none;
+  padding: 0 2px 0 10px;
+  color: ${textFieldColor.text};
+  
+  transition: border-color .15s ease-in-out 0s, box-shadow .15s ease-in-out 0s;
+  
+  &:focus {
+    box-shadow: 0 4px 8px #eff6fd;
+    border-color: ${textFieldColor.borderActive};
+  }
+  
+  ::placeholder {
+    color: ${textFieldColor.placeholder};
+    font-weight: 400
+  }
 `;
 
 const ErrorMessage = styled.span`
-    color: ${errorColor};
-    clear: both;
-    min-height: 25px;
-    margin: auto;
-    display: block;
-    padding: 5px 0 0 0;
-    font-size: 16px;
-    line-height: 1.2em;
+  color: ${errorColor};
+  clear: both;
+  min-height: 25px;
+  margin: auto;
+  display: block;
+  padding: 5px 0 0 0;
+  font-size: 16px;
+  line-height: 1.2em;
 `;
 
 export class TextField extends PureComponent {

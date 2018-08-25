@@ -1,7 +1,8 @@
 import React from "react";
 import styled from 'styled-components'
 
-import Container from "./container";
+import {logoColor, textColor} from '../../styles/variables'
+import Container from "../styled/content-container";
 import {Row} from "./responsive";
 import {MessageBirdLogoIcon} from '../icons'
 
@@ -17,13 +18,13 @@ const CopyrightContainer = styled.div`
   text-align: center;
   opacity: .5;
   font-size: 12px;
-  color: #24374e;
+  color: ${textColor};
 `;
 
 const LogoContainer = styled.div`
   margin-top: 20px;
   text-align: center;
-  color: #2481d7;
+  color: ${logoColor};
 `;
 
 const Footer = () => {

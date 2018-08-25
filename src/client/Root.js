@@ -5,8 +5,8 @@ import styled from 'styled-components'
 import {Switch, Route} from 'react-router'
 import {ConnectedRouter} from 'connected-react-router'
 
-import {PageTitle} from './components/layout/primitive'
-import Container from './components/layout/container'
+import {PageTitle} from './components/styled/primitive'
+import Container from './components/styled/content-container'
 import SkewedContainer from './components/layout/skewed-container'
 import Menu from './components/menu/menu'
 

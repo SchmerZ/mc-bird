@@ -1,7 +1,9 @@
 export const color = {
   primary: '#2d9bf3',
-  secondary: '',
+  lightGray: '#9bb0bf',
 };
+
+export const textColor = '#24374e';
 
 export const textFieldColor = {
   label: '#9aa8be',
@@ -11,8 +13,34 @@ export const textFieldColor = {
   placeholder: '#9aa8be',
 };
 
+export const button = {
+  textColor: '#fff',
+  backgroundColor: '#3f90dc',
+  backgroundColorOnHover: '#28a7db',
+};
+
+export const menuItem = {
+  color: '#48578c',
+  hoverColor: '#febbb2',
+  background: '#fafcfe',
+  active: '#48578c',
+  notActive: '#ebf1fa',
+  border: '#ebf1fa80',
+};
+
+export const snackbar = {
+  default: '#2481d7',
+  error: '#d32f2f',
+  success: '#43a047',
+
+};
+
 export const errorColor = '#ef1a55';
 
 export const backgroundColor = '#24374e';
 
 export const logoColor = '#2481D7';
+
+export const border = {
+  dashedGray: '1px dashed #d6e0f1',
+};

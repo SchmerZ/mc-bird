@@ -9,7 +9,6 @@ const Container = styled.a`
   
   :hover {
     opacity: .5;
-    color: ${logoColor};
   }
 `;
 

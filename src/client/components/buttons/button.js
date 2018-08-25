@@ -2,15 +2,14 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import styled from 'styled-components';
+import {button} from '../../styles/variables'
 
 const StyledButton = styled.button`
   height: 50px;
   border-radius: 2px;
-  /*text-transform: uppercase;*/
   letter-spacing: 1px;
   padding: 6px 12px;
   user-select: none;
-  font-family: 'Lota',sans-serif;
   
   cursor: ${props => props.disabled ? 'not-allowed' : 'pointer'};
   opacity: ${props => props.disabled ? '.65' : ''};
@@ -30,18 +29,18 @@ const StyledButton = styled.button`
 `;
 
 const PrimaryButton = styled(StyledButton)`
-  background: #3f90dc;
-  color: #fff;
+  background: ${button.backgroundColor};
+  color: ${button.textColor};
   font-size: 14px;
   border: 0;
   
   :hover {
-    background-color: #28a7db;
+    background-color: ${button.backgroundColorOnHover};
   }
 `;
 
 const Button = (props) => {
-  const {size, disabled, children, ...rest} = props;
+  const {disabled, children, ...rest} = props;
 
   return (
     <PrimaryButton disabled={disabled} {...rest}>{children}</PrimaryButton>

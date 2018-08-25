@@ -1,9 +1,10 @@
 import React from 'react'
 import Proptypes from 'prop-types'
+import styled, {css} from 'styled-components'
 
+import {snackbar} from '../../styles/variables'
 import {CheckCircleIcon, ErrorIcon, InfoIcon} from '../icons'
 import SnackbarContent from './snackbar-content'
-import styled, {css} from "styled-components";
 
 import variant from '../../constants/snackbar-variant'
 
@@ -14,8 +15,8 @@ const variantIcon = {
 };
 
 const styles = {
-  [variant.error]: css`background-color: #d32f2f`,
-  [variant.success]: css`background-color: #43a047`,
+  [variant.error]: css`background-color: ${snackbar.error}`,
+  [variant.success]: css`background-color: ${snackbar.success}`,
 };
 
 const TextWithIconContainer = styled.span`

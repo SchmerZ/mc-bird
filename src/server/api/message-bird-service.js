@@ -27,7 +27,7 @@ class MessageBirdService extends BaseService {
       });
 
       const nextError = new Error('api error(s): ' + clientErrors.join(', '));
-      nextError.statusCode = error.response.statusCode;
+      nextError.status = error.response.status;
       nextError.errors = data.errors;
 
       throw nextError;

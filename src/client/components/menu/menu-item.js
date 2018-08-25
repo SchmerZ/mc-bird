@@ -1,12 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+import {menuItem} from '../../styles/variables'
 import styled, {css} from 'styled-components'
 import MenuItemId from '../../constants/navigation-routes'
 
 const hover = css`
   :hover {
-    border-top: 3px solid #febbb2;
+    border-top: 3px solid ${menuItem.hoverColor};
   }
 `;
 
@@ -16,17 +17,17 @@ const ListItem = styled.li`
   text-align: center;  
   align-items: center;
   
-  background: #fafcfe;
-  color: #48578c;
+  background: ${menuItem.background};
+  color: ${menuItem.color};
   font-weight: 600;
   padding: 15px;
   cursor: pointer;
   
-  border-top: ${props => props.active ? '3px solid #48578c' : '3px solid #ebf1fa'};  
+  border-top: ${props => props.active ? `3px solid ${menuItem.active}` : `3px solid ${menuItem.notActive}`};  
   ${props => props.active ? '' : hover}
   
   :not(:last-of-type) {
-    border-right: 1px solid rgba(235,241,250,.5);
+    border-right: 1px solid ${menuItem.border};
   }
 `;
 

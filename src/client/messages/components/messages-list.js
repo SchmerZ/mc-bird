@@ -6,6 +6,7 @@ import styled from 'styled-components'
 
 import * as A from '../actions'
 
+import {color, border} from '../../styles/variables'
 import {SpinnerIcon} from '../../components/icons'
 import FetchingFailed from './fetching-failed'
 import NoItems from './no-items'
@@ -21,10 +22,11 @@ const FetchingSpinnerIcon = styled(SpinnerIcon)`
   position: absolute;
   left: 50%;
   top: 50px;
+  color: ${color.lightGray};
 `;
 
 const Head = styled.thead`
-  border-bottom: 1px dashed #d6e0f1;
+  border-bottom: ${border.dashedGray};
 `;
 
 const Body = styled.tbody`

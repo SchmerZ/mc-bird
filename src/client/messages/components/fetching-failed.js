@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
-import {Anchor} from '../../components/layout/primitive'
+import {Anchor} from '../../components/styled/primitive'
 
 const TR = styled.tr`
 `;

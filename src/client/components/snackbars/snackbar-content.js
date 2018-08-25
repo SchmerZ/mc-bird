@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 import {CloseIcon} from '../icons'
+import {snackbar} from '../../styles/variables'
 
 const TextContainer = styled.div`
   padding: 8px 0 8px 0;
@@ -40,7 +41,7 @@ const Container = styled.div`
   align-items: center;
   background-color: rgb(49, 49, 49);
     
-  background-color: #2481d7;
+  background-color: ${snackbar.default};
   align-items: center;
   justify-content: flex-start;
 `;

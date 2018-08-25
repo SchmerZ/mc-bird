@@ -42,7 +42,7 @@ export const Menu = (props) => {
 
   const handleMenuItemClick = (routeId) => {
     onChange && onChange(routeId);
-  }
+  };
 
   return (
     <ListItems>
@@ -95,7 +95,7 @@ const mapDispatchToProps = (dispatch) => {
   const {navigateTo} = bindActionCreators(A, dispatch);
 
   return {onChange: navigateTo};
-}
+};
 
 export default connect(
   mapStateToProps,
