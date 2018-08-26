@@ -27,6 +27,11 @@ const DateTD = styled(TD)`
   text-align: right;
 `;
 
+const RecipientTD = styled(TD)`
+  overflow: hidden;
+  text-overflow: ellipsis;
+`;
+
 const TR = styled.tr`
   ${TD}:last-child {
     border-right: 0;
@@ -44,6 +49,12 @@ const directionMap = {
   [messageType.received]: ArrowLeft,
 };
 
+const statusAliasMap = {
+  delivery_failed: "not delivered (failed)",
+  expired: "not delivered (expired)",
+  delivered: "delivered",
+};
+
 class MessagesListItem extends Component {
   getCreatedDateLabel() {
     const {item: {createdDatetime}} = this.props;
@@ -54,6 +65,8 @@ class MessagesListItem extends Component {
     return createdDateIsToday ? createdDate.format('hh:mm') : createdDate.format('DD-MM-YYYY');
   }
 
+  getStatusLabel = (status) => statusAliasMap[status] || status;
+
   render() {
     const {item: {body, direction, recipients: {items}}} = this.props;
     const [firstRecipient] = items;
@@ -62,12 +75,14 @@ class MessagesListItem extends Component {
     const DirectionIcon = directionMap[direction];
     const createdDateLabel = this.getCreatedDateLabel();
 
+    const statusLabel = this.getStatusLabel(status);
+
     return (
       <TR>
         <TD>{DirectionIcon && <IconContainer><DirectionIcon size={20}/></IconContainer>}</TD>
-        <TD>{recipient}</TD>
+        <RecipientTD>{recipient}</RecipientTD>
         <TD>{body}</TD>
-        <TD>{status}</TD>
+        <TD>{statusLabel}</TD>
         <DateTD>{createdDateLabel}</DateTD>
       </TR>
     )

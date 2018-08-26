@@ -2,10 +2,11 @@ import BaseController from '../../lib/base-controller'
 import Service from '../message-bird-service'
 
 export default class MessagesController extends BaseController {
-  constructor(request, response, next, config) {
+  constructor(request, response, next, config, wsServer) {
     super(request, response, next, config);
 
     this.service = new Service(config.AccessKey);
+    this.wsServer = wsServer;
   }
 
   async getMessages() {
@@ -23,6 +24,10 @@ export default class MessagesController extends BaseController {
       body: messageText,
     };
 
-    return await this.service.sendMessage(params);
+    const sentMessage = await this.service.sendMessage(params);
+
+    this.wsServer.push(sentMessage);
+
+    return sentMessage;
   }
 }

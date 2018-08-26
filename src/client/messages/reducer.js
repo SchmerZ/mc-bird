@@ -57,21 +57,10 @@ const handlers = {
 
   [A.messageAdd]: (state, {payload}) => {
     const {message} = payload;
-    const newMessage = {
-      ...message,
-      direction: messageType.received,
-      recipients: {
-        items: [{
-          originator: null,
-          recipient: message.recipient,
-          status: "income"
-        }]
-      }
-    };
 
     return {
       ...state,
-      items: [newMessage, ...state.items.slice(0, state.items.length - 1)],
+      items: [message, ...state.items.slice(0, state.items.length - 1)],
       totalCount: state.totalCount + 1,
     }
   }

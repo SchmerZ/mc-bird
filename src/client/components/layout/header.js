@@ -8,7 +8,6 @@ import styled from "styled-components";
 const StyledHeader = styled.header`
   padding-top: 30px;
   position: relative;
-  z-index: 800;
 `;
 
 const Header = () => {

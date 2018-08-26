@@ -1,13 +1,20 @@
 import express from 'express'
 
-import routerActionCreator from '../../lib/router-action-creator'
+import routerActionExecutor from '../../lib/router-action-executor'
 import Controller from './messages-controller'
 
-export default (config) => {
+export default ({config, wsServer}) => {
   const router = express.Router();
 
-  router.get('/', routerActionCreator(Controller, Controller.prototype.getMessages, config));
-  router.post('/', routerActionCreator(Controller, Controller.prototype.sendMessage, config));
+  router.get('/', (req, resp, next) => {
+    const controller = new Controller(req, resp, next, config, wsServer);
+    routerActionExecutor(controller, controller.getMessages);
+  });
+
+  router.post('/', (req, resp, next) => {
+    const controller = new Controller(req, resp, next, config, wsServer);
+    routerActionExecutor(controller, controller.sendMessage);
+  });
 
   return router;
 }

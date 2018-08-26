@@ -1,4 +1,5 @@
 import express from 'express';
+import direction from '../../../client/constants/message-type'
 
 const callbackRouter = express.Router();
 
@@ -6,7 +7,32 @@ export default (wsServer) => {
 
   callbackRouter.post('/messages', (request, response) => {
     try {
-      wsServer.push(request.body);
+      // based on request
+      // {
+      //   "id": "some-id-here",
+      //   "recipient": "79201007245",
+      //   "originator": "CZ",
+      //   "body": "hi! this is incoming message!",
+      //   "createdDatetime" :"2016-05-03T14:26:57+00:00"
+      // }
+
+      const {id, recipient, originator, body, createdDatetime} = request.body;
+
+      const message = {
+        id,
+        body,
+        createdDatetime,
+        direction: direction.received,
+        recipients: {
+          items: [{
+            recipient,
+            originator,
+            status: "income",
+          }]
+        }
+      };
+
+      wsServer.push(message);
 
       response.status(200).send();
     }

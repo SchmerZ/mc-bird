@@ -44,6 +44,17 @@ const TypeCol = styled.col`
   width: 60px;
 `;
 
+const RecipientCol = styled.col`
+`;
+
+const StatusCol = styled.col`
+  width: 180px;
+`;
+
+const DateCol = styled.col`
+  width: 130px;
+`;
+
 const Table = styled.table`
   min-height: 100px;
   table-layout: fixed;
@@ -78,7 +89,7 @@ export class MessagesList extends Component {
     } = this.props;
 
     const hasItems = items && !!items.length;
-    const displayNoItems = !fetchingFailed && !hasItems;
+    const displayNoItems = !fetching && !fetchingFailed && !hasItems;
     const displayItems = !fetchingFailed && hasItems;
 
     return (
@@ -87,10 +98,10 @@ export class MessagesList extends Component {
         <Table fetching={fetching}>
           <colgroup>
             <TypeCol/>
+            <RecipientCol/>
             <col/>
-            <col/>
-            <col/>
-            <col/>
+            <StatusCol/>
+            <DateCol/>
           </colgroup>
           <Head>
             <tr>

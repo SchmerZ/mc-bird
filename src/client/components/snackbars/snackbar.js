@@ -11,6 +11,7 @@ const Container = styled.div`
   top: 24px;
   left: auto;
   right: 0;
+  z-index: 800;
 `;
 
 const WithAnimationContainer = withAnimation(Container, {

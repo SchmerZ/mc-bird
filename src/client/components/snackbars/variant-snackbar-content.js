@@ -38,10 +38,12 @@ const VariantSnackbarContent = (props) => {
   return (
     <StyledSnackbarContent
       content={
-        <TextWithIconContainer>
-          <StyledIcon/>
-          {content}
-        </TextWithIconContainer>
+        (
+          <TextWithIconContainer>
+            <StyledIcon/>
+            {content}
+          </TextWithIconContainer>
+        )
       }
       {...rest}
     />
