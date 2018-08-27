@@ -21,8 +21,7 @@ const AnimatedContainer = styled.div`
 `;
 
 const runSaga = (sagaCreator) => {
-  const queryParams = new URLSearchParams(window.location.search);
-  const rootSaga = sagaCreator({queryParams, services});
+  const rootSaga = sagaCreator({services});
 
   return sagaMiddleware.run(rootSaga);
 };

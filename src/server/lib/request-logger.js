@@ -6,7 +6,7 @@ export default () => (req, res, next) => {
 
   onFinished(res, () => {
     const endTime = Date.now();
-    const timMs = (endTime - startTime) / 1000;
+    const timMs = endTime - startTime;
 
     console.log(chalk.green(`${req.method} ${res.statusCode} ${chalk.blue(req.originalUrl)} has taken ${timMs} ms.`));
   });

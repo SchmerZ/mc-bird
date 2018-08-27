@@ -12,6 +12,9 @@ const errorHandler = (err, req, res, next) => {
 
       return res.status(statusCode).send(JSON.stringify({message: errorMessage}));
     }
+    else {
+      return res.status(401).send(JSON.stringify({message: errorMessage}));
+    }
   }
 };
 

@@ -76,8 +76,9 @@ export class MessagesList extends Component {
   }
 
   handleTryAgainClick = () => {
-    const {fetch} = this.props;
-    fetch && fetch();
+    const {fetch, offset} = this.props;
+
+    fetch && fetch({offset});
   };
 
   render() {
@@ -86,6 +87,7 @@ export class MessagesList extends Component {
       items,
       totalCount, offset,
       prevPage, nextPage,
+      limit,
     } = this.props;
 
     const hasItems = items && !!items.length;
@@ -119,7 +121,7 @@ export class MessagesList extends Component {
           </Body>
           {displayItems &&
           (
-            <Foot offset={offset} itemsPerPage={10} totalCount={totalCount}
+            <Foot offset={offset} itemsPerPage={limit} totalCount={totalCount}
                   onLeftArrowClick={prevPage}
                   onRightArrowClick={nextPage}
             />
@@ -133,6 +135,7 @@ export class MessagesList extends Component {
 MessagesList.propTypes = {
   items: PropTypes.arrayOf(PropTypes.object),
   totalCount: PropTypes.number,
+  limit: PropTypes.number,
   offset: PropTypes.number,
   fetching: PropTypes.bool,
   fetchingFailed: PropTypes.bool,
@@ -151,6 +154,7 @@ const mapStateToProps = (state) => {
       items,
       totalCount,
       offset,
+      limit,
     },
   } = state;
 
@@ -160,6 +164,7 @@ const mapStateToProps = (state) => {
     items,
     totalCount,
     offset,
+    limit,
   }
 };
 

@@ -26,7 +26,7 @@ export default class MessagesController extends BaseController {
 
     const sentMessage = await this.service.sendMessage(params);
 
-    this.wsServer.push(sentMessage);
+    this.wsServer.push(sentMessage, true);
 
     return sentMessage;
   }

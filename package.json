@@ -43,7 +43,8 @@
     "redux-saga-routines": "2.2.5",
     "reselect": "3.0.1",
     "uncontrollable": "6.0.0",
-    "websocket": "1.0.26"
+    "websocket": "1.0.26",
+    "uuid": "3.3.2"
   },
   "devDependencies": {
     "@storybook/addon-actions": "4.0.0-alpha.14",

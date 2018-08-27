@@ -23,7 +23,7 @@ const handleError = async (error) => {
   }
 
   throw await parseJSON(error.response);
-}
+};
 
 export default {
   request(url, method, headers, data) {
@@ -32,6 +32,7 @@ export default {
       credentials: 'same-origin',
       headers: {
         ...headers,
+        ...window.headers,
       },
       body: data,
     };
@@ -53,20 +54,8 @@ export default {
     }
   },
 
-  patch(url, data) {
-    return this.json(url, 'PATCH', data)
-  },
-
-  put(url, data) {
-    return this.json(url, 'PUT', data)
-  },
-
   post(url, data) {
     return this.json(url, 'POST', data)
-  },
-
-  del(url) {
-    return this.json(url, 'DELETE')
   },
 
   get(url) {

@@ -22,7 +22,7 @@ const createRouterAction = (controllerInstance, actionName) => {
         controllerInstance.end(response);
       })
       .catch(error => {
-        next(error);
+        controllerInstance.next(error);
       });
   }
   else {

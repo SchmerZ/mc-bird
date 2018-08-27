@@ -4,7 +4,7 @@ import applicationSaga from './application/saga'
 import quickMessageSaga from './quick-message/saga'
 import messagesListSaga from './messages/saga'
 
-export default ({queryParams, services}) => {
+export default ({services}) => {
   return function* rootSaga() {
     yield all([
       applicationSaga()(),

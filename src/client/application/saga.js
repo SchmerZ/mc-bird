@@ -1,5 +1,5 @@
 import {eventChannel, END} from 'redux-saga'
-import {call, put, take, takeLatest, select} from 'redux-saga/effects'
+import {call, put, take, takeLatest} from 'redux-saga/effects'
 import {push} from 'connected-react-router'
 
 import * as A from './actions'
@@ -13,14 +13,22 @@ const sagaCreator = () => {
   }
 
   function* initializeWebSocketsChannel() {
+    // todo: use config
     const socket = new WebSocket("ws://localhost:8090");
     const channel = yield call(watchMessages, socket);
 
     while (true) {
       const {message} = yield take(channel);
 
-      yield put(messagesActions.incomeMessage({message}));
-      yield put(A.notify({message: 'You have received a new message.'}));
+      if (message.type === 'accept') {
+        window.headers = {
+          [message.name]: message.value
+        };
+      }
+      else {
+        yield put(messagesActions.incomeMessage({message}));
+        yield put(A.notify({message: 'You have received a new message.'}));
+      }
     }
   }
 

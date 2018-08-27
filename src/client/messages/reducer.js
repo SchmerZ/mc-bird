@@ -1,8 +1,6 @@
 import {handleActions} from 'redux-actions'
 import * as A from './actions'
 
-import messageType from '../constants/message-type'
-
 const initialState = {
   fetching: true,
   fetchingOffset: 0,
