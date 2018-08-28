@@ -5,7 +5,7 @@ export default class MessagesController extends BaseController {
   constructor(request, response, next, config, wsServer) {
     super(request, response, next, config);
 
-    this.service = new Service(config.AccessKey);
+    this.service = new Service(config);
     this.wsServer = wsServer;
   }
 

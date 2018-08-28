@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Quick message form Recipient TextField should render with passed props 1`] = `
+Object {
+  "debounceTimeout": 300,
+  "defaultValue": "Recipient value",
+  "error": undefined,
+  "onChange": [Function],
+  "placeholder": "Recipient",
+}
+`;
+
+exports[`Quick message form SendMessage button should render SendMessageButton with passed props 1`] = `
+Object {
+  "busy": true,
+  "onClick": [Function],
+}
+`;
+
+exports[`Quick message form SendMessageText should render SendMessageText with passed props 1`] = `
+Object {
+  "error": undefined,
+  "maxLength": 1377,
+  "onChange": [Function],
+  "value": "Some message text",
+}
+`;

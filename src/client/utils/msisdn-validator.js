@@ -7,8 +7,11 @@
 const regex = /^\+?[1-9][0-9]{3,14}$/;
 
 export default (text) => {
-  if (!text || !text.length)
+  if (!text || !text.trim().length)
     return 'Recipient cannot be blank.';
+
+  text = text.trim();
+  text = text.replace(/\+/g, '');
 
   if (text.length < 4)
     return 'There should be at least 4 numbers in phone.';

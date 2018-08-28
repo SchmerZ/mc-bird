@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`WaitButton should render busyChildren if busy props 1`] = `
+Object {
+  "children": "Processing...",
+  "disabled": true,
+  "onClick": [Function],
+}
+`;
+
+exports[`WaitButton should render children if busy props and no busyChildren props specified 1`] = `
+Object {
+  "children": "Show me even busy=true",
+  "disabled": true,
+  "onClick": [Function],
+}
+`;
+
+exports[`WaitButton should render children if not busy props 1`] = `
+Object {
+  "children": "Run",
+  "disabled": false,
+  "onClick": [Function],
+}
+`;

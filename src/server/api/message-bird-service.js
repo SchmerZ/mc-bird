@@ -6,16 +6,21 @@
 import BaseService from '../lib/base-service'
 
 class MessageBirdService extends BaseService {
-  constructor(accessKey) {
-    if (!accessKey)
+  constructor(config) {
+    if (!config.AccessKey)
       throw new Error('AccessKey has no value. Incorrect parameter value.');
 
+    if (!config.urls.messageBirdApiRoot)
+      throw new Error('messageBirdApiRoot has no value. Check configuration.');
+
     const headers = {
-      'Authorization': 'AccessKey ' + accessKey,
+      'Authorization': 'AccessKey ' + config.AccessKey,
       'User-Agent': 'MessageBird/CustomApiClient/v0.0.1 Node.js/' + process.versions.node,
     };
 
     super(headers);
+
+    this.rootUrl = config.urls.messageBirdApiRoot;
   }
 
   handleError = async (error) => {
@@ -38,7 +43,7 @@ class MessageBirdService extends BaseService {
   };
 
   getUrl(path) {
-    return `https://rest.messagebird.com${path}`
+    return `${this.rootUrl}${path}`
   }
 
   async getMessages({offset, limit}) {

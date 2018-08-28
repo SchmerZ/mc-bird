@@ -10,11 +10,11 @@ const sagaCreator = ({services: {messagesService}}) => {
     const {sendMessage} = messagesService;
 
     function* saga() {
-      yield takeLatest(A.send, onSendMessageSaga);
-      yield takeLatest([A.changeRecipient, A.changeMessageText], validateSaga)
+      yield takeLatest(A.send, onSendMessage);
+      yield takeLatest([A.changeRecipient, A.changeMessageText], validate)
     }
 
-    function* validateSaga() {
+    function* validate() {
       const {recipient, messageText} = yield select(state => state.quickMessage);
       const errors = {};
 
@@ -26,8 +26,8 @@ const sagaCreator = ({services: {messagesService}}) => {
       yield put(A.inputErrors({errors}));
     }
 
-    function* onSendMessageSaga() {
-      yield call(validateSaga);
+    function* onSendMessage() {
+      yield call(validate);
 
       const {errors, recipient, messageText} = yield select(state => state.quickMessage);
       const hasErrors = !!Object.values(errors).filter(x => x).length;

@@ -10,4 +10,5 @@ module.exports = {
   transformIgnorePatterns: ['node_modules'],
   testPathIgnorePatterns: ['\\node_modules\\', 'config'],
   testURL: 'http://localhost',
+  snapshotSerializers: ["enzyme-to-json/serializer"],
 };

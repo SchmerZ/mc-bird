@@ -7,7 +7,7 @@ import * as messagesActions from '../messages/actions'
 
 const sagaCreator = (location) => {
   function* saga() {
-    yield takeLatest(A.navigateTo, onNavigateToSaga);
+    yield takeLatest(A.navigateTo, onNavigateTo);
 
     yield initializeWebSocketsChannel();
   }
@@ -53,7 +53,7 @@ const sagaCreator = (location) => {
     });
   }
 
-  function* onNavigateToSaga({payload: routeId}) {
+  function* onNavigateTo({payload: routeId}) {
     yield put(push(routeId));
   }
 

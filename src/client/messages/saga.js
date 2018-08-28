@@ -11,14 +11,14 @@ const sagaCreator = ({services: {messagesService}}) => {
   const {fetchMessages} = messagesService;
 
   function* saga() {
-    yield takeLatest(A.init, onInitSaga);
-    yield takeLatest(A.fetch, onFetchMessagesSaga);
+    yield takeLatest(A.init, onInit);
+    yield takeLatest(A.fetch, onFetchMessages);
 
-    yield takeLatest([A.prevPage, A.nextPage], onFetchMessagesSaga);
-    yield takeEvery(A.incomeMessage, onIncomeMessageSaga);
+    yield takeLatest([A.prevPage, A.nextPage], onFetchMessages);
+    yield takeEvery(A.incomeMessage, onIncomeMessage);
   }
 
-  function* onInitSaga() {
+  function* onInit() {
     const {location: {search}} = yield select(state => state.router);
     const searchParams = new URLSearchParams(search);
     const offset = Number(searchParams.get('offset'));
@@ -26,7 +26,7 @@ const sagaCreator = ({services: {messagesService}}) => {
     yield put(A.fetch({offset}));
   }
 
-  function* onFetchMessagesSaga() {
+  function* onFetchMessages() {
     yield put(A.fetch.request());
 
     const {fetchingOffset, limit} = yield select(state => state.messagesList);
@@ -51,7 +51,7 @@ const sagaCreator = ({services: {messagesService}}) => {
     }
   }
 
-  function* onIncomeMessageSaga({payload}) {
+  function* onIncomeMessage({payload}) {
     const {location: {pathname}} = yield select(state => state.router);
     const {offset} = yield select(state => state.messagesList);
     const {message} = payload;

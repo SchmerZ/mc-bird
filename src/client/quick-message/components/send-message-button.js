@@ -13,14 +13,14 @@ const StyledWaitButton = styled(WaitButton)`
   align-items: center;
 `;
 
-const StyledChatIcon = styled(SendIcon)`
+const StyledIcon = styled(SendIcon)`
   padding-right: 5px;
 `;
 
 const SendMessageButton = (props) => {
   return (
     <StyledWaitButton {...props} busyChildren="Processing...">
-      <StyledChatIcon/>Send SMS
+      <StyledIcon/>Send SMS
     </StyledWaitButton>
   )
 };
