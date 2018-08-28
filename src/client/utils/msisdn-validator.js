@@ -1,10 +1,10 @@
 /**
  * primitive msisdn (Mobile Station International Subscriber Directory Number) validator with the following rules:
- * only digits
- * + sign at the beginning (optional)
- * length up to 15
+ * - only digits
+ * - + sign at the beginning (optional)
+ * - length up to 15
  */
-const regex = /^\+?[1-9]{1}[0-9]{3,14}$/;
+const regex = /^\+?[1-9][0-9]{3,14}$/;
 
 export default (text) => {
   if (!text || !text.length)

@@ -52,42 +52,14 @@ class WsServer {
     const connection = request.accept(null, request.origin);
     connection.clientWsKey = clientWsKey;
 
-    log(connection.remoteAddress + " connected - Protocol Version " + connection.webSocketVersion);
+    log(`WebSocket ${connection.remoteAddress} connected. Protocol Version ${connection.webSocketVersion}.`);
     connection.send(JSON.stringify({type: 'accept', name: clientWsKeyHeaderName, value: clientWsKey}));
 
-    // Handle closed connections
     connection.on('close', () => {
-      log(connection.remoteAddress + " disconnected");
-
-      // const index = this.connections.indexOf(connection);
-      // if (index !== -1) {
-      //   // remove the connection from the pool
-      //   this.connections.splice(index, 1);
-      // }
+      log(`WebSocket ${connection.remoteAddress} disconnected.`);
     });
 
-    // Handle incoming messages
     connection.on('message', (message) => {
-      // if (message.type === 'utf8') {
-      //   try {
-      //     var command = JSON.parse(message.utf8Data);
-      //
-      //     if (command.msg === 'clear') {
-      //       canvasCommands = [];
-      //     }
-      //     else {
-      //       canvasCommands.push(command);
-      //     }
-      //
-      //     // rebroadcast command to all clients
-      //     connections.forEach(function (destination) {
-      //       destination.sendUTF(message.utf8Data);
-      //     });
-      //   }
-      //   catch (e) {
-      //     // do nothing if there's an error.
-      //   }
-      // }
     });
   }
 }

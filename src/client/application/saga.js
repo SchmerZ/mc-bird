@@ -5,7 +5,7 @@ import {push} from 'connected-react-router'
 import * as A from './actions'
 import * as messagesActions from '../messages/actions'
 
-const sagaCreator = () => {
+const sagaCreator = (location) => {
   function* saga() {
     yield takeLatest(A.navigateTo, onNavigateToSaga);
 
@@ -13,8 +13,7 @@ const sagaCreator = () => {
   }
 
   function* initializeWebSocketsChannel() {
-    // todo: use config
-    const socket = new WebSocket("ws://localhost:8090");
+    const socket = new WebSocket(`ws://${location.host}`);
     const channel = yield call(watchMessages, socket);
 
     while (true) {
