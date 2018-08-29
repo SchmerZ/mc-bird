@@ -7,6 +7,8 @@ import styled from 'styled-components'
 import * as A from '../actions'
 
 import {color, border} from '../../styles/variables'
+import {TableColumn as Col} from '../../components/layout/responsive'
+
 import {SpinnerIcon} from '../../components/icons'
 import FetchingFailed from './fetching-failed'
 import NoItems from './no-items'
@@ -38,21 +40,6 @@ const TH = styled.th`
   word-break: break-all;
   vertical-align: middle;
   text-align: left;
-`;
-
-const TypeCol = styled.col`
-  width: 60px;
-`;
-
-const RecipientCol = styled.col`
-`;
-
-const StatusCol = styled.col`
-  width: 180px;
-`;
-
-const DateCol = styled.col`
-  width: 130px;
 `;
 
 const Table = styled.table`
@@ -99,11 +86,11 @@ export class MessagesList extends Component {
         {fetching && <FetchingSpinnerIcon size={40}/>}
         <Table fetching={fetching}>
           <colgroup>
-            <TypeCol/>
-            <RecipientCol/>
-            <col/>
-            <StatusCol/>
-            <DateCol/>
+            <Col/>
+            <Col sm={2}/>
+            <Col sm={3}/>
+            <Col/>
+            <Col/>
           </colgroup>
           <Head>
             <tr>

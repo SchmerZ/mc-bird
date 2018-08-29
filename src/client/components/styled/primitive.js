@@ -1,14 +1,18 @@
 import styled from 'styled-components'
 import {color, textColor} from '../../styles/variables'
 
+import {media} from './media'
+
 export const PageTitle = styled.h1`
   margin: 0;
   font-weight: 800;
-  font-size: 48px;
   color: ${textColor};
   
   display: inline-block;
   text-align: center;
+  
+  font-size: 38px;
+  ${media.phone`font-size: 48px;`}
 `;
 
 export const Anchor = styled.a`

@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Messages controller should send correct body on sendMessage call 1`] = `
+Object {
+  "body": "Hello!",
+  "originator": "Inbox",
+  "recipients": Array [
+    "79201010203",
+  ],
+}
+`;

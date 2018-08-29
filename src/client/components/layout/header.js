@@ -5,6 +5,10 @@ import {Row} from './responsive'
 import HeaderLogo from "./header-logo";
 import styled from "styled-components";
 
+const HeaderRow = styled(Row)`
+  margin: 0;
+`;
+
 const StyledHeader = styled.header`
   padding-top: 30px;
   position: relative;
@@ -14,9 +18,9 @@ const Header = () => {
   return (
     <StyledHeader>
       <Container>
-        <Row>
+        <HeaderRow>
           <HeaderLogo/>
-        </Row>
+        </HeaderRow>
       </Container>
     </StyledHeader>
   )

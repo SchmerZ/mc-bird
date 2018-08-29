@@ -61,6 +61,12 @@ export class TextField extends PureComponent {
     inputText: this.props.value,
   };
 
+  componentDidUpdate(prevProps) {
+    if (prevProps.value !== this.props.value) {
+      this.setState({inputText: this.props.value});
+    }
+  }
+
   componentWillUnmount() {
     if (this.debouncer)
       clearTimeout(this.debouncer);
@@ -94,6 +100,7 @@ export class TextField extends PureComponent {
     const {disabled, label, placeholder, error, ...rest} = this.props;
     const {inputText} = this.state;
 
+    delete rest.value;
     delete rest.debounceTimeout;
 
     const inputProps = {

@@ -34,7 +34,7 @@ const handlers = {
     ...state,
     sending: false,
   }),
-  [A.send.failure]: (state, {payload}) => ({
+  [A.send.failure]: (state) => ({
     ...state,
     sending: false,
   }),

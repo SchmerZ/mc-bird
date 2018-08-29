@@ -22,14 +22,16 @@ import routesIds from './constants/navigation-routes'
 
 const TitleSection = styled.section`
   padding: 30px 0;
+  text-align: center;
 `;
 
 const MenuSection = styled.section`
   margin: 0;
-  padding-top: 15px;
+  padding: 15px 15px 0;
 `;
 
 const ContentSection = styled.section`
+  padding: 0 15px 0 15px;
 `;
 
 const StyledSkewedContainer = styled(SkewedContainer)`

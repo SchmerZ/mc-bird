@@ -1,4 +1,4 @@
-import validate from '../../src/client/utils/msisdn-validator';
+import validate from '../../../src/client/utils/msisdn-validator';
 
 describe('MSISDN validator', () => {
   it('should return an error if text is undefined', () => {

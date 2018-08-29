@@ -57,11 +57,8 @@ const initialMessages = [
 ];
 
 class MessagesList extends Component {
-
   constructor(...args) {
     super(...args);
-
-    this.textInput = React.createRef();
 
     this.state = {
       messages: initialMessages,

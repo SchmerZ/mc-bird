@@ -1,4 +1,4 @@
-import {eventChannel, END} from 'redux-saga'
+import {eventChannel, END, delay} from 'redux-saga'
 import {call, put, take, takeLatest} from 'redux-saga/effects'
 import {push} from 'connected-react-router'
 
@@ -24,6 +24,9 @@ const sagaCreator = (location) => {
           [message.name]: message.value
         };
       }
+      else if (message.type === 'disconnect') {
+        //todo: reconnect
+      }
       else {
         yield put(messagesActions.incomeMessage({message}));
         yield put(A.notify({message: 'You have received a new message.'}));
@@ -43,7 +46,7 @@ const sagaCreator = (location) => {
       };
 
       socket.onclose = () => {
-        // todo: should i have it?
+        emit({message: {type: 'disconnect'}});
         emit(END);
       };
 

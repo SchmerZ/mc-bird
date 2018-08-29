@@ -56,16 +56,6 @@ class BaseService {
 
         throw error;
       })
-
-    // if (options.method === 'POST' || options.method === 'PUT') {
-    //   body = JSON.stringify(params);
-    //   options.headers['Content-Type'] = 'application/json';
-    //   options.headers['Content-Length'] = Buffer.byteLength(body, 'utf8');
-    // } else {
-    //   options.path += params ? '?' + querystring.stringify(params) : '';
-    // }
-    //
-    // request = http.request(options);
   }
 
   json(path, method, data) {

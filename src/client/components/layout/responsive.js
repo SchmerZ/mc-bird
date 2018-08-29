@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types'
-import styled from 'styled-components'
+import styled, {css} from 'styled-components'
 
 import {media} from '../styled/media'
 
@@ -43,6 +43,17 @@ export const Column = styled.div`
 `;
 
 Column.propTypes = {
+  xs: PropTypes.number,
+  sm: PropTypes.number,
+  md: PropTypes.number,
+};
+
+export const TableColumn = styled.col`
+  ${media.tablet`${({sm}) => sm && getWidthString(sm)}`}  
+  ${media.desktop`${({md}) => md && getWidthString(md)}`}
+`;
+
+TableColumn.propTypes = {
   xs: PropTypes.number,
   sm: PropTypes.number,
   md: PropTypes.number,

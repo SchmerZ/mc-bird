@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MessageBird service should handle error if response has errors array in body 1`] = `[Error: api error(s): first error (code: 1), second error (code: 2, parameter: @p1)]`;

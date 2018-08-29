@@ -1,5 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Quick message form Reducer should have initial state 1`] = `
+Object {
+  "errors": Object {},
+  "messageText": "",
+  "recipient": "",
+  "sending": false,
+}
+`;
+
 exports[`Quick message form Reducer should update state on recipient value change 1`] = `
 Object {
   "errors": Object {},

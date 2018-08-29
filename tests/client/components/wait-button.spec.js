@@ -1,7 +1,7 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 
-import WaitButton from '../../src/client/components/buttons/wait-button';
+import WaitButton from '../../../src/client/components/buttons/wait-button';
 
 describe('WaitButton', () => {
   it('should render children if not busy props', () => {

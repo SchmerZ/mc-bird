@@ -11,14 +11,22 @@ import {SmsIcon, ConversationIcon, MessageIcon, ProfileIcon} from '../icons'
 import navigationRoutes from '../../constants/navigation-routes'
 import * as A from "../../application/actions";
 
+const Title = styled.span`
+  margin-left: 10px;
+`;
+
 const ListItems = styled.ul`
   margin: 0;
   padding: 0;
   display: flex;
-`;
-
-const Title = styled.span`
-  margin-left: 10px;
+  
+  ${Title} {
+    display: none;
+    
+    @media (min-width: 476px) {
+      display: block;
+    }
+  }
 `;
 
 const StyledSmsIcon = styled(SmsIcon)`

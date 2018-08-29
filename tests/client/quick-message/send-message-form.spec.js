@@ -1,11 +1,11 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 
-import {QuicklySendMessageForm} from '../../src/client/quick-message/components/quickly-send-message-form';
-import SendMessageButton from '../../src/client/quick-message/components/send-message-button';
+import {QuicklySendMessageForm} from '../../../src/client/quick-message/components/quickly-send-message-form';
+import SendMessageButton from '../../../src/client/quick-message/components/send-message-button';
 
-import TextField from '../../src/client/components/text-field/text-field';
-import SendMessageText from '../../src/client/components/message/send-message-text';
+import TextField from '../../../src/client/components/text-field/text-field';
+import SendMessageText from '../../../src/client/components/message/send-message-text';
 
 describe('Quick message form', () => {
   describe('Recipient TextField', () => {
