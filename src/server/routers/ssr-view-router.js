@@ -16,12 +16,12 @@ const getHtml = (PageClass) => {
   return {html, styleTags};
 };
 
-export default (PageClass, ignoreAssets = false) => {
+export default (PageClass) => {
   const viewRouter = express.Router();
 
   viewRouter.use((req, res) => {
     const {html, styleTags} = getHtml(PageClass);
-    const processedTemplate = htmlTemplate({config, html, styleTags, ignoreAssets});
+    const processedTemplate = htmlTemplate({config, html, styleTags});
 
     res.send(processedTemplate);
   });

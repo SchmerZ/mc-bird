@@ -1,7 +1,7 @@
 let js = ['assets/main.js', 'assets/vendors.js'];
 let css = [];//['css/loading.css'];
 
-const template = ({config, html, styleTags, ignoreAssets = false}) => {
+const template = ({config, html, styleTags}) => {
   const {WindowTitle, assetsRootUrl} = config;
 
   return `
@@ -23,9 +23,15 @@ const template = ({config, html, styleTags, ignoreAssets = false}) => {
             ${styleTags}
         </head>
         <body>
+            <script type="text/javascript">
+              window.AppConfig = {
+                wsServerUrl: '${config.urls.WebSocketServer}',
+              };
+            </script>
+            
             ${html}
             ${css.map(cssFile => `<link href="${assetsRootUrl}/${cssFile}" rel="stylesheet">`).join('')}
-            ${!ignoreAssets && js.map(jsFile => `<script async type="text/javascript" src="${assetsRootUrl}/${jsFile}"></script>`).join('')}
+            ${js.map(jsFile => `<script async type="text/javascript" src="${assetsRootUrl}/${jsFile}"></script>`).join('')}
         </body>
     </html>`
 };

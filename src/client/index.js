@@ -21,8 +21,8 @@ const AnimatedContainer = styled.div`
 `;
 
 const runSaga = (sagaCreator) => {
-  const location = document.location;
-  const rootSaga = sagaCreator({services, location});
+  const config = window.AppConfig;
+  const rootSaga = sagaCreator({services, config});
 
   return sagaMiddleware.run(rootSaga);
 };
