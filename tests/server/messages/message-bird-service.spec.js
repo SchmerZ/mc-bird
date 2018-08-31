@@ -3,7 +3,7 @@ import Service from '../../../src/server/api/message-bird-service'
 const defaultConfig = {
   AccessKey: 'some-value',
   urls: {
-    messageBirdApiRoot: 'http://rest.messagebird.com/api'
+    MessageBirdApiRoot: 'http://rest.messagebird.com/api'
   }
 };
 
@@ -13,15 +13,15 @@ describe('MessageBird service', () => {
       .toThrow('AccessKey has no value. Incorrect parameter value.');
   });
 
-  it('should rise an error if config has no messageBirdApiRoot', () => {
+  it('should rise an error if config has no MessageBirdApiRoot', () => {
     expect(() => new Service({AccessKey: 'some-value'}))
-      .toThrow('messageBirdApiRoot has no value. Check configuration.');
+      .toThrow('MessageBirdApiRoot has no value. Check configuration.');
   });
 
   it('should have rootUrl from config value', () => {
     const service = new Service(defaultConfig);
 
-    expect(service.rootUrl).toEqual(defaultConfig.urls.messageBirdApiRoot);
+    expect(service.rootUrl).toEqual(defaultConfig.urls.MessageBirdApiRoot);
   });
 
   it('should have AccessKey header', () => {

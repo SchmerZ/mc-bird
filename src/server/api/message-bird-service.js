@@ -10,8 +10,8 @@ class MessageBirdService extends BaseService {
     if (!config.AccessKey)
       throw new Error('AccessKey has no value. Incorrect parameter value.');
 
-    if (!config.urls || !config.urls.messageBirdApiRoot)
-      throw new Error('messageBirdApiRoot has no value. Check configuration.');
+    if (!config.urls || !config.urls.MessageBirdApiRoot)
+      throw new Error('MessageBirdApiRoot has no value. Check configuration.');
 
     const headers = {
       'Authorization': 'AccessKey ' + config.AccessKey,
@@ -20,7 +20,7 @@ class MessageBirdService extends BaseService {
 
     super(headers);
 
-    this.rootUrl = config.urls.messageBirdApiRoot;
+    this.rootUrl = config.urls.MessageBirdApiRoot;
   }
 
   handleError = async (error) => {

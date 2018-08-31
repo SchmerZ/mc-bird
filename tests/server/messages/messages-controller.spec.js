@@ -4,7 +4,7 @@ const defaultConfig = {
   AccessKey: 'some-value',
   Originator: 'Inbox',
   urls: {
-    messageBirdApiRoot: 'http://rest.messagebird.com/api'
+    MessageBirdApiRoot: 'http://rest.messagebird.com/api'
   }
 };
 

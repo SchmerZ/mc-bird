@@ -31,6 +31,10 @@ Location: `_{project directory}_/src/server/configuration/_{mode}_.configuration
     "assetsRootUrl": "http://localhost:3002/",
     "siteRoot": "/",
     "WindowTitle": "mcBird Assignment",
+    "urls": {
+      "WebSocketServer": "ws://localhost:8090",
+      "MessageBirdApiRoot": "https://rest.messagebird.com"
+    },
     "Originator": "Inbox",
     "AccessKey": ""
   }
