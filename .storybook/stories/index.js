@@ -1,5 +1,6 @@
 require('./icons/icons-story');
 require('./layout/layout-story');
+require('./badges/badges-story');
 require('./buttons/buttons-story');
 require('./buttons/wait-button-story');
 require('./text-field/text-field-story');

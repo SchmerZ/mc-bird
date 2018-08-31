@@ -16,6 +16,7 @@ import {Row} from './components/layout/responsive'
 import AppNotification from './application/components/app-notification'
 import QuicklySendMessageForm from './quick-message/components/quickly-send-message-form'
 import Messages from './messages/components/messages-list'
+import Contacts from './contacts/components/contacts-list'
 
 import PageNotFound from './components/pages/page-not-found'
 import routesIds from './constants/navigation-routes'
@@ -57,7 +58,7 @@ class App extends Component {
   render() {
     return (
       <Layout>
-        <AppNotification/>
+        <AppNotification />
 
         <TitleSection>
           {/*<StyledSkewedContainer/>*/}
@@ -69,7 +70,7 @@ class App extends Component {
         </TitleSection>
         <MenuSection>
           <MenuContainer>
-            <Menu/>
+            <Menu />
           </MenuContainer>
         </MenuSection>
         <ContentSection>
@@ -94,11 +95,11 @@ class Root extends Component {
       <ConnectedRouter history={history}>
         <Switch>
           <Route path={routesIds.quicklySendMessage} exact
-                 render={(props) => <App {...props}><QuicklySendMessageForm/></App>}/>
-          <Route path={routesIds.messages} exact render={(props) => <App {...props}><Messages/></App>}/>
-          <Route path={routesIds.conversations} exact render={(props) => <App {...props}>c!</App>}/>
-          <Route path={routesIds.about} exact render={(props) => <App {...props}>a!</App>}/>
-          <Route component={PageNotFound}/>
+                 render={(props) => <App {...props}><QuicklySendMessageForm /></App>} />
+          <Route path={routesIds.messages} exact render={(props) => <App {...props}><Messages /></App>} />
+          <Route path={routesIds.contacts} exact render={(props) => <App {...props}><Contacts /></App>} />
+          <Route path={routesIds.about} exact render={(props) => <App {...props}>a!</App>} />
+          <Route component={PageNotFound} />
         </Switch>
       </ConnectedRouter>
     )

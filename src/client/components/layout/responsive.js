@@ -49,6 +49,7 @@ Column.propTypes = {
 };
 
 export const TableColumn = styled.col`
+  ${({xs}) => xs ? getWidthString(xs) : 'width: 100%;'}
   ${media.tablet`${({sm}) => sm && getWidthString(sm)}`}  
   ${media.desktop`${({md}) => md && getWidthString(md)}`}
 `;

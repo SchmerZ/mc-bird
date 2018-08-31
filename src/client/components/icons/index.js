@@ -16,6 +16,7 @@ import ArrowRight from './arrow-right'
 import ArrowLeft from './arrow-left'
 import ChevronLeftIcon from './chevron-left-icon'
 import ChevronRightIcon from './chevron-right-icon'
+import EnvelopIcon from './envelop-icon'
 
 export {
   SendIcon,
@@ -36,4 +37,5 @@ export {
   ArrowLeft,
   ChevronLeftIcon,
   ChevronRightIcon,
+  EnvelopIcon,
 }

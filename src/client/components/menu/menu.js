@@ -58,28 +58,28 @@ export const Menu = (props) => {
             active={active === navigationRoutes.quicklySendMessage}
             onClick={handleMenuItemClick}
       >
-        <StyledSmsIcon/>
+        <StyledSmsIcon />
         <Title>Quickly send SMS</Title>
       </Item>
       <Item id={navigationRoutes.messages}
             active={active === navigationRoutes.messages}
             onClick={handleMenuItemClick}
       >
-        <StyledMessageIcon/>
+        <StyledMessageIcon />
         <Title>Messages</Title>
       </Item>
-      <Item id={navigationRoutes.conversations}
-            active={active === navigationRoutes.conversations}
+      <Item id={navigationRoutes.contacts}
+            active={active === navigationRoutes.contacts}
             onClick={handleMenuItemClick}
       >
-        <StyledConversationIcon/>
+        <StyledConversationIcon />
         <Title>Conversations</Title>
       </Item>
       <Item id={navigationRoutes.about}
             active={active === navigationRoutes.about}
             onClick={handleMenuItemClick}
       >
-        <StyledProfileIcon/>
+        <StyledProfileIcon />
         <Title>About</Title>
       </Item>
     </ListItems>

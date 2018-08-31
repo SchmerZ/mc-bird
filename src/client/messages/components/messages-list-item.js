@@ -6,42 +6,20 @@ import moment from 'moment'
 
 import messageType from '../../constants/message-type'
 import {ArrowRight, ArrowLeft} from '../../components/icons'
-
-const TD = styled.td`
-  padding: 10px 10px 5px;
-  border-top: 0;
-  border-bottom: 2px solid #ecf2fc;
-  border-right: 2px solid #ecf2fc;
-  vertical-align: middle;
-  
-  word-break: keep-all;
-  white-space: pre-line;
-`;
+import {Table} from '../../components/styled/table'
 
 const IconContainer = styled.div`
   display: flex;
   justify-content: center;
 `;
 
-const DateTD = styled(TD)`
+const DateTD = styled(Table.td)`
   text-align: right;
 `;
 
-const RecipientTD = styled(TD)`
+const RecipientTD = styled(Table.td)`
   overflow: hidden;
   text-overflow: ellipsis;
-`;
-
-const TR = styled.tr`
-  ${TD}:last-child {
-    border-right: 0;
-  }
-  
-  &:last-child {
-    ${TD} {
-      border-bottom: 0;
-    }
-  }
 `;
 
 const directionMap = {
@@ -68,9 +46,7 @@ class MessagesListItem extends Component {
   getStatusLabel = (status) => statusAliasMap[status] || status;
 
   render() {
-    const {item: {body, direction, recipients: {items}}} = this.props;
-    const [firstRecipient] = items;
-    const {recipient, status} = firstRecipient;
+    const {item: {body, direction, recipient, status}} = this.props;
 
     const DirectionIcon = directionMap[direction];
     const createdDateLabel = this.getCreatedDateLabel();
@@ -78,13 +54,13 @@ class MessagesListItem extends Component {
     const statusLabel = this.getStatusLabel(status);
 
     return (
-      <TR>
-        <TD>{DirectionIcon && <IconContainer><DirectionIcon size={20}/></IconContainer>}</TD>
+      <Table.tr>
+        <Table.td>{DirectionIcon && <IconContainer><DirectionIcon size={20} /></IconContainer>}</Table.td>
         <RecipientTD>{recipient}</RecipientTD>
-        <TD>{body}</TD>
-        <TD>{statusLabel}</TD>
+        <Table.td>{body}</Table.td>
+        <Table.td>{statusLabel}</Table.td>
         <DateTD>{createdDateLabel}</DateTD>
-      </TR>
+      </Table.tr>
     )
   }
 }

@@ -57,6 +57,12 @@ class MessageBirdService extends BaseService {
 
     return this.post(url, data).catch(this.handleError);
   }
+
+  async getContacts({offset, limit}) {
+    const url = this.getUrl(`/contacts?offset=${offset}&limit=${limit}`);
+
+    return this.get(url).catch(this.handleError);
+  }
 }
 
 export default MessageBirdService;

@@ -23,13 +23,9 @@ export default (wsServer) => {
         body,
         createdDatetime,
         direction: direction.received,
-        recipients: {
-          items: [{
-            recipient,
-            originator,
-            status: "income",
-          }]
-        }
+        recipient,
+        originator,
+        status: "delivered",
       };
 
       wsServer.push(message);

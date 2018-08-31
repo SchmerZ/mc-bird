@@ -1,19 +1,22 @@
 import {select, call, put, takeLatest, takeEvery} from 'redux-saga/effects'
 import {push} from 'connected-react-router'
 
-import * as applicationActions from '../application/actions'
 import * as A from './actions'
+import * as applicationActions from '../application/actions'
+import * as messagesActions from '../messages/actions'
 
 import variant from '../constants/snackbar-variant'
 import routesIds from '../constants/navigation-routes'
 
-const sagaCreator = ({services: {messagesService}}) => {
-  const {fetchMessages} = messagesService;
+const sagaCreator = ({services: {contactsService}}) => {
+  const {fetchContacts} = contactsService;
 
   function* saga() {
     yield takeLatest(A.init, onInit);
-    yield takeLatest([A.fetch, A.prevPage, A.nextPage], onFetchMessages);
-    yield takeEvery(A.incomeMessage, onIncomeMessage);
+    yield takeLatest([A.fetch, A.prevPage, A.nextPage], onFetchContacts);
+    yield takeEvery(messagesActions.incomeMessage, onIncomeMessage);
+
+    yield takeLatest(A.navigateToConversation, onNavigateToConversation);
   }
 
   function* onInit() {
@@ -24,15 +27,15 @@ const sagaCreator = ({services: {messagesService}}) => {
     yield put(A.fetch({offset}));
   }
 
-  function* onFetchMessages() {
+  function* onFetchContacts() {
     yield put(A.fetch.request());
 
-    const {fetchingOffset, limit} = yield select(state => state.messagesList);
-    yield put(push(`${routesIds.messages}?offset=${fetchingOffset}`));
+    const {fetchingOffset, limit} = yield select(state => state.contactsList);
+    yield put(push(`${routesIds.contacts}?offset=${fetchingOffset}`));
 
     try {
       const {items, totalCount, offset} = yield call(
-        fetchMessages,
+        fetchContacts,
         {offset: fetchingOffset, limit}
       );
 
@@ -49,13 +52,23 @@ const sagaCreator = ({services: {messagesService}}) => {
     }
   }
 
+  function* onNavigateToConversation({payload: {msisdn}}) {
+    yield put(push(`${routesIds.conversations}/${msisdn}`));
+  }
+
   function* onIncomeMessage({payload}) {
     const {location: {pathname}} = yield select(state => state.router);
-    const {offset} = yield select(state => state.messagesList);
+    const {contacts} = yield select(state => state.contactsList);
     const {message} = payload;
 
-    if (offset === 0 && pathname === routesIds.messages) {
-      yield put(A.messageAdd({message}));
+    if (pathname === routesIds.contacts) {
+      const {recipient, originator} = message;
+
+      if (contacts[recipient])
+        yield put(A.messageAdd({msisdn: recipient}));
+
+      if (contacts[originator])
+        yield put(A.messageAdd({msisdn: originator}));
     }
   }
 
