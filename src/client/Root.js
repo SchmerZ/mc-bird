@@ -17,6 +17,7 @@ import AppNotification from './application/components/app-notification'
 import QuicklySendMessageForm from './quick-message/components/quickly-send-message-form'
 import Messages from './messages/components/messages-list'
 import Contacts from './contacts/components/contacts-list'
+import Conversation from './conversation/components/conversation'
 
 import PageNotFound from './components/pages/page-not-found'
 import routesIds from './constants/navigation-routes'
@@ -98,6 +99,8 @@ class Root extends Component {
                  render={(props) => <App {...props}><QuicklySendMessageForm /></App>} />
           <Route path={routesIds.messages} exact render={(props) => <App {...props}><Messages /></App>} />
           <Route path={routesIds.contacts} exact render={(props) => <App {...props}><Contacts /></App>} />
+          <Route path={`${routesIds.contacts}/:msisdn`}
+                 exact render={(props) => <App {...props}><Conversation {...props} /></App>} />
           <Route path={routesIds.about} exact render={(props) => <App {...props}>a!</App>} />
           <Route component={PageNotFound} />
         </Switch>

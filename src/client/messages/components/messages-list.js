@@ -36,6 +36,12 @@ export class MessagesList extends Component {
     init && init();
   }
 
+  componentWillUnmount() {
+    const {leave} = this.props;
+
+    leave && leave();
+  }
+
   handleTryAgainClick = () => {
     const {fetch, offset} = this.props;
 
@@ -63,8 +69,8 @@ export class MessagesList extends Component {
             <Col sm={1} />
             <Col sm={2} />
             <Col sm={5} />
-            <Col sm={2}/>
-            <Col sm={2}/>
+            <Col sm={2} />
+            <Col sm={2} />
           </colgroup>
           <Table.thead>
             <tr>
@@ -102,6 +108,7 @@ MessagesList.propTypes = {
   fetchingFailed: PropTypes.bool,
 
   init: PropTypes.func,
+  leave: PropTypes.func,
   fetch: PropTypes.func,
   prevPage: PropTypes.func,
   nextPage: PropTypes.func,

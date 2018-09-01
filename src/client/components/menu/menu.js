@@ -52,6 +52,8 @@ export const Menu = (props) => {
     onChange && onChange(routeId);
   };
 
+  const isConversationTab = active.startsWith(navigationRoutes.contacts);
+
   return (
     <ListItems>
       <Item id={navigationRoutes.quicklySendMessage}
@@ -69,11 +71,11 @@ export const Menu = (props) => {
         <Title>Messages</Title>
       </Item>
       <Item id={navigationRoutes.contacts}
-            active={active === navigationRoutes.contacts}
+            active={isConversationTab}
             onClick={handleMenuItemClick}
       >
         <StyledConversationIcon />
-        <Title>Conversations</Title>
+        <Title>Contacts</Title>
       </Item>
       <Item id={navigationRoutes.about}
             active={active === navigationRoutes.about}

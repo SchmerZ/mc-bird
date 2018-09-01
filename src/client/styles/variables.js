@@ -1,6 +1,7 @@
 export const color = {
   primary: '#2d9bf3',
   lightGray: '#9bb0bf',
+  lightWhite: '#ecf5fd',
 };
 
 export const textColor = '#24374e';
@@ -42,5 +43,6 @@ export const backgroundColor = '#24374e';
 export const logoColor = '#2481D7';
 
 export const border = {
-  dashedGray: '1px dashed #d6e0f1',
+  dashedGrey: '1px dashed #d6e0f1',
+  solidGrey: '1px solid #ddd',
 };

@@ -11,5 +11,5 @@ export default {
     const url = `/api/messages?offset=${offset}&limit=${limit}`;
 
     return ajax.get(url);
-  }
+  },
 }

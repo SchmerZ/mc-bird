@@ -1,4 +1,4 @@
-import {select, call, put, takeLatest, takeEvery} from 'redux-saga/effects'
+import {select, call, put, takeLatest, fork, race, take} from 'redux-saga/effects'
 import {push} from 'connected-react-router'
 
 import * as A from './actions'
@@ -14,12 +14,13 @@ const sagaCreator = ({services: {contactsService}}) => {
   function* saga() {
     yield takeLatest(A.init, onInit);
     yield takeLatest([A.fetch, A.prevPage, A.nextPage], onFetchContacts);
-    yield takeEvery(messagesActions.incomeMessage, onIncomeMessage);
 
-    yield takeLatest(A.navigateToConversation, onNavigateToConversation);
+    yield takeLatest(A.selectContact, onSelectContact);
   }
 
   function* onInit() {
+    yield fork(watchNewMessages);
+
     const {location: {search}} = yield select(state => state.router);
     const searchParams = new URLSearchParams(search);
     const offset = Number(searchParams.get('offset'));
@@ -52,24 +53,34 @@ const sagaCreator = ({services: {contactsService}}) => {
     }
   }
 
-  function* onNavigateToConversation({payload: {msisdn}}) {
-    yield put(push(`${routesIds.conversations}/${msisdn}`));
+  function* onSelectContact({payload: {msisdn}}) {
+    yield put(push(`${routesIds.contacts}/${msisdn}`));
+  }
+
+  function* watchNewMessages() {
+    while (true) {
+      const [task, cancel] = yield race([
+        take(messagesActions.incomeMessage),
+        take(A.leave)
+      ]);
+
+      if (cancel) return;
+
+      if (task) {
+        yield call(onIncomeMessage, task);
+      }
+    }
   }
 
   function* onIncomeMessage({payload}) {
-    const {location: {pathname}} = yield select(state => state.router);
     const {contacts} = yield select(state => state.contactsList);
-    const {message} = payload;
+    const {message: {recipient, originator}} = payload;
 
-    if (pathname === routesIds.contacts) {
-      const {recipient, originator} = message;
+    if (contacts[recipient])
+      yield put(A.messageAdd({msisdn: recipient}));
 
-      if (contacts[recipient])
-        yield put(A.messageAdd({msisdn: recipient}));
-
-      if (contacts[originator])
-        yield put(A.messageAdd({msisdn: originator}));
-    }
+    if (contacts[originator])
+      yield put(A.messageAdd({msisdn: originator}));
   }
 
   return saga;

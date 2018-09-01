@@ -16,7 +16,6 @@ const arrow = css`
 `;
 
 const StyledMessage = styled.div`
-  width: 90%;
   font-size: 14px;
   position: relative;
   padding: 10px 15px;
@@ -36,7 +35,6 @@ const StyledMessage = styled.div`
 const LeftMessage = styled(StyledMessage)`
   background: #48578c;
   color: #fff;
-  left: 0;
   
   ::after {
     right: calc(100% - 1px);
@@ -47,7 +45,6 @@ const LeftMessage = styled(StyledMessage)`
 const RightMessage = styled(StyledMessage)`
   background: #ecf5fd;
   color: #48578c;
-  right: -25px;
   
   ::after {
     left: calc(100% - 1px);

@@ -36,6 +36,12 @@ export class ContactsList extends Component {
     init && init();
   }
 
+  componentWillUnmount() {
+    const {leave} = this.props;
+
+    leave && leave();
+  }
+
   handleTryAgainClick = () => {
     const {fetch, offset} = this.props;
 
@@ -49,7 +55,7 @@ export class ContactsList extends Component {
       totalCount, offset,
       prevPage, nextPage,
       limit,
-      navigateToConversation,
+      selectContact,
     } = this.props;
 
     const items = Object.values(contacts);
@@ -76,7 +82,7 @@ export class ContactsList extends Component {
           <Table.tbody>
             {fetchingFailed && <FetchingFailed onTryAgainClick={this.handleTryAgainClick} />}
             {displayNoItems && <NoItems onTryAgainClick={this.handleTryAgainClick} />}
-            {displayItems && items.map(x => <ListItem key={x.id} item={x} onMessagesClick={navigateToConversation} />)}
+            {displayItems && items.map(x => <ListItem key={x.id} item={x} onMessagesClick={selectContact} />)}
           </Table.tbody>
           {displayItems &&
           (
@@ -100,10 +106,11 @@ ContactsList.propTypes = {
   fetchingFailed: PropTypes.bool,
 
   init: PropTypes.func,
+  leave: PropTypes.func,
   fetch: PropTypes.func,
   prevPage: PropTypes.func,
   nextPage: PropTypes.func,
-  navigateToConversation: PropTypes.func,
+  selectContact: PropTypes.func,
 };
 
 const mapStateToProps = (state) => {

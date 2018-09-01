@@ -2,14 +2,14 @@ import styled from 'styled-components'
 import {border} from '../../styles/variables'
 
 export const Head = styled.thead`
-  border-bottom: ${border.dashedGray};
+  border-bottom: ${border.dashedGrey};
 `;
 
 export const Body = styled.tbody`
 `;
 
 export const TH = styled.th`
-  border-top: 1px solid #ddd;
+  border-top: ${border.solidGrey};
   padding: 10px 10px 5px;
   word-break: break-all;
   vertical-align: middle;
