@@ -1,6 +1,6 @@
 import React from 'react';
 import {storiesOf} from '@storybook/react';
-//import { action } from '@storybook/addon-actions';
+import {action} from '@storybook/addon-actions';
 
 import styled from 'styled-components'
 import Button from '../../../src/client/components/buttons/button';
@@ -13,14 +13,18 @@ const Container = styled.div`
 storiesOf('Buttons', module)
   .add('Primary button', () => (
     <Container>
-      <Button>Button</Button>
+      <Button onClick={action('click')}>Button</Button>
     </Container>))
   .add('Disabled button', () => (
     <Button disabled>Disabled Button</Button>
   ))
   .add('Send message button', () => (
     <Container>
-      <SendMessageButton/>
-      <SendMessageButton busy/>
+      <div>
+        <SendMessageButton />
+      </div>
+      <div>
+        <SendMessageButton busy />
+      </div>
     </Container>
   ));

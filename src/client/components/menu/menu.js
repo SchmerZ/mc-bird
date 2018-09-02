@@ -52,7 +52,7 @@ export const Menu = (props) => {
     onChange && onChange(routeId);
   };
 
-  const isConversationTab = active.startsWith(navigationRoutes.contacts);
+  const isConversationTab = (active || '').startsWith(navigationRoutes.contacts);
 
   return (
     <ListItems>

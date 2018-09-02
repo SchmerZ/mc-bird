@@ -1,14 +1,20 @@
 import {handleActions} from 'redux-actions'
 import * as A from './actions'
 
+import statusFilters from '../constants/status-filters'
+
 const initialState = {
   fetching: true,
-  fetchingOffset: 0,
+  fetchingParams: {
+    offset: 0,
+    status: statusFilters.all,
+  },
   fetchingFailed: false,
 
   items: [],
   totalCount: 0,
   offset: 0,
+  statusFilter: statusFilters.all,
   limit: 10,
 };
 
@@ -18,9 +24,12 @@ const handlers = {
     items: [],
   }),
 
-  [A.fetch]: (state, {payload}) => ({
+  [A.fetch]: (state, {payload: {offset, status}}) => ({
     ...state,
-    fetchingOffset: payload.offset,
+    fetchingParams: {
+      offset,
+      status,
+    }
   }),
   [A.fetch.request]: (state) => ({
     ...state,
@@ -34,23 +43,37 @@ const handlers = {
       items,
       totalCount,
       offset,
+      statusFilter: state.fetchingParams.status,
       fetching: false,
       fetchingFailed: false,
     }
   },
-  [A.fetch.failure]: (state, {payload}) => ({
+  [A.fetch.failure]: (state) => ({
     ...state,
     fetching: false,
     fetchingFailed: true,
   }),
 
+  [A.changeStatusFilter]: (state, {payload: value}) => ({
+    ...state,
+    fetchingParams: {
+      ...state.fetchingParams,
+      status: value,
+    },
+  }),
   [A.nextPage]: (state) => ({
     ...state,
-    fetchingOffset: Math.min(state.offset + state.limit, state.totalCount),
+    fetchingParams: {
+      ...state.fetchingParams,
+      offset: Math.min(state.offset + state.limit, state.totalCount),
+    },
   }),
   [A.prevPage]: (state) => ({
     ...state,
-    fetchingOffset: Math.max(state.offset - state.limit, 0),
+    fetchingParams: {
+      ...state.fetchingParams,
+      offset: Math.max(state.offset - state.limit, 0),
+    },
   }),
 
   [A.messageAdd]: (state, {payload}) => {

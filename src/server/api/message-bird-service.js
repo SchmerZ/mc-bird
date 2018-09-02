@@ -5,6 +5,15 @@
 
 import BaseService from '../lib/base-service'
 
+import statusFilters from '../../client/constants/status-filters'
+import direction from '../../client/constants/message-type'
+
+const statusToQueryMap = {
+  [statusFilters.all]: '',
+  [statusFilters.received]: `&direction=${direction.received}`,
+  [statusFilters.sent]: `&direction=${direction.sent}`,
+};
+
 class MessageBirdService extends BaseService {
   constructor(config) {
     if (!config.AccessKey)
@@ -46,8 +55,10 @@ class MessageBirdService extends BaseService {
     return `${this.rootUrl}${path}`
   }
 
-  async getMessages({offset, limit}) {
-    const url = this.getUrl(`/messages?offset=${offset}&limit=${limit}`);
+  async getMessages({offset, status, limit}) {
+    const statusFilterQuery = statusToQueryMap[status] || '';
+
+    const url = this.getUrl(`/messages?offset=${offset}&limit=${limit}${statusFilterQuery}`);
 
     return this.get(url).catch(this.handleError);
   }

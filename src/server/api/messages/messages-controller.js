@@ -12,9 +12,9 @@ export default class MessagesController extends BaseController {
   }
 
   async getMessages() {
-    const {limit, offset} = this.request.query;
+    const {limit, offset, status} = this.request.query;
 
-    const response = await this.service.getMessages({limit, offset});
+    const response = await this.service.getMessages({limit, offset, status});
     const items = response.items.reduce((memo, curr) => [...memo, toModel(curr)], []);
 
     return {

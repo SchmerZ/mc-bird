@@ -7,8 +7,8 @@ export default {
     return ajax.post(url, {recipient, messageText});
   },
 
-  fetchMessages({offset, limit}) {
-    const url = `/api/messages?offset=${offset}&limit=${limit}`;
+  fetchMessages({offset, status, limit}) {
+    const url = `/api/messages?offset=${offset}&status=${status}&limit=${limit}`;
 
     return ajax.get(url);
   },

@@ -7,6 +7,7 @@ import * as A from './actions'
 
 import variant from '../constants/snackbar-variant'
 import routesIds from '../constants/navigation-routes'
+import statusFilters from '../constants/status-filters'
 
 const sagaCreator = ({services: {messagesService}}) => {
   const {fetchMessages} = messagesService;
@@ -15,7 +16,7 @@ const sagaCreator = ({services: {messagesService}}) => {
     yield takeLatest(A.init, onInit);
 
     yield takeLatest(A.fetch, onFetchMessages);
-    yield takeLatest([A.prevPage, A.nextPage], onPageChange);
+    yield takeLatest([A.changeStatusFilter, A.prevPage, A.nextPage], onParamsChange);
 
     yield takeLatest(LOCATION_CHANGE, onLocationChange);
   }
@@ -30,14 +31,15 @@ const sagaCreator = ({services: {messagesService}}) => {
     if (matchPath(pathname, {path: routesIds.messages, exact: true})) {
       const searchParams = new URLSearchParams(search);
       const offset = Number(searchParams.get('offset')) || 0;
+      const status = searchParams.get('status') || statusFilters.all;
 
-      yield put(A.fetch({offset}));
+      yield put(A.fetch({offset, status}));
     }
   }
 
-  function* onPageChange() {
-    const {fetchingOffset} = yield select(state => state.messagesList);
-    const nextLocation = `${routesIds.messages}?offset=${fetchingOffset}`;
+  function* onParamsChange() {
+    const {fetchingParams: {offset, status}} = yield select(state => state.messagesList);
+    const nextLocation = `${routesIds.messages}?offset=${offset}&status=${status}`;
 
     yield put(push(nextLocation));
   }
@@ -45,12 +47,15 @@ const sagaCreator = ({services: {messagesService}}) => {
   function* onFetchMessages() {
     yield put(A.fetch.request());
 
-    const {fetchingOffset, limit} = yield select(state => state.messagesList);
+    const {fetchingParams, limit} = yield select(state => state.messagesList);
 
     try {
-      const {items, totalCount, offset} = yield call(
-        fetchMessages,
-        {offset: fetchingOffset, limit}
+      const {items, totalCount, offset} = yield call(fetchMessages,
+        {
+          offset: fetchingParams.offset,
+          status: fetchingParams.status,
+          limit
+        }
       );
 
       yield put(A.fetch.success({items, totalCount, offset}));

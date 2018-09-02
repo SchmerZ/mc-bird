@@ -9,6 +9,8 @@ import * as A from '../actions'
 import {color} from '../../styles/variables'
 import {TableColumn as Col} from '../../components/layout/responsive'
 
+import MessagesFilters from '../../components/message/messages-filter'
+
 import {SpinnerIcon} from '../../components/icons'
 import FetchingFailed from './fetching-failed'
 import NoItems from './no-items'
@@ -25,8 +27,12 @@ const Container = styled.div`
 const FetchingSpinnerIcon = styled(SpinnerIcon)`
   position: absolute;
   left: 50%;
-  top: 50px;
+  top: 100px;
   color: ${color.lightGray};
+`;
+
+const Filters = styled(MessagesFilters)`
+  padding-bottom: 10px;
 `;
 
 export class MessagesList extends Component {
@@ -43,16 +49,24 @@ export class MessagesList extends Component {
   }
 
   handleTryAgainClick = () => {
-    const {fetch, offset} = this.props;
+    const {fetch, offset, statusFilter} = this.props;
 
-    fetch && fetch({offset});
+    fetch && fetch({offset, status: statusFilter});
+  };
+
+  handleStatusFilterChange = (value) => {
+    const {statusFilter, changeStatusFilter} = this.props;
+
+    if (statusFilter !== value) {
+      changeStatusFilter && changeStatusFilter(value)
+    }
   };
 
   render() {
     const {
       fetching, fetchingFailed,
       items,
-      totalCount, offset,
+      totalCount, offset, statusFilter,
       prevPage, nextPage,
       limit,
     } = this.props;
@@ -63,6 +77,7 @@ export class MessagesList extends Component {
 
     return (
       <Container>
+        <Filters active={statusFilter} onChange={this.handleStatusFilterChange} />
         {fetching && <FetchingSpinnerIcon size={40} />}
         <Table fetching={fetching}>
           <colgroup>
@@ -104,6 +119,7 @@ MessagesList.propTypes = {
   totalCount: PropTypes.number,
   limit: PropTypes.number,
   offset: PropTypes.number,
+  statusFilter: PropTypes.string,
   fetching: PropTypes.bool,
   fetchingFailed: PropTypes.bool,
 
@@ -112,6 +128,7 @@ MessagesList.propTypes = {
   fetch: PropTypes.func,
   prevPage: PropTypes.func,
   nextPage: PropTypes.func,
+  changeStatusFilter: PropTypes.func,
 };
 
 const mapStateToProps = (state) => {
@@ -122,6 +139,7 @@ const mapStateToProps = (state) => {
       items,
       totalCount,
       offset,
+      statusFilter,
       limit,
     },
   } = state;
@@ -132,6 +150,7 @@ const mapStateToProps = (state) => {
     items,
     totalCount,
     offset,
+    statusFilter,
     limit,
   }
 };
