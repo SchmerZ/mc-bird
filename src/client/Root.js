@@ -95,12 +95,11 @@ class Root extends Component {
     return (
       <ConnectedRouter history={history}>
         <Switch>
-          <Route path={routesIds.quicklySendMessage} exact
-                 render={(props) => <App {...props}><QuicklySendMessageForm /></App>} />
-          <Route path={routesIds.messages} exact render={(props) => <App {...props}><Messages /></App>} />
-          <Route path={routesIds.contacts} exact render={(props) => <App {...props}><Contacts /></App>} />
+          <Route path={routesIds.quicklySendMessage} exact render={() => <App><QuicklySendMessageForm /></App>} />
+          <Route path={routesIds.messages} exact render={() => <App><Messages /></App>} />
+          <Route path={routesIds.contacts} exact render={() => <App><Contacts /></App>} />
           <Route path={`${routesIds.contacts}/:msisdn`}
-                 exact render={(props) => <App {...props}><Conversation {...props} /></App>} />
+                 exact render={(props) => <App><Conversation {...props} /></App>} />
           <Route path={routesIds.about} exact render={(props) => <App {...props}>a!</App>} />
           <Route component={PageNotFound} />
         </Switch>

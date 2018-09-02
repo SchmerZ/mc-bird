@@ -1,5 +1,6 @@
 import {select, call, put, takeLatest, fork, take, race} from 'redux-saga/effects'
-import {push} from 'connected-react-router'
+import {push, LOCATION_CHANGE} from 'connected-react-router'
+import {matchPath} from 'react-router'
 
 import * as applicationActions from '../application/actions'
 import * as A from './actions'
@@ -12,24 +13,39 @@ const sagaCreator = ({services: {messagesService}}) => {
 
   function* saga() {
     yield takeLatest(A.init, onInit);
-    yield takeLatest([A.fetch, A.prevPage, A.nextPage], onFetchMessages);
+
+    yield takeLatest(A.fetch, onFetchMessages);
+    yield takeLatest([A.prevPage, A.nextPage], onPageChange);
+
+    yield takeLatest(LOCATION_CHANGE, onLocationChange);
   }
 
   function* onInit() {
     yield fork(watchNewMessages);
+  }
 
-    const {location: {search}} = yield select(state => state.router);
-    const searchParams = new URLSearchParams(search);
-    const offset = Number(searchParams.get('offset'));
+  function* onLocationChange({payload}) {
+    const {location: {pathname, search}} = payload;
 
-    yield put(A.fetch({offset}));
+    if (matchPath(pathname, {path: routesIds.messages, exact: true})) {
+      const searchParams = new URLSearchParams(search);
+      const offset = Number(searchParams.get('offset')) || 0;
+
+      yield put(A.fetch({offset}));
+    }
+  }
+
+  function* onPageChange() {
+    const {fetchingOffset} = yield select(state => state.messagesList);
+    const nextLocation = `${routesIds.messages}?offset=${fetchingOffset}`;
+
+    yield put(push(nextLocation));
   }
 
   function* onFetchMessages() {
     yield put(A.fetch.request());
 
     const {fetchingOffset, limit} = yield select(state => state.messagesList);
-    yield put(push(`${routesIds.messages}?offset=${fetchingOffset}`));
 
     try {
       const {items, totalCount, offset} = yield call(

@@ -1,12 +1,11 @@
 import {select, call, put, takeLatest, fork, race, take} from 'redux-saga/effects'
-import {push} from 'connected-react-router'
+import {goBack} from 'connected-react-router'
 
 import * as A from './actions'
 import * as applicationActions from '../application/actions'
 import * as messagesActions from '../messages/actions'
 
 import variant from '../constants/snackbar-variant'
-import routesIds from '../constants/navigation-routes'
 
 const sagaCreator = ({services: {contactsService, messagesService}}) => {
   const {fetchContactMessages} = contactsService;
@@ -19,6 +18,7 @@ const sagaCreator = ({services: {contactsService, messagesService}}) => {
     yield takeLatest(A.send, onSendMessage);
 
     yield takeLatest(A.changeTypedText, validate);
+    yield takeLatest(A.backToContacts, onBackToContacts);
   }
 
   function* onInit() {
@@ -26,11 +26,14 @@ const sagaCreator = ({services: {contactsService, messagesService}}) => {
     yield put(A.fetch());
   }
 
+  function* onBackToContacts() {
+    yield put(goBack());
+  }
+
   function* onFetchMessages() {
     yield put(A.fetch.request());
 
     const {msisdn} = yield select(state => state.conversation);
-    yield put(push(`${routesIds.contacts}/${msisdn}`));
 
     try {
       const response = yield call(fetchContactMessages, {msisdn});
@@ -100,14 +103,13 @@ const sagaCreator = ({services: {contactsService, messagesService}}) => {
   }
 
   function* onIncomeMessage({payload}) {
-    // const {contacts} = yield select(state => state.contactsList);
-    // const {message: {recipient, originator}} = payload;
-    //
-    // if (contacts[recipient])
-    //   yield put(A.messageAdd({msisdn: recipient}));
-    //
-    // if (contacts[originator])
-    //   yield put(A.messageAdd({msisdn: originator}));
+    const {msisdn} = yield select(state => state.conversation);
+    const {message} = payload;
+    const {recipient, originator} = message;
+
+    if ([recipient.toString(), originator.toString()].includes(msisdn)) {
+      yield put(A.messageAdd({message}));
+    }
   }
 
   return saga;

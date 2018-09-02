@@ -1,5 +1,5 @@
 import {select, call, put, takeLatest, fork, race, take} from 'redux-saga/effects'
-import {push} from 'connected-react-router'
+import {LOCATION_CHANGE, push} from 'connected-react-router'
 
 import * as A from './actions'
 import * as applicationActions from '../application/actions'
@@ -7,32 +7,46 @@ import * as messagesActions from '../messages/actions'
 
 import variant from '../constants/snackbar-variant'
 import routesIds from '../constants/navigation-routes'
+import {matchPath} from "react-router";
 
 const sagaCreator = ({services: {contactsService}}) => {
   const {fetchContacts} = contactsService;
 
   function* saga() {
     yield takeLatest(A.init, onInit);
-    yield takeLatest([A.fetch, A.prevPage, A.nextPage], onFetchContacts);
+    yield takeLatest(A.fetch, onFetchContacts);
+    yield takeLatest([A.prevPage, A.nextPage], onPageChange);
+    yield takeLatest(LOCATION_CHANGE, onLocationChange);
 
     yield takeLatest(A.selectContact, onSelectContact);
   }
 
   function* onInit() {
     yield fork(watchNewMessages);
+  }
 
-    const {location: {search}} = yield select(state => state.router);
-    const searchParams = new URLSearchParams(search);
-    const offset = Number(searchParams.get('offset'));
+  function* onLocationChange({payload}) {
+    const {location: {pathname, search}} = payload;
 
-    yield put(A.fetch({offset}));
+    if (matchPath(pathname, {path: routesIds.contacts, exact: true})) {
+      const searchParams = new URLSearchParams(search);
+      const offset = Number(searchParams.get('offset')) || 0;
+
+      yield put(A.fetch({offset}));
+    }
+  }
+
+  function* onPageChange() {
+    const {fetchingOffset} = yield select(state => state.messagesList);
+    const nextLocation = `${routesIds.messages}?offset=${fetchingOffset}`;
+
+    yield put(push(nextLocation));
   }
 
   function* onFetchContacts() {
     yield put(A.fetch.request());
 
     const {fetchingOffset, limit} = yield select(state => state.contactsList);
-    yield put(push(`${routesIds.contacts}?offset=${fetchingOffset}`));
 
     try {
       const {items, totalCount, offset} = yield call(

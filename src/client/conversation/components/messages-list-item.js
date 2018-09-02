@@ -5,13 +5,13 @@ import moment from 'moment'
 
 import {color} from '../../styles/variables'
 import Message from '../../components/message/message'
-import {fadeInUp} from '../../styles/animations'
+import {fadeIn} from '../../styles/animations'
 
 import messageTypes from '../../constants/message-type'
 
 const AnimatedContainer = styled.div`
   margin: 0 20px 0 20px;
-  animation: ${fadeInUp} 1s;
+  animation: ${fadeIn} 1s;
   display: flex;
   justify-content: ${props => props.type === Message.types.left ? 'flex-start' : 'flex-end'};
 `;
@@ -33,7 +33,7 @@ class MessagesListItem extends Component {
     const createDateLabel = moment(createdDatetime).format('DD-MM-YYYY, hh:mm');
 
     return (
-      <AnimatedContainer type={type}>
+      <AnimatedContainer type={type} data-conversation-message>
         <Message type={type}>
           {body}
           <DateLabelContainer>

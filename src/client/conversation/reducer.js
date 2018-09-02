@@ -74,24 +74,14 @@ const handlers = {
     sending: false,
   }),
 
-  // [A.messageAdd]: (state, {payload}) => {
-  //   const {msisdn} = payload;
-  //   const current = state.contacts[msisdn];
-  //
-  //   return {
-  //     ...state,
-  //     contacts: {
-  //       ...state.contacts,
-  //       [msisdn]: {
-  //         ...current,
-  //         messages: {
-  //           ...current.messages,
-  //           totalCount: current.messages.totalCount + 1,
-  //         }
-  //       }
-  //     }
-  //   }
-  // }
+  [A.messageAdd]: (state, {payload}) => {
+    const {message} = payload;
+
+    return {
+      ...state,
+      messages: [message, ...state.messages],
+    }
+  }
 };
 
 const compare = (a, b) => {

@@ -9,5 +9,6 @@ export const changeTypedText = createAction('CONVERSATION_TYPED_TEXT_CHANGE');
 export const send = createRoutine('CONVERSATION_SEND_MESSAGE');
 
 export const typedTextError = createAction('CONVERSATION_TYPED_TEXT_ERROR');
+export const backToContacts = createAction('CONVERSATION_BACK_TO_CONTACTS');
 
 export const messageAdd = createAction('CONVERSATION_MESSAGE_ADD');

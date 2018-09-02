@@ -16,6 +16,7 @@ import NoItems from './no-items'
 import TextField from '../../components/text-field/text-field'
 import Button from '../../components/buttons/button'
 import ListItem from './messages-list-item'
+import {Anchor} from '../../components/styled/primitive'
 
 import {SELECTORS} from '../reducer'
 
@@ -28,6 +29,10 @@ const Title = styled.h4`
   padding: 10px 0 10px 0;
   border-top: ${border.solidGrey};
   text-align: center;
+`;
+
+const BackToContactsContainer = styled.div`
+  font-size: 14px;
 `;
 
 const Content = styled.div`
@@ -82,11 +87,21 @@ export class Conversation extends Component {
     init && init({match});
   }
 
+  componentDidUpdate() {
+    this.scrollToLastMessage();
+  }
+
   componentWillUnmount() {
     const {leave} = this.props;
 
     leave && leave();
   }
+
+  scrollToLastMessage = () => {
+    const element = document.querySelector('[data-conversation-message]:last-child');
+
+    if (element) element.scrollIntoView();
+  };
 
   handleTryAgainClick = () => {
     const {fetch} = this.props;
@@ -97,6 +112,20 @@ export class Conversation extends Component {
   handleTextChanged = (value) => {
     const {changeTypedText} = this.props;
     changeTypedText && changeTypedText(value);
+  };
+
+  handleTextKeyDown = (e) => {
+    const {send} = this.props;
+
+    if (send && e.keyCode === 13) { //enter
+      send();
+    }
+  };
+
+  handleBackToContactsClick = () => {
+    const {backToContacts} = this.props;
+
+    backToContacts && backToContacts();
   };
 
   handleSendMessageClick = () => {
@@ -127,6 +156,9 @@ export class Conversation extends Component {
       <RootContainer>
         <Title>
           Conversation with {title}
+          <BackToContactsContainer>
+            <Anchor onClick={this.handleBackToContactsClick}>(back to contacts)</Anchor>
+          </BackToContactsContainer>
         </Title>
         <Content>
           <MessagesSection>
@@ -142,11 +174,11 @@ export class Conversation extends Component {
           </MessagesSection>
           <TextFieldSection>
             <Input
-              debounceTimeout={300}
               error={error}
               placeholder="Type a message"
               value={typedText}
               onChange={this.handleTextChanged}
+              onKeyDown={this.handleTextKeyDown}
             />
             <StyledButton onClick={this.handleSendMessageClick}>Send</StyledButton>
           </TextFieldSection>
