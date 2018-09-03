@@ -9,6 +9,10 @@ const TD = styled(Table.td)`
   border-right: 0;
 `;
 
+const ActionsTD = styled(TD)`
+  text-align: right;
+`;
+
 class ContactsListItem extends Component {
   handleMessagesCounterClick = () => {
     const {item: {msisdn}, onMessagesClick} = this.props;
@@ -24,9 +28,9 @@ class ContactsListItem extends Component {
       <Table.tr>
         <TD>{fullName}</TD>
         <TD>{msisdn}</TD>
-        <TD>
+        <ActionsTD>
           <MessagesCounter counter={totalCount} onClick={this.handleMessagesCounterClick} />
-        </TD>
+        </ActionsTD>
       </Table.tr>
     )
   }

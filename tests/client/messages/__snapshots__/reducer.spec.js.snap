@@ -1,0 +1,51 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Messages list Reducer should add new message on top and do not remove the last one if under limit 1`] = `
+Object {
+  "items": Array [
+    Object {
+      "originator": "Inbox-1",
+      "recipient": "79001005566-1",
+    },
+    Object {
+      "originator": "Inbox-0",
+      "recipient": "79001005566-0",
+    },
+  ],
+  "limit": 2,
+  "totalCount": 2,
+}
+`;
+
+exports[`Messages list Reducer should add new message on top and remove the last one if over limit 1`] = `
+Object {
+  "items": Array [
+    Object {
+      "originator": "Inbox-2",
+      "recipient": "79001005566-2",
+    },
+    Object {
+      "originator": "Inbox-1",
+      "recipient": "79001005566-1",
+    },
+  ],
+  "limit": 2,
+  "totalCount": 3,
+}
+`;
+
+exports[`Messages list Reducer should have initial state 1`] = `
+Object {
+  "fetching": true,
+  "fetchingFailed": false,
+  "fetchingParams": Object {
+    "offset": 0,
+    "status": "all",
+  },
+  "items": Array [],
+  "limit": 10,
+  "offset": 0,
+  "statusFilter": "all",
+  "totalCount": 0,
+}
+`;

@@ -1,11 +1,12 @@
 import {select, call, put, takeLatest, fork, race, take} from 'redux-saga/effects'
-import {goBack} from 'connected-react-router'
+import {push} from 'connected-react-router'
 
 import * as A from './actions'
 import * as applicationActions from '../application/actions'
 import * as messagesActions from '../messages/actions'
 
 import variant from '../constants/snackbar-variant'
+import routes from '../constants/navigation-routes'
 
 const sagaCreator = ({services: {contactsService, messagesService}}) => {
   const {fetchContactMessages} = contactsService;
@@ -27,7 +28,7 @@ const sagaCreator = ({services: {contactsService, messagesService}}) => {
   }
 
   function* onBackToContacts() {
-    yield put(goBack());
+    yield put(push(routes.contacts));
   }
 
   function* onFetchMessages() {

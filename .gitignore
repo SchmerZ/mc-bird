@@ -2,3 +2,4 @@
 node_modules
 dist
 src/server/configuration/development.configuration.json
+src/server/configuration/production.configuration.json

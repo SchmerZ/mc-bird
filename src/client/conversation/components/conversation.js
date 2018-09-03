@@ -129,8 +129,8 @@ export class Conversation extends Component {
   };
 
   handleSendMessageClick = () => {
-    const {send, error} = this.props;
-    if (!!error) return;
+    const {send, error, contact} = this.props;
+    if (!!error || !contact) return;
 
     send && send();
   };
@@ -143,7 +143,7 @@ export class Conversation extends Component {
       fetchingFailed,
       messages,
       typedText,
-      error, sending,
+      error,
     } = this.props;
 
     const hasItems = messages && !!messages.length;
@@ -197,7 +197,6 @@ Conversation.propTypes = {
   fetching: PropTypes.bool,
   fetchingFailed: PropTypes.bool,
   error: PropTypes.string,
-  sending: PropTypes.bool,
 
   init: PropTypes.func,
   fetch: PropTypes.func,

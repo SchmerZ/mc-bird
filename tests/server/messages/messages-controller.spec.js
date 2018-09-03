@@ -17,7 +17,11 @@ const defaultRequest = {body: {recipient: '79201010203', messageText: 'Hello!'}}
 describe('Messages controller', () => {
   it('should send correct body on sendMessage call', async () => {
     let postData = null;
-    const fn = jest.fn((args) => postData = args);
+    const fn = jest.fn((args) => {
+      postData = args;
+
+      return {recipients: {items: [{}]}};
+    });
 
     const controller = new Controller(defaultRequest, null, null, defaultConfig, wsServer);
     controller.service.sendMessage = fn;
@@ -31,6 +35,12 @@ describe('Messages controller', () => {
     const responseData = {
       id: 'new-message-id',
       body: 'Hello back!',
+      recipients: {
+        items: [{
+          recipient: '79001007745',
+          status: 'sent',
+        }]
+      }
     };
 
     let pushedMessage = null;
@@ -41,6 +51,6 @@ describe('Messages controller', () => {
 
     await controller.sendMessage();
 
-    expect(pushedMessage).toEqual(responseData);
+    expect(pushedMessage).toMatchSnapshot()
   });
 });

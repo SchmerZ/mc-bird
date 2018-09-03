@@ -17,6 +17,16 @@ const DateTD = styled(Table.td)`
   text-align: right;
 `;
 
+const MessageTD = styled(Table.td)`
+  overflow: hidden;
+  text-overflow: ellipsis;
+`;
+
+const StatusTD = styled(Table.td)`
+  overflow: hidden;
+  text-overflow: ellipsis;
+`;
+
 const RecipientTD = styled(Table.td)`
   overflow: hidden;
   text-overflow: ellipsis;
@@ -57,8 +67,8 @@ class MessagesListItem extends Component {
       <Table.tr>
         <Table.td>{DirectionIcon && <IconContainer><DirectionIcon size={20} /></IconContainer>}</Table.td>
         <RecipientTD>{recipient}</RecipientTD>
-        <Table.td>{body}</Table.td>
-        <Table.td>{statusLabel}</Table.td>
+        <MessageTD>{body}</MessageTD>
+        <StatusTD>{statusLabel}</StatusTD>
         <DateTD>{createdDateLabel}</DateTD>
       </Table.tr>
     )

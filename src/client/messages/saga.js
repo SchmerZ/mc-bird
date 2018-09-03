@@ -8,6 +8,7 @@ import * as A from './actions'
 import variant from '../constants/snackbar-variant'
 import routesIds from '../constants/navigation-routes'
 import statusFilters from '../constants/status-filters'
+import directions from '../constants/message-type'
 
 const sagaCreator = ({services: {messagesService}}) => {
   const {fetchMessages} = messagesService;
@@ -87,10 +88,19 @@ const sagaCreator = ({services: {messagesService}}) => {
   }
 
   function* onIncomeMessage({payload}) {
-    const {offset} = yield select(state => state.messagesList);
+    const {offset, statusFilter} = yield select(state => state.messagesList);
     const {message} = payload;
+    const {direction} = message;
 
-    if (offset === 0) {
+    const statusFilterToDirectionMap = {
+      [statusFilters.received]: directions.received,
+      [statusFilters.sent]: directions.sent,
+    };
+
+    const ableToShowByStatus = statusFilter === statusFilters.all
+      || statusFilterToDirectionMap[statusFilter] === direction;
+
+    if (offset === 0 && ableToShowByStatus) {
       yield put(A.messageAdd({message}));
     }
   }

@@ -21,7 +21,7 @@ import {Table} from '../../components/styled/table'
 
 const Container = styled.div`
   position: relative;
-  min-height: 100px;
+  min-height: 150px;
 `;
 
 const FetchingSpinnerIcon = styled(SpinnerIcon)`

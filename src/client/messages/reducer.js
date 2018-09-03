@@ -57,7 +57,7 @@ const handlers = {
   [A.changeStatusFilter]: (state, {payload: value}) => ({
     ...state,
     fetchingParams: {
-      ...state.fetchingParams,
+      offset: 0,
       status: value,
     },
   }),
@@ -78,10 +78,14 @@ const handlers = {
 
   [A.messageAdd]: (state, {payload}) => {
     const {message} = payload;
+    const nextOverLimit = state.items.length === state.limit;
+    const nextItems = nextOverLimit
+      ? [message, ...state.items.slice(0, state.items.length - 1)]
+      : [message, ...state.items];
 
     return {
       ...state,
-      items: [message, ...state.items.slice(0, state.items.length - 1)],
+      items: nextItems,
       totalCount: state.totalCount + 1,
     }
   }

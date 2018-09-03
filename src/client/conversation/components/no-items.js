@@ -10,14 +10,18 @@ const Container = styled.div`
   justify-content: center;
 `;
 
+const TextContainer = styled.span`
+  text-align: center;
+`;
+
 const NoItems = (props) => {
   const {onTryAgainClick} = props;
 
   return (
     <Container>
-      <span>
-      Unfortunately, no messages were found. You can <Anchor onClick={onTryAgainClick}>try again</Anchor>.
-      </span>
+      <TextContainer>
+        Unfortunately, no messages were found. You can <Anchor onClick={onTryAgainClick}>try again</Anchor>.
+      </TextContainer>
     </Container>
   )
 };

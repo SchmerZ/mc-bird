@@ -25,8 +25,6 @@ class MessagesCounter extends PureComponent {
   render() {
     const {counter} = this.props;
 
-    if (counter === 0) return null;
-
     return (
       <Badge badgeContent={counter}
              classes={badgeClasses}

@@ -18,6 +18,7 @@ import QuicklySendMessageForm from './quick-message/components/quickly-send-mess
 import Messages from './messages/components/messages-list'
 import Contacts from './contacts/components/contacts-list'
 import Conversation from './conversation/components/conversation'
+import About from './about/components/about'
 
 import PageNotFound from './components/pages/page-not-found'
 import routesIds from './constants/navigation-routes'
@@ -100,7 +101,7 @@ class Root extends Component {
           <Route path={routesIds.contacts} exact render={() => <App><Contacts /></App>} />
           <Route path={`${routesIds.contacts}/:msisdn`}
                  exact render={(props) => <App><Conversation {...props} /></App>} />
-          <Route path={routesIds.about} exact render={(props) => <App {...props}>a!</App>} />
+          <Route path={routesIds.about} exact render={() => <App><About /></App>} />
           <Route component={PageNotFound} />
         </Switch>
       </ConnectedRouter>

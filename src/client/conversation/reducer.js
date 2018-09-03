@@ -29,6 +29,7 @@ const handlers = {
   [A.fetch.request]: (state) => ({
     ...state,
     fetching: true,
+    fetchingFailed: false,
   }),
   [A.fetch.success]: (state, {payload}) => {
     const {items, contact} = payload;

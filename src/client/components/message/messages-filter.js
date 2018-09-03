@@ -5,6 +5,7 @@ import styled, {css} from 'styled-components'
 import messagesFilters from '../../constants/status-filters'
 
 const LI = styled.li`
+  white-space: nowrap;
 `;
 
 const UL = styled.ul`

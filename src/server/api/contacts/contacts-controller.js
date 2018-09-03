@@ -26,7 +26,7 @@ export default class ContactsController extends BaseController {
     const contact = items[0];
     const {id: contactId, messages: {totalCount}} = contact;
 
-    if (totalCount === 0) return {totalCount, items: []};
+    if (totalCount === 0) return {contact, totalCount, items: []};
 
     const batchSize = 200;
     const promises = new Array(Math.ceil(totalCount / batchSize))

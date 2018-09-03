@@ -18,6 +18,9 @@ import ChevronLeftIcon from './chevron-left-icon'
 import ChevronRightIcon from './chevron-right-icon'
 import EnvelopIcon from './envelop-icon'
 
+import GitHubIcon from './github-icon'
+import LinkedInIcon from './linkedin-icon'
+
 export {
   SendIcon,
   ChatIcon,
@@ -38,4 +41,6 @@ export {
   ChevronLeftIcon,
   ChevronRightIcon,
   EnvelopIcon,
+  GitHubIcon,
+  LinkedInIcon,
 }

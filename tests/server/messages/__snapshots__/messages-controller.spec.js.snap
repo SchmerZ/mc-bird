@@ -1,5 +1,17 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Messages controller should push response message into WebSocket server 1`] = `
+Object {
+  "body": "Hello back!",
+  "createdDatetime": undefined,
+  "direction": undefined,
+  "id": "new-message-id",
+  "originator": undefined,
+  "recipient": "79001007745",
+  "status": "sent",
+}
+`;
+
 exports[`Messages controller should send correct body on sendMessage call 1`] = `
 Object {
   "body": "Hello!",

@@ -11,14 +11,18 @@ const Container = styled.div`
   justify-content: center;
 `;
 
+const TextContainer = styled.span`
+  text-align: center;
+`;
+
 const FetchingFailed = (props) => {
   const {onTryAgainClick} = props;
 
   return (
     <Container>
-      <span>
+      <TextContainer>
         Unable to load messages from server. Please <Anchor onClick={onTryAgainClick}>try again</Anchor>.
-      </span>
+      </TextContainer>
     </Container>
   )
 };
