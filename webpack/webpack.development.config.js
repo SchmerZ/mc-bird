@@ -1,4 +1,5 @@
 const path = require('path');
+const babelOptions = require('./client.babel.config');
 
 const port = 3002;
 
@@ -44,26 +45,7 @@ module.exports = {
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
-          options: {
-            babelrc: false,
-            cacheDirectory: true,
-            presets: [
-              [
-                'env',
-                {
-                  modules: false,
-                  targets: {
-                    browsers: ['last 5 versions', 'ie >= 11']
-                  }
-                }
-              ],
-              'react',
-            ],
-            plugins: [
-              'transform-object-rest-spread',
-              'transform-class-properties',
-            ]
-          }
+          options: babelOptions,
         }
       },
     ]
