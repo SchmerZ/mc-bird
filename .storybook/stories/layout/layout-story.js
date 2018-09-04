@@ -10,7 +10,7 @@ import LayouMockup from './layout-mockup'
 import PageNotFound from '../../../src/client/components/pages/page-not-found';
 import PageLoading from '../../../src/shared/components/pages/page-loading';
 
-import {Container, Row, Column} from '../../../src/client/components/layout/responsive';
+import {Container, Row, Column} from '../../../src/shared/components/layout/responsive';
 
 const SkewedContainer320 = styled(SkewedContainer)`
   height: 320px;
@@ -88,17 +88,17 @@ storiesOf('Layout', module)
   .add('Mockup', () => (
     <Body>
     <LayoutContainer>
-      <LayouMockup/>
+      <LayouMockup />
     </LayoutContainer>
     </Body>
   ))
   .add('404 Page', () => (
     <Body>
-    <PageNotFound/>
+    <PageNotFound />
     </Body>
   ))
   .add('Loading page', () => (
     <Body>
-    <PageLoading/>
+    <PageLoading />
     </Body>
   ));

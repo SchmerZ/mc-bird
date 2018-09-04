@@ -11,7 +11,7 @@ import SkewedContainer from './components/layout/skewed-container'
 import Menu from './components/menu/menu'
 
 import Layout from './components/layout/Layout'
-import {Row} from './components/layout/responsive'
+import {Row} from '../shared/components/layout/responsive'
 
 import AppNotification from './application/components/app-notification'
 import QuicklySendMessageForm from './quick-message/components/quickly-send-message-form'

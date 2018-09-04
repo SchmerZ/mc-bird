@@ -2,8 +2,8 @@ import React from "react";
 import styled from 'styled-components'
 
 import Container from '../styled/content-container'
-import {Row} from '../../../client/components/layout/responsive'
-import HeaderLogo from '../../../client/components/layout/header-logo'
+import {Row} from './responsive'
+import HeaderLogo from './header-logo'
 
 const HeaderRow = styled(Row)`
   margin: 0;

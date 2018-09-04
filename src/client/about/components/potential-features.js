@@ -50,6 +50,11 @@ const PotentialFeatures = () => {
         name="webpack code-splitting"
         description="Great tool to decrease initial js package size."
       />
+
+      <FeatureRow
+        name="server side rendering"
+        description="Currently using for initial PageLoading component render. Brings complexity which leads to shared folder creation. Needs to rethink/avoid SSR."
+      />
     </Fragment>
   )
 };

@@ -33,14 +33,9 @@ export const snackbar = {
   default: '#2481d7',
   error: '#d32f2f',
   success: '#43a047',
-
 };
 
 export const errorColor = '#ef1a55';
-
-export const backgroundColor = '#24374e';
-
-export const logoColor = '#2481D7';
 
 export const border = {
   dashedGrey: '1px dashed #d6e0f1',

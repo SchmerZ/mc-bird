@@ -7,7 +7,7 @@ import styled from 'styled-components'
 import * as A from '../actions'
 
 import {color} from '../../styles/variables'
-import {TableColumn as Col} from '../../components/layout/responsive'
+import {TableColumn as Col} from '../../../shared/components/layout/responsive'
 
 import MessagesFilters from '../../components/message/messages-filter'
 

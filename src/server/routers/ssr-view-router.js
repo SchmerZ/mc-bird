@@ -1,7 +1,6 @@
 import React from 'react'
 import express from 'express';
 
-// todo: do not forget to set NODE_ENV!
 import {renderToString} from 'react-dom/server'
 import {ServerStyleSheet} from 'styled-components'
 
@@ -10,7 +9,7 @@ import htmlTemplate from '../lib/html-template'
 
 const getHtml = (PageClass) => {
   const sheet = new ServerStyleSheet();
-  const html = renderToString(sheet.collectStyles(<PageClass/>));
+  const html = renderToString(sheet.collectStyles(<PageClass />));
   const styleTags = sheet.getStyleTags();
 
   return {html, styleTags};

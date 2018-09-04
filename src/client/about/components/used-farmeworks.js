@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 import {color} from '../../styles/variables'
-import {Row, Column} from '../../components/layout/responsive'
+import {Row, Column} from '../../../shared/components/layout/responsive'
 
 const Title = styled.h4`
   margin-bottom: 0;

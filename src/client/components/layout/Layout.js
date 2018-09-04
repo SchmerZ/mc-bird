@@ -6,7 +6,7 @@ import {bodyBackgroundStyle, bodyContentStyle} from '../../../shared/styles/body
 import {globalStyles} from '../../../shared/styles/globals'
 
 import Header from '../../../shared/components/layout/header'
-import Footer from './footer'
+import Footer from '../../../shared/components/layout/footer'
 
 globalStyles();
 

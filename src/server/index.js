@@ -19,4 +19,5 @@ app.use(config.siteRoot, appRouter(wsServer));
 
 server.listen(config.port, () => {
   console.log(`Server started on port ${config.port} with environment ${config.Environment}.`);
+  console.log(`Check http://localhost:${config.port} to work with app`)
 });

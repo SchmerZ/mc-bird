@@ -2,19 +2,19 @@ import React, {Component} from 'react'
 import styled from 'styled-components'
 
 import {color} from '../../styles/variables'
-import {bodyBackground, bodyContent} from '../../../shared/styles/body'
+import {bodyBackgroundStyle, bodyContentStyle} from '../../../shared/styles/body'
 
 import Container from '../../../shared/components/styled/content-container'
 import Header from '../../../shared/components/layout/header'
-import Footer from '../layout/footer'
+import Footer from '../../../shared/components/layout/footer'
 import {Icon404} from '../icons'
 
 const BodyBackground = styled.div`
-  ${bodyBackground}
+  ${bodyBackgroundStyle}
 `;
 
 const BodyContent = styled.div`
-  ${bodyContent}
+  ${bodyContentStyle}
 `;
 
 const ErrorSection = styled.section`
@@ -40,18 +40,18 @@ class PageNotFound extends Component {
 
     return (
       <BodyBackground>
-        <Header/>
+        <Header />
 
         <BodyContent {...rest}>
           <ErrorSection>
             <Container>
-              <Icon size={150}/>
+              <Icon size={150} />
               <H3>Page not found...</H3>
             </Container>
           </ErrorSection>
         </BodyContent>
 
-        <Footer/>
+        <Footer />
       </BodyBackground>
     )
   }

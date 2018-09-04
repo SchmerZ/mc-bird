@@ -6,7 +6,7 @@ import styled from 'styled-components'
 
 import * as A from '../actions'
 
-import {Row, Column} from '../../components/layout/responsive'
+import {Row, Column} from '../../../shared/components/layout/responsive'
 import TextField from '../../components/text-field/text-field'
 import SendMessageText from '../../components/message/send-message-text'
 import SendMessageButton from './send-message-button'
@@ -70,7 +70,7 @@ export class QuicklySendMessageForm extends Component {
         </Row>
         <Row>
           <SendSmsButtonContainer>
-            <SendMessageButton busy={sending} onClick={this.handleSendMessageClick}/>
+            <SendMessageButton busy={sending} onClick={this.handleSendMessageClick} />
           </SendSmsButtonContainer>
         </Row>
       </Fragment>

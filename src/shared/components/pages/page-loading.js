@@ -7,8 +7,8 @@ import {globalStyles} from '../../styles/globals'
 
 import Container from '../styled/content-container'
 import Header from '../layout/header'
-import Footer from '../../../client/components/layout/footer'
-import {SpinnerIcon} from '../../../client/components/icons/index'
+import Footer from '../layout/footer'
+import {SpinnerIcon} from '../icons/index'
 
 globalStyles();
 

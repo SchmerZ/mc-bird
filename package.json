@@ -6,11 +6,11 @@
   "scripts": {
     "clean": "rimraf dist",
     "start:server": "nodemon --watch ./src/server ./src/server/index.babel.js --mcBird:Environment development",
-    "start:server-prod": "nodemon --watch ./dist/server ./dist/server/index.js --mcBird:Environment production",
     "start:client": "webpack-dev-server --config ./webpack/webpack.development.config --mode development --hot --inline --color",
     "build:server": "babel --copy-files src/server -d dist/server && babel --copy-files src/shared -d dist/shared",
     "build:client": "webpack --config ./webpack/webpack.production.config --mode production --progress --color",
-    "build": "npm run build:client && npm run build:server:n",
+    "build": "npm run build:client && npm run build:server",
+    "start:server-prod": "cross-env NODE_ENV=production nodemon --watch ./dist/server ./dist/server/index.js --mcBird:Environment production",
     "dev:storybook": "start-storybook -p 9001 -c .storybook",
     "start:tunnel": "lt --port 8090",
     "test:jest": "jest --runInBand --config tests/config/jest.config.js --watch --watchAll"
@@ -66,11 +66,13 @@
     "webpack": "4.16.5",
     "webpack-cli": "3.1.0",
     "webpack-dev-server": "3.1.5",
+    "copy-webpack-plugin": "4.5.2",
     "styled-components": "3.4.2",
     "localtunnel": "1.9.0",
     "jest": "23.5.0",
     "enzyme": "3.5.0",
     "enzyme-adapter-react-16": "1.3.0",
-    "enzyme-to-json": "3.3.4"
+    "enzyme-to-json": "3.3.4",
+    "cross-env": "5.2.0"
   }
 }

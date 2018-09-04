@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import SpinnerIcon from '../../components/icons/spinner-icon'
+import SpinnerIcon from '../../../shared/components/icons/spinner-icon'
 import {color} from '../../styles/variables'
 
 const Container = styled.div`

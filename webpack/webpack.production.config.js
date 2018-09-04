@@ -1,6 +1,8 @@
 const path = require('path');
 const webpack = require('webpack');
 
+const CopyWebpackPlugin = require('copy-webpack-plugin')
+
 const babelOptions = require('./client.babel.config');
 
 module.exports = {
@@ -11,7 +13,7 @@ module.exports = {
     ],
   },
   output: {
-    path: path.join(__dirname, '../dist/client'),
+    path: path.join(__dirname, '../dist/client/static'),
     publicPath: '/',
     filename: path.join('assets', '[name].js'),
   },
@@ -21,7 +23,8 @@ module.exports = {
       'process.env': {
         NODE_ENV: JSON.stringify('production'),
       }
-    })
+    }),
+    new CopyWebpackPlugin(['src/client/static']),
   ],
 
   optimization: {
