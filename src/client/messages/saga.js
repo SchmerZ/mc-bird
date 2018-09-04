@@ -7,8 +7,8 @@ import * as A from './actions'
 
 import variant from '../constants/snackbar-variant'
 import routesIds from '../constants/navigation-routes'
-import statusFilters from '../constants/status-filters'
-import directions from '../constants/message-type'
+import statusFilters from '../../shared/constants/status-filters'
+import directions from '../../shared/constants/message-directions'
 
 const sagaCreator = ({services: {messagesService}}) => {
   const {fetchMessages} = messagesService;

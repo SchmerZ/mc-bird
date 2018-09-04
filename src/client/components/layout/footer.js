@@ -1,9 +1,9 @@
-import React from "react";
+import React from 'react'
 import styled from 'styled-components'
 
 import {logoColor, textColor} from '../../styles/variables'
-import Container from "../styled/content-container";
-import {Row} from "./responsive";
+import Container from '../../../shared/components/styled/content-container'
+import {Row} from './responsive'
 import {MessageBirdLogoIcon} from '../icons'
 
 const StyledFooter = styled.footer`
@@ -36,7 +36,7 @@ const Footer = () => {
             ©2018 MessageBird. All rights reserved.
           </CopyrightContainer>
           <LogoContainer>
-            <MessageBirdLogoIcon size={32}/>
+            <MessageBirdLogoIcon size={32} />
           </LogoContainer>
         </Row>
       </Container>

@@ -7,7 +7,7 @@ import {color} from '../../styles/variables'
 import Message from '../../components/message/message'
 import {fadeIn} from '../../styles/animations'
 
-import messageTypes from '../../constants/message-type'
+import direction from '../../../shared/constants/message-directions'
 
 const AnimatedContainer = styled.div`
   margin: 0 20px 0 20px;
@@ -26,7 +26,7 @@ class MessagesListItem extends Component {
     const {item} = this.props;
     const {body, direction, createdDatetime} = item;
 
-    const type = direction === messageTypes.received
+    const type = direction === direction.received
       ? Message.types.right
       : Message.types.left;
 

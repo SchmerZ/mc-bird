@@ -4,7 +4,7 @@ import styled from 'styled-components'
 
 import moment from 'moment'
 
-import messageType from '../../constants/message-type'
+import direction from '../../../shared/constants/message-directions'
 import {ArrowRight, ArrowLeft} from '../../components/icons'
 import {Table} from '../../components/styled/table'
 
@@ -33,8 +33,8 @@ const RecipientTD = styled(Table.td)`
 `;
 
 const directionMap = {
-  [messageType.sent]: ArrowRight,
-  [messageType.received]: ArrowLeft,
+  [direction.sent]: ArrowRight,
+  [direction.received]: ArrowLeft,
 };
 
 const statusAliasMap = {

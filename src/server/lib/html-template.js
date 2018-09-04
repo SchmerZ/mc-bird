@@ -1,7 +1,17 @@
 let js = ['assets/main.js', 'assets/vendors.js'];
 
-const template = ({config, html, styleTags}) => {
-  const {WindowTitle, assetsRootUrl} = config;
+const getWsServerUrlByIncomeRequest = (req) => {
+  const protocol = req.protocol === 'http' ? 'ws' : 'wss';
+  const host = req.get('host');
+
+  return `${protocol}://${host}`;
+}
+
+const template = ({req, config, html, styleTags}) => {
+  const {WindowTitle, assetsRootUrl, urls} = config;
+
+  const wsServerUrl = urls.WebSocketServer || getWsServerUrlByIncomeRequest(req);
+  const appConfig = {wsServerUrl};
 
   return `
     <!DOCTYPE html>
@@ -23,11 +33,7 @@ const template = ({config, html, styleTags}) => {
         </head>
         <body>
             <script type="text/javascript">
-              const wsUrl = '${config.urls.WebSocketServer}' || 'wss://' + document.location.host;
-              
-              window.AppConfig = {
-                wsServerUrl: wsUrl,
-              };
+              window.AppConfig = ${JSON.stringify(appConfig)};
             </script>
             
             ${html}

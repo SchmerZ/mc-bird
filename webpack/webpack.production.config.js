@@ -2,7 +2,6 @@ const path = require('path');
 const webpack = require('webpack');
 
 const babelOptions = require('./client.babel.config');
-//const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   entry: {

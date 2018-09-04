@@ -7,7 +7,7 @@ import styled from 'styled-components'
 import * as A from '../actions'
 
 import {color, border} from '../../styles/variables'
-import {media} from '../../components/styled/media'
+import {media} from '../../../shared/components/styled/media'
 
 import Spinner from './spinner'
 import FetchingFailed from './fetching-failed'

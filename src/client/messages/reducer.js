@@ -1,7 +1,7 @@
 import {handleActions} from 'redux-actions'
 import * as A from './actions'
 
-import statusFilters from '../constants/status-filters'
+import statusFilters from '../../shared/constants/status-filters'
 
 const initialState = {
   fetching: true,

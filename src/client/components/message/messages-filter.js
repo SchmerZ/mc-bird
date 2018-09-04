@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import styled, {css} from 'styled-components'
 
-import messagesFilters from '../../constants/status-filters'
+import statusFilters from '../../../shared/constants/status-filters'
 
 const LI = styled.li`
   white-space: nowrap;
@@ -59,14 +59,14 @@ export class MessagesFilter extends Component {
 
     return (
       <UL {...rest}>
-        <LI onClick={() => this.handleClick(messagesFilters.all)}>
-          <Anchor active={active === messagesFilters.all}>All messages</Anchor>
+        <LI onClick={() => this.handleClick(statusFilters.all)}>
+          <Anchor active={active === statusFilters.all}>All messages</Anchor>
         </LI>
-        <LI onClick={() => this.handleClick(messagesFilters.received)}>
-          <Anchor active={active === messagesFilters.received}>Received</Anchor>
+        <LI onClick={() => this.handleClick(statusFilters.received)}>
+          <Anchor active={active === statusFilters.received}>Received</Anchor>
         </LI>
-        <LI onClick={() => this.handleClick(messagesFilters.sent)}>
-          <Anchor active={active === messagesFilters.sent}>Sent</Anchor>
+        <LI onClick={() => this.handleClick(statusFilters.sent)}>
+          <Anchor active={active === statusFilters.sent}>Sent</Anchor>
         </LI>
       </UL>
     )
@@ -75,9 +75,9 @@ export class MessagesFilter extends Component {
 
 MessagesFilter.propTypes = {
   active: PropTypes.oneOf([
-    messagesFilters.all,
-    messagesFilters.received,
-    messagesFilters.sent,
+    statusFilters.all,
+    statusFilters.received,
+    statusFilters.sent,
   ]),
 
   onChange: PropTypes.func,

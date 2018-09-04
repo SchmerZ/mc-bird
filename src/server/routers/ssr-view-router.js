@@ -21,7 +21,7 @@ export default (PageClass) => {
 
   viewRouter.use((req, res) => {
     const {html, styleTags} = getHtml(PageClass);
-    const processedTemplate = htmlTemplate({config, html, styleTags});
+    const processedTemplate = htmlTemplate({req, config, html, styleTags});
 
     res.send(processedTemplate);
   });

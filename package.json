@@ -8,8 +8,9 @@
     "start:server": "nodemon --watch ./src/server ./src/server/index.babel.js --mcBird:Environment development",
     "start:server-prod": "nodemon --watch ./dist/server ./dist/server/index.js --mcBird:Environment production",
     "start:client": "webpack-dev-server --config ./webpack/webpack.development.config --mode development --hot --inline --color",
-    "build:server": "babel ./src/server -d dist/server --copy-files",
+    "build:server": "babel --copy-files src/server -d dist/server && babel --copy-files src/shared -d dist/shared",
     "build:client": "webpack --config ./webpack/webpack.production.config --mode production --progress --color",
+    "build": "npm run build:client && npm run build:server:n",
     "dev:storybook": "start-storybook -p 9001 -c .storybook",
     "start:tunnel": "lt --port 8090",
     "test:jest": "jest --runInBand --config tests/config/jest.config.js --watch --watchAll"

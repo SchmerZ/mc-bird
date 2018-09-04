@@ -1,5 +1,5 @@
 import express from 'express';
-import direction from '../../../client/constants/message-type'
+import direction from '../../../shared/constants/message-directions'
 
 const callbackRouter = express.Router();
 

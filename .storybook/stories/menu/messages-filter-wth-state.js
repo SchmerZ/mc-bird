@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
 
 import {MessagesFilter} from '../../../src/client/components/message/messages-filter';
-import messagesFilters from '../../../src/client/constants/status-filters';
+import sattusFilters from '../../../src/shared/constants/status-filters';
 
 export default class MenuWithState extends Component {
   state = {
-    active: messagesFilters.all,
+    active: sattusFilters.all,
   };
 
   handleChange = (routeId) => {

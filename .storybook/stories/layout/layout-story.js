@@ -8,7 +8,7 @@ import Layout from '../../../src/client/components/layout/Layout';
 import LayouMockup from './layout-mockup'
 
 import PageNotFound from '../../../src/client/components/pages/page-not-found';
-import PageLoading from '../../../src/client/components/pages/page-loading';
+import PageLoading from '../../../src/shared/components/pages/page-loading';
 
 import {Container, Row, Column} from '../../../src/client/components/layout/responsive';
 

@@ -2,10 +2,10 @@ import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
-import {bodyBackground, bodyContent} from '../../styles/layout'
-import {globalStyles} from '../../styles/globals'
+import {bodyBackgroundStyle, bodyContentStyle} from '../../../shared/styles/body'
+import {globalStyles} from '../../../shared/styles/globals'
 
-import Header from './header'
+import Header from '../../../shared/components/layout/header'
 import Footer from './footer'
 
 globalStyles();
@@ -13,24 +13,24 @@ globalStyles();
 const BodyBackground = styled.div.attrs({
   id: 'app'
 })`
-  ${bodyBackground}
+  ${bodyBackgroundStyle}
 `;
 
 const BodyContent = styled.div`
-  ${bodyContent}
+  ${bodyContentStyle}
 `;
 
 class Layout extends Component {
   render() {
     return (
       <BodyBackground>
-        <Header/>
+        <Header />
 
         <BodyContent>
           {this.props.children}
         </BodyContent>
 
-        <Footer/>
+        <Footer />
       </BodyBackground>
     )
   }

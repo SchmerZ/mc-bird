@@ -1,7 +1,7 @@
 import React, {Fragment} from 'react'
 import styled from 'styled-components'
 
-import Container from "../../../src/client/components/styled/content-container";
+import Container from "../../../src/shared/components/styled/content-container";
 import {Row} from "../../../src/client/components/layout/responsive";
 import {PageTitle} from "../../../src/client/components/styled/primitive";
 import {Menu} from "../../../src/client/components/menu/menu";

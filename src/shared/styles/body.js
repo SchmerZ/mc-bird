@@ -1,6 +1,6 @@
 import {css} from 'styled-components'
 
-export const bodyBackground = css`
+export const bodyBackgroundStyle = css`
   width: 100%;
   overflow-x: hidden;
   margin: 0 auto;
@@ -8,7 +8,7 @@ export const bodyBackground = css`
   background-color: #fff;
 `;
 
-export const bodyContent = css`
+export const bodyContentStyle = css`
   position: relative;
   width: 100%;
   overflow-x: hidden;

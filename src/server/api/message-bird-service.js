@@ -5,8 +5,8 @@
 
 import BaseService from '../lib/base-service'
 
-import statusFilters from '../../client/constants/status-filters'
-import direction from '../../client/constants/message-type'
+import statusFilters from '../../shared/constants/status-filters'
+import direction from '../../shared/constants/message-directions'
 
 const statusToQueryMap = {
   [statusFilters.all]: '',

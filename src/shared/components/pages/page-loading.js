@@ -2,13 +2,13 @@ import React, {Component} from 'react'
 import styled from 'styled-components'
 
 import {color} from '../../styles/variables'
-import {bodyBackground, bodyContent} from '../../styles/layout'
+import {bodyBackgroundStyle, bodyContentStyle} from '../../styles/body'
 import {globalStyles} from '../../styles/globals'
 
 import Container from '../styled/content-container'
 import Header from '../layout/header'
-import Footer from '../layout/footer'
-import {SpinnerIcon} from '../icons'
+import Footer from '../../../client/components/layout/footer'
+import {SpinnerIcon} from '../../../client/components/icons/index'
 
 globalStyles();
 
@@ -19,12 +19,12 @@ const BodyBackground = styled.div.attrs({
   display: flex;
   flex-direction: column;
   
-  ${bodyBackground}
+  ${bodyBackgroundStyle}
 `;
 
 const BodyContent = styled.div`
   flex-grow: 1;
-  ${bodyContent}
+  ${bodyContentStyle}
 `;
 
 const LoadingSection = styled.section`
@@ -48,18 +48,18 @@ class PageLoading extends Component {
   render() {
     return (
       <BodyBackground>
-        <Header/>
+        <Header />
 
         <BodyContent>
           <LoadingSection>
             <Container>
-              <Icon size={60}/>
+              <Icon size={60} />
               <H3>MessageBird is loading...</H3>
             </Container>
           </LoadingSection>
         </BodyContent>
 
-        <Footer/>
+        <Footer />
       </BodyBackground>
     )
   }

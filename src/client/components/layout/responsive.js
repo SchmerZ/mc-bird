@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
-import styled, {css} from 'styled-components'
+import styled from 'styled-components'
 
-import {media} from '../styled/media'
+import {media} from '../../../shared/components/styled/media'
 
 const getWidthString = (span) => {
   if (!span) return;

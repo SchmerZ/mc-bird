@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import {color, textColor} from '../../styles/variables'
 
-import {media} from './media'
+import {media} from '../../../shared/components/styled/media'
 
 export const PageTitle = styled.h1`
   margin: 0;

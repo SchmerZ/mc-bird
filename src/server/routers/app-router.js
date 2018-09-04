@@ -7,7 +7,7 @@ import apiRouter from './api-router'
 import errorHandler from '../lib/error-handler'
 import requestLogger from '../lib/request-logger'
 
-import PageLoading from '../../client/components/pages/page-loading'
+import PageLoading from '../../shared/components/pages/page-loading'
 
 export default (wsServer) => {
 
