@@ -1,5 +1,4 @@
 import express from 'express'
-import path from 'path'
 import http from 'http'
 
 import config from './config'
@@ -14,7 +13,7 @@ const app = express();
 const server = http.createServer(app);
 const wsServer = new WsServer(server).start();
 
-app.use(express.static(path.join(__dirname, '../dist/public')));
+app.enable('trust proxy');
 app.use(config.siteRoot, appRouter(wsServer));
 
 server.listen(config.port, () => {
